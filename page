@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tobias Efler - Video Editor</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; background-color: #121212; color: #e0e0e0; }
+        .container { max-width: 960px; margin: 0 auto; padding: 40px 20px; }
+        header { text-align: center; margin-bottom: 60px; }
+        h1 { font-size: 2.5rem; margin-bottom: 10px; color: #ffffff; }
+        .subtitle { font-size: 1.2rem; color: #a0a0a0; }
+        .contact-info { margin-top: 20px; }
+        .contact-info a { color: #bb86fc; text-decoration: none; margin: 0 10px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
+        .card { background-color: #1e1e1e; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s ease; }
+        .card:hover { transform: translateY(-5px); }
+        .card img { width: 100%; display: block; }
+        .card-content { padding: 20px; }
+        .card h3 { margin-top: 0; color: #ffffff; }
+        .card p { color: #a0a0a0; font-size: 0.9rem; }
+        .card a { display: block; margin-top: 15px; color: #bb86fc; text-decoration: none; font-weight: bold; }
+        footer { text-align: center; padding: 40px 20px; color: #a0a0a0; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Tobias Efler</h1>
+            <p class="subtitle">Video Editor</p>
+            <div class="contact-info">
+                <a href="mailto:tobias_efler@gmx.de">tobias_efler@gmx.de</a> |
+                <a href="#">(504) 503-3819</a>
+            </div>
+        </header>
+
+        <h2>Selected Work</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="card-content">
+                    <h3>Nachtstreife - Suche in der Dunkelheit | Folge 2/Staffel 2 | SWR Doku</h3>
+                    <p>Head Editor</p>
+                    <a href="https://www.youtube.com/watch?v=UCK6jlnWA8t-XgUxwZJJHkQA" target="_blank">Watch on YouTube</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                    <h3>Ihr habt mir das eingebrockt! Was ENTSCHEIDEN die ZUSCHAUER? | Halbpension mit Schmitz XXL | SAT.1</h3>
+                    <p>Head Editor</p>
+                    <a href="https://www.youtube.com/watch?v=UCwW-l8qRdZ23_quLckn2j8A" target="_blank">Watch on YouTube</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                    <h3>„Tierbabys - süß und wild!" - Die neue Tier-Doku bei VOX</h3>
+                    <p>Editor</p>
+                    <a href="https://www.youtube.com/watch?v=UCl3dW7vybCbnDl3aOe7RfPg" target="_blank">Watch on YouTube</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                    <h3>Die Notrufzentrale</h3>
+                    <p>Editor</p>
+                    <a href="https://www.youtube.com/watch?v=UCqcXEmX-ZyXrP5016j6scYg" target="_blank">Watch on YouTube</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                    <h3>Tierretter mit Herz</h3>
+                    <p>Head Editor</p>
+                    <a href="https://www.youtube.com/watch?v=UCqcXEmX-ZyXrP5016j6scYg" target="_blank">Watch on YouTube</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                    <h3>Im Einsatz – Jede Sekunde zählt</h3>
+                    <p>Head Editor</p>
+                    <a href="https://www.youtube.com/watch?v=UCqcXEmX-ZyXrP5016j6scYg" target="_blank">Watch on YouTube</a>
+                </div>
+            </div>
+             <div class="card">
+                <div class="card-content">
+                    <h3>Die Doku ist zurück | Feuer, Wasser, Erde, Luft - Retter in ihrem Element</h3>
+                    <p>Editor</p>
+                    <a href="https://www.youtube.com/watch?v=UCl3dW7vybCbnDl3aOe7RfPg" target="_blank">Watch on YouTube</a>
+                </div>
+            </div>
+             <div class="card">
+                <div class="card-content">
+                    <h3>❗️NEU❗️ "Einsatz mit Herz - Die Notfallhelden": Es ist Zeit, Leben zu retten! 🚨🚑⛑</h3>
+                    <p>Head Editor</p>
+                    <a href="https://www.youtube.com/watch?v=UC4IGw5-9WZjUQaz9K92qnsg" target="_blank">Watch on YouTube</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                    <h3>Prüfung 7 bringt Ärger mit sich: "Boah, warte ab bis wir zu Hause sind!" | Paar Love | SAT.1</h3>
+                    <p>Head Editor</p>
+                    <a href="https://www.youtube.com/watch?v=UCwW-l8qRdZ23_quLckn2j8A" target="_blank">Watch on YouTube</a>
+                </div>
+            </div>
+             <div class="card">
+                <div class="card-content">
+                    <h3>Vom erfolgreichen Rocker zum "Koks-König": Der Weg von Detlef Kowalewski | 1/7 | Jenke.Crime</h3>
+                    <p>Editor</p>
+                    <a href="https://www.youtube.com/watch?v=UCh-Ftqf4si1HFVtDm7Y10yg" target="_blank">Watch on YouTube</a>
+                </div>
+            </div>
+             <div class="card">
+                <div class="card-content">
+                     <h3>Jenke. Vorschau 1 für den 30.11.2020 (ProSieben)</h3>
+                    <p>Editor</p>
+                    <a href="https://www.youtube.com/watch?v=UCV2mQgg1y-2F_EvqV8NXLtg" target="_blank">Watch on YouTube</a>
+                </div>
+            </div>
+             <div class="card">
+                <div class="card-content">
+                    <h3>Verrückt nach Meer</h3>
+                    <p>Editor</p>
+                    <a href="https://www.youtube.com/watch?v=UCqcXEmX-ZyXrP5016j6scYg" target="_blank">Watch on YouTube</a>
+                </div>
+            </div>
+             <div class="card">
+                <div class="card-content">
+                    <h3>Hautnah: Die Tierklinik</h3>
+                    <p>Editor</p>
+                    <a href="https://www.youtube.com/watch?v=UCqcXEmX-ZyXrP5016j6scYg" target="_blank">Watch on YouTube</a>
+                </div>
+            </div>
+             <div class="card">
+                <div class="card-content">
+                    <h3>Mein himmlisches Hotel</h3>
+                    <p>Assistant Editor / Color Grading</p>
+                    <a href="https://www.youtube.com/watch?v=UCqcXEmX-ZyXrP5016j6scYg" target="_blank">Watch on YouTube</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                    <h3>Die Kostümjäger</h3>
+                    <p>Head Editor</p>
+                    <a href="https://www.fandangofilm.de/produktionen/die-kostuem-jaeger/" target="_blank">More Info</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                     <h3>Die Notrufzentrale</h3>
+                    <p>Editor</p>
+                    <a href="https://www.vox.de/videos/unruhe-in-der-obdachlosenunterkunft-66f3d7fa35900c0e7f00a222.html" target="_blank">Watch on VOX</a>
+                </div>
+            </div>
+             <div class="card">
+                <div class="card-content">
+                    <h3>Der Knochenknacker – Tierisch verrenkt</h3>
+                    <p>Head Editor</p>
+                    <a href="https://www.tiktok.com/@boneshandsanimals/video/7290478732937006368" target="_blank">Watch on TikTok</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Tobias Efler</p>
+    </footer>
+
+</body>
+</html>
