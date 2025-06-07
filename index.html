@@ -480,7 +480,7 @@
     <section class="work-section" id="work">
         <div class="work-header">
             <h2 class="work-title">SELECTED WORK</h2>
-            <span class="work-count">[16 PROJECTS]</span>
+            <span class="work-count">[23 PROJECTS]</span>
         </div>
         
         <div class="work-grid" id="workGrid">
@@ -531,17 +531,31 @@
     </div>
 
     <script>
-        // Work data
+        // Work data - All 23 productions
         const workData = [
-            { title: "NACHTSTREIFE", meta: "DOCUMENTARY / SWR", videoId: "zbVz7_OJNsQ", thumbnail: "https://img.youtube.com/vi/zbVz7_OJNsQ/maxresdefault.jpg" },
-            { title: "HALBPENSION MIT SCHMITZ", meta: "ENTERTAINMENT / SAT.1", videoId: "TXIPKDAA0g8", thumbnail: "https://img.youtube.com/vi/TXIPKDAA0g8/maxresdefault.jpg" },
-            { title: "TIERBABYS", meta: "DOCUMENTARY / VOX", videoId: "T9IDBbhq8hg", thumbnail: "https://img.youtube.com/vi/T9IDBbhq8hg/maxresdefault.jpg" },
-            { title: "JENKE: CRIME", meta: "DOCUMENTARY / PROSIEBEN", videoId: "OPg_RHBS5-Q", thumbnail: "https://img.youtube.com/vi/OPg_RHBS5-Q/maxresdefault.jpg" },
-            { title: "TIERRETTER MIT HERZ", meta: "DOCUMENTARY", videoId: "e2ktOnl6w10", thumbnail: "https://img.youtube.com/vi/e2ktOnl6w10/maxresdefault.jpg" },
-            { title: "EINSATZ MIT HERZ", meta: "EMERGENCY SERVICES", videoId: "h3hl3O2nLO0", thumbnail: "https://img.youtube.com/vi/h3hl3O2nLO0/maxresdefault.jpg" },
-            { title: "PAAR LOVE", meta: "DATING SHOW / SAT.1", videoId: "0bONpYQuq2Y", thumbnail: "https://img.youtube.com/vi/0bONpYQuq2Y/maxresdefault.jpg" },
-            { title: "VERRÜCKT NACH MEER", meta: "TRAVEL DOCUMENTARY", videoId: "7VkntMsqxqY", thumbnail: "https://img.youtube.com/vi/7VkntMsqxqY/maxresdefault.jpg" },
-            { title: "RATE MY DATE", meta: "DATING SHOW", videoId: "jJYq9-_gtyU", thumbnail: "https://img.youtube.com/vi/jJYq9-_gtyU/maxresdefault.jpg" }
+            { title: "NACHTSTREIFE", meta: "HEAD EDITOR / SWR", videoId: "zbVz7_OJNsQ", thumbnail: "https://img.youtube.com/vi/zbVz7_OJNsQ/maxresdefault.jpg" },
+            { title: "MEIN TRAUMHAUS AM MEER", meta: "EDITOR", videoId: "yMRCCWD9h0w", thumbnail: "https://img.youtube.com/vi/yMRCCWD9h0w/maxresdefault.jpg" },
+            { title: "VERRÜCKT NACH MEER", meta: "EDITOR", videoId: "7VkntMsqxqY", thumbnail: "https://img.youtube.com/vi/7VkntMsqxqY/maxresdefault.jpg" },
+            { title: "DIE KOSTÜMJÄGER", meta: "HEAD EDITOR", videoId: "placeholder1", thumbnail: "https://img.youtube.com/vi/placeholder1/maxresdefault.jpg" },
+            { title: "DIE NOTRUFZENTRALE", meta: "EDITOR", videoId: "placeholder2", thumbnail: "https://img.youtube.com/vi/placeholder2/maxresdefault.jpg" },
+            { title: "NÄCHSTE AUSFAHRT LIEBE", meta: "HEAD EDITOR", videoId: "placeholder3", thumbnail: "https://img.youtube.com/vi/placeholder3/maxresdefault.jpg" },
+            { title: "TIERBABYS – WILD & SÜß!", meta: "EDITOR / VOX", videoId: "T9IDBbhq8hg", thumbnail: "https://img.youtube.com/vi/T9IDBbhq8hg/maxresdefault.jpg" },
+            { title: "IM EINSATZ – JEDE SEKUNDE ZÄHLT", meta: "HEAD EDITOR", videoId: "ET8ABJncFuA", thumbnail: "https://img.youtube.com/vi/ET8ABJncFuA/maxresdefault.jpg" },
+            { title: "TIERRETTER MIT HERZ", meta: "HEAD EDITOR", videoId: "e2ktOnl6w10", thumbnail: "https://img.youtube.com/vi/e2ktOnl6w10/maxresdefault.jpg" },
+            { title: "JENKE: EXPERIMENT", meta: "EDITOR / PROSIEBEN", videoId: "H_2L7-2FBTQ", thumbnail: "https://img.youtube.com/vi/H_2L7-2FBTQ/maxresdefault.jpg" },
+            { title: "JENKE: CRIME", meta: "EDITOR / PROSIEBEN", videoId: "OPg_RHBS5-Q", thumbnail: "https://img.youtube.com/vi/OPg_RHBS5-Q/maxresdefault.jpg" },
+            { title: "PAAR LOVE", meta: "HEAD EDITOR / SAT.1", videoId: "0bONpYQuq2Y", thumbnail: "https://img.youtube.com/vi/0bONpYQuq2Y/maxresdefault.jpg" },
+            { title: "RATE MY DATE", meta: "HEAD EDITOR", videoId: "jJYq9-_gtyU", thumbnail: "https://img.youtube.com/vi/jJYq9-_gtyU/maxresdefault.jpg" },
+            { title: "HALBPENSION MIT SCHMITZ", meta: "HEAD EDITOR / SAT.1", videoId: "TXIPKDAA0g8", thumbnail: "https://img.youtube.com/vi/TXIPKDAA0g8/maxresdefault.jpg" },
+            { title: "DER KNOCHENKNACKER", meta: "HEAD EDITOR", videoId: "placeholder4", thumbnail: "https://img.youtube.com/vi/placeholder4/maxresdefault.jpg" },
+            { title: "EINSATZ MIT HERZ", meta: "HEAD EDITOR", videoId: "h3hl3O2nLO0", thumbnail: "https://img.youtube.com/vi/h3hl3O2nLO0/maxresdefault.jpg" },
+            { title: "FEUER WASSER ERDE LUFT", meta: "EDITOR", videoId: "hLsvuZUPQpo", thumbnail: "https://img.youtube.com/vi/hLsvuZUPQpo/maxresdefault.jpg" },
+            { title: "110 – IM DAUEREINSATZ", meta: "EDITOR", videoId: "UL1Ss_INkRY", thumbnail: "https://img.youtube.com/vi/UL1Ss_INkRY/maxresdefault.jpg" },
+            { title: "MIETEN KAUFEN WOHNEN", meta: "ASSISTANT EDITOR / COLOR GRADING", videoId: "placeholder5", thumbnail: "https://img.youtube.com/vi/placeholder5/maxresdefault.jpg" },
+            { title: "MEIN HIMMLISCHES HOTEL", meta: "ASSISTANT EDITOR / COLOR GRADING", videoId: "pMNgwsT-8q4", thumbnail: "https://img.youtube.com/vi/pMNgwsT-8q4/maxresdefault.jpg" },
+            { title: "WER WEIß ES, WER WEIß ES NICHT?", meta: "EDITOR", videoId: "placeholder6", thumbnail: "https://img.youtube.com/vi/placeholder6/maxresdefault.jpg" },
+            { title: "HOL DIR DIE KOHLE!", meta: "EDITOR", videoId: "placeholder7", thumbnail: "https://img.youtube.com/vi/placeholder7/maxresdefault.jpg" },
+            { title: "HAUTNAH: DIE TIERKLINIK", meta: "EDITOR", videoId: "TdPt9DbP0EY", thumbnail: "https://img.youtube.com/vi/TdPt9DbP0EY/maxresdefault.jpg" }
         ];
 
         // Populate work grid
