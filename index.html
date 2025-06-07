@@ -1479,12 +1479,403 @@
     <footer class="footer">
         <div class="footer-content">
             <p>&copy; 2024 Tobias Efler. Professional Video Editor.</p>
-            <p>Available for freelance projects worldwide.</p>
+            <p>Available for freelance projects worldwide. <button id="retro-btn" class="retro-toggle-btn">♟️</button></p>
         </div>
     </footer>
 
+    <style id="retro-styles" style="display: none;">
+        /* 1990s RETRO MODE - GEOCITIES/ANGELFIRE STYLE */
+        [data-retro="true"] {
+            background: #000080 url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><rect width="20" height="20" fill="%23000080"/><circle cx="5" cy="5" r="1" fill="%23ffff00"/><circle cx="15" cy="15" r="1" fill="%23ff0000"/><circle cx="5" cy="15" r="1" fill="%2300ff00"/><circle cx="15" cy="5" r="1" fill="%23ff00ff"/></svg>') repeat !important;
+            font-family: "Comic Sans MS", cursive, fantasy !important;
+            color: #ffff00 !important;
+            animation: rainbow-bg 3s infinite !important;
+        }
+
+        @keyframes rainbow-bg {
+            0% { background-color: #ff0000; }
+            16% { background-color: #ff8000; }
+            33% { background-color: #ffff00; }
+            50% { background-color: #00ff00; }
+            66% { background-color: #0080ff; }
+            83% { background-color: #8000ff; }
+            100% { background-color: #ff0000; }
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        @keyframes sparkle {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+            50% { transform: scale(1.5) rotate(180deg); opacity: 0.5; }
+        }
+
+        [data-retro="true"] .navbar {
+            background: linear-gradient(45deg, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff) !important;
+            background-size: 400% 400% !important;
+            animation: rainbow-bg 2s infinite !important;
+            border: 3px solid #ffff00 !important;
+            border-style: dashed !important;
+        }
+
+        [data-retro="true"] .logo {
+            color: #ffff00 !important;
+            text-shadow: 2px 2px 0px #ff0000, 4px 4px 0px #00ff00 !important;
+            animation: bounce 1s infinite !important;
+            font-size: 2rem !important;
+        }
+
+        [data-retro="true"] .logo::before {
+            content: "🌟 ";
+            animation: sparkle 1s infinite !important;
+        }
+
+        [data-retro="true"] .logo::after {
+            content: " 🌟";
+            animation: sparkle 1s infinite reverse !important;
+            width: auto !important;
+            height: auto !important;
+            position: static !important;
+            background: none !important;
+        }
+
+        [data-retro="true"] .nav-links a {
+            color: #ffff00 !important;
+            text-shadow: 1px 1px 0px #000000 !important;
+            text-decoration: underline !important;
+            animation: blink 2s infinite !important;
+        }
+
+        [data-retro="true"] .hero-title {
+            background: linear-gradient(45deg, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff) !important;
+            background-size: 400% 400% !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            animation: rainbow-bg 1s infinite !important;
+            text-shadow: 2px 2px 0px #000000 !important;
+            font-family: "Comic Sans MS", cursive !important;
+        }
+
+        [data-retro="true"] .hero-title::before {
+            content: "✨ WELCOME TO ✨\A";
+            white-space: pre;
+            color: #ff00ff !important;
+            font-size: 0.3em !important;
+            display: block !important;
+            text-align: center !important;
+            animation: blink 1s infinite !important;
+            -webkit-text-fill-color: #ff00ff !important;
+        }
+
+        [data-retro="true"] .hero-subtitle {
+            color: #00ffff !important;
+            text-shadow: 1px 1px 0px #000000 !important;
+            text-decoration: underline !important;
+            animation: bounce 2s infinite !important;
+        }
+
+        [data-retro="true"] .hero-location {
+            color: #ff00ff !important;
+            text-shadow: 1px 1px 0px #000000 !important;
+            font-size: 1.5rem !important;
+        }
+
+        [data-retro="true"] .hero-location::before {
+            content: "🎬 ";
+            animation: sparkle 1.5s infinite !important;
+        }
+
+        [data-retro="true"] .hero-location::after {
+            content: " 🎬";
+            animation: sparkle 1.5s infinite reverse !important;
+        }
+
+        [data-retro="true"] .section-title {
+            color: #ffff00 !important;
+            text-shadow: 2px 2px 0px #ff0000 !important;
+            text-align: center !important;
+            text-decoration: underline !important;
+            animation: bounce 3s infinite !important;
+        }
+
+        [data-retro="true"] .section-title::before {
+            content: "⭐ ";
+            animation: sparkle 1s infinite !important;
+        }
+
+        [data-retro="true"] .section-title::after {
+            content: " ⭐";
+            animation: sparkle 1s infinite reverse !important;
+        }
+
+        [data-retro="true"] .section-divider {
+            color: #ff00ff !important;
+            text-shadow: 1px 1px 0px #000000 !important;
+            font-size: 1.5rem !important;
+            animation: blink 2s infinite !important;
+            text-align: center !important;
+        }
+
+        [data-retro="true"] .work-card {
+            background: linear-gradient(45deg, #ff0080, #8000ff) !important;
+            border: 3px solid #ffff00 !important;
+            border-style: double !important;
+            box-shadow: 5px 5px 0px #ff0000 !important;
+            animation: bounce 4s infinite !important;
+        }
+
+        [data-retro="true"] .work-card:hover {
+            transform: scale(1.1) rotate(2deg) !important;
+            animation: sparkle 0.5s infinite !important;
+        }
+
+        [data-retro="true"] .work-title {
+            color: #ffff00 !important;
+            text-shadow: 1px 1px 0px #000000 !important;
+            text-align: center !important;
+        }
+
+        [data-retro="true"] .work-genre {
+            color: #00ff00 !important;
+            text-shadow: 1px 1px 0px #000000 !important;
+            animation: blink 3s infinite !important;
+            text-align: center !important;
+        }
+
+        [data-retro="true"] .work-role {
+            color: #00ffff !important;
+            text-shadow: 1px 1px 0px #000000 !important;
+            text-align: center !important;
+        }
+
+        [data-retro="true"] .work-link {
+            color: #ff00ff !important;
+            text-shadow: 1px 1px 0px #000000 !important;
+            text-decoration: underline !important;
+            animation: blink 1.5s infinite !important;
+            text-align: center !important;
+            display: block !important;
+        }
+
+        [data-retro="true"] .stats-section {
+            background: linear-gradient(90deg, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff) !important;
+            background-size: 400% 400% !important;
+            animation: rainbow-bg 3s infinite !important;
+            border: 5px solid #ffff00 !important;
+            border-style: ridge !important;
+        }
+
+        [data-retro="true"] .stat-number {
+            color: #ffff00 !important;
+            text-shadow: 2px 2px 0px #ff0000 !important;
+            animation: bounce 2s infinite !important;
+        }
+
+        [data-retro="true"] .stat-label {
+            color: #00ffff !important;
+            text-shadow: 1px 1px 0px #000000 !important;
+            animation: blink 2s infinite !important;
+        }
+
+        [data-retro="true"] .timeline-item {
+            border-left: 5px solid #ffff00 !important;
+            border-style: dashed !important;
+            background: rgba(255, 0, 255, 0.3) !important;
+            margin: 1rem 0 !important;
+            padding: 1rem !important;
+            border-radius: 0 !important;
+        }
+
+        [data-retro="true"] .timeline-title {
+            color: #ffff00 !important;
+            text-shadow: 1px 1px 0px #000000 !important;
+            animation: blink 3s infinite !important;
+        }
+
+        [data-retro="true"] .timeline-year {
+            color: #00ff00 !important;
+            text-shadow: 1px 1px 0px #000000 !important;
+            font-weight: bold !important;
+        }
+
+        [data-retro="true"] .timeline-description {
+            color: #00ffff !important;
+            text-shadow: 1px 1px 0px #000000 !important;
+        }
+
+        [data-retro="true"] .contact-section {
+            background: linear-gradient(45deg, #8000ff, #ff0080) !important;
+            border: 3px solid #ffff00 !important;
+            border-style: groove !important;
+        }
+
+        [data-retro="true"] .contact-item {
+            background: linear-gradient(45deg, #ff0000, #ffff00) !important;
+            border: 3px solid #00ff00 !important;
+            border-style: outset !important;
+            animation: bounce 3s infinite !important;
+        }
+
+        [data-retro="true"] .contact-item a {
+            color: #000080 !important;
+            text-shadow: 1px 1px 0px #ffff00 !important;
+            font-weight: bold !important;
+            text-decoration: underline !important;
+        }
+
+        [data-retro="true"] .footer {
+            background: linear-gradient(90deg, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff) !important;
+            background-size: 400% 400% !important;
+            animation: rainbow-bg 2s infinite !important;
+            border: 3px solid #ffff00 !important;
+            border-style: inset !important;
+        }
+
+        [data-retro="true"] .footer p {
+            color: #ffff00 !important;
+            text-shadow: 1px 1px 0px #000000 !important;
+            font-weight: bold !important;
+            animation: blink 4s infinite !important;
+        }
+
+        [data-retro="true"] .btn {
+            background: linear-gradient(45deg, #ff0000, #ffff00) !important;
+            color: #000080 !important;
+            border: 3px solid #00ff00 !important;
+            border-style: outset !important;
+            text-shadow: 1px 1px 0px #ffff00 !important;
+            font-weight: bold !important;
+            animation: bounce 2s infinite !important;
+        }
+
+        [data-retro="true"] .btn:hover {
+            background: linear-gradient(45deg, #00ff00, #00ffff) !important;
+            animation: sparkle 0.5s infinite !important;
+        }
+
+        [data-retro="true"] .skill-category {
+            background: rgba(255, 0, 255, 0.3) !important;
+            border: 3px solid #ffff00 !important;
+            border-style: ridge !important;
+            animation: bounce 4s infinite !important;
+        }
+
+        [data-retro="true"] .skill-category h3 {
+            color: #ffff00 !important;
+            text-shadow: 1px 1px 0px #ff0000 !important;
+            text-align: center !important;
+            animation: blink 3s infinite !important;
+        }
+
+        [data-retro="true"] .skill-list li {
+            color: #00ffff !important;
+            text-shadow: 1px 1px 0px #000000 !important;
+        }
+
+        [data-retro="true"] .dark-mode-btn {
+            background: linear-gradient(45deg, #ff0000, #ffff00) !important;
+            border: 2px solid #00ff00 !important;
+            animation: sparkle 1s infinite !important;
+        }
+
+        /* VISITOR COUNTER STYLE */
+        [data-retro="true"] .hero::after {
+            content: "👾 VISITOR #1337 👾 \A🚧 UNDER CONSTRUCTION 🚧 \A⚡ BEST VIEWED IN NETSCAPE ⚡";
+            white-space: pre;
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background: #ffff00;
+            color: #ff0000;
+            padding: 10px;
+            border: 3px solid #000000;
+            border-style: inset;
+            font-size: 0.8rem;
+            font-weight: bold;
+            animation: blink 1s infinite;
+            z-index: 999;
+        }
+
+        /* MARQUEE STYLE ANIMATION */
+        [data-retro="true"] .hero-description {
+            color: #00ffff !important;
+            text-shadow: 1px 1px 0px #000000 !important;
+            animation: marquee 15s linear infinite !important;
+            white-space: nowrap !important;
+            overflow: hidden !important;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* SPARKLE DECORATIONS */
+        [data-retro="true"] body::before {
+            content: "✨⭐✨⭐✨⭐✨⭐✨⭐✨⭐✨⭐✨";
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #000080;
+            color: #ffff00;
+            text-align: center;
+            z-index: 1001;
+            animation: sparkle 2s infinite;
+            padding: 5px;
+            border-bottom: 3px solid #ff00ff;
+        }
+
+        [data-retro="true"] body::after {
+            content: "🎵 NOW PLAYING: MIDI MUSIC 🎵";
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #ff00ff;
+            color: #ffff00;
+            text-align: center;
+            z-index: 1001;
+            animation: blink 1s infinite;
+            padding: 5px;
+            font-weight: bold;
+            border-top: 3px solid #00ff00;
+        }
+    </style>
+
+    <style>
+        .retro-toggle-btn {
+            background: none;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0.2rem;
+            border-radius: 4px;
+            color: var(--text-muted);
+        }
+
+        .retro-toggle-btn:hover {
+            background: var(--bg-secondary);
+            transform: scale(1.1);
+        }
+
+        [data-theme="dark"] .retro-toggle-btn:hover {
+            background: var(--bg-secondary);
+        }
+    </style>
+
     <script>
         let isExpanded = false;
+        let isRetroMode = false;
 
         // Navbar scroll effect
         window.addEventListener('scroll', function() {
@@ -1535,6 +1926,41 @@
                 document.body.setAttribute('data-theme', 'dark');
             }
             // Icons will automatically show/hide via CSS based on data-theme attribute
+        }
+
+        // Retro mode functionality
+        function toggleRetroMode() {
+            const body = document.body;
+            const retroStyles = document.getElementById('retro-styles');
+            
+            isRetroMode = !isRetroMode;
+            
+            if (isRetroMode) {
+                body.setAttribute('data-retro', 'true');
+                retroStyles.style.display = 'block';
+                localStorage.setItem('retroMode', 'true');
+                
+                // Add some fun console messages
+                console.log('%c🌟 WELCOME TO 1990s MODE! 🌟', 'color: #ff00ff; font-size: 20px; font-family: Comic Sans MS');
+                console.log('%c🚧 UNDER CONSTRUCTION 🚧', 'color: #ffff00; background: #ff0000; font-weight: bold');
+                console.log('%c Best viewed in Netscape Navigator! 🌐', 'color: #00ffff; font-style: italic');
+            } else {
+                body.removeAttribute('data-retro');
+                retroStyles.style.display = 'none';
+                localStorage.removeItem('retroMode');
+                
+                console.log('%c👋 Back to the modern world!', 'color: #8b5cf6; font-size: 16px');
+            }
+        }
+
+        // Load saved retro mode on page load
+        function loadRetroMode() {
+            const savedRetroMode = localStorage.getItem('retroMode');
+            if (savedRetroMode === 'true') {
+                isRetroMode = true;
+                document.body.setAttribute('data-retro', 'true');
+                document.getElementById('retro-styles').style.display = 'block';
+            }
         }
 
         // Video Modal functionality
@@ -1688,6 +2114,7 @@
         // Initialize everything when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
             loadTheme();
+            loadRetroMode();
             setupImageFallbacks();
             
             // Add dark mode button event listener
@@ -1695,6 +2122,9 @@
             
             // Add show more button event listener
             document.getElementById('showMoreBtn').addEventListener('click', toggleGridExpansion);
+            
+            // Add retro mode button event listener
+            document.getElementById('retro-btn').addEventListener('click', toggleRetroMode);
         });
     </script>
 </body>
