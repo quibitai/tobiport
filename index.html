@@ -1486,7 +1486,7 @@
     <style id="retro-styles" style="display: none;">
         /* 1990s RETRO MODE - GEOCITIES/ANGELFIRE STYLE */
         [data-retro="true"] {
-            background: #000080 url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><rect width="20" height="20" fill="%23000080"/><circle cx="5" cy="5" r="1" fill="%23ffff00"/><circle cx="15" cy="15" r="1" fill="%23ff0000"/><circle cx="5" cy="15" r="1" fill="%2300ff00"/><circle cx="15" cy="5" r="1" fill="%23ff00ff"/></svg>') repeat !important;
+            background: #000080 url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><rect width="40" height="40" fill="%23000080"/><circle cx="10" cy="10" r="1" fill="%23ffff00" opacity="0.6"/><circle cx="30" cy="30" r="1" fill="%23ff0000" opacity="0.6"/></svg>') repeat !important;
             font-family: "Comic Sans MS", cursive, fantasy !important;
             color: #ffff00 !important;
             animation: rainbow-bg 3s infinite !important;
@@ -1791,7 +1791,7 @@
             content: "👾 VISITOR #1337 👾 \A🚧 UNDER CONSTRUCTION 🚧 \A⚡ BEST VIEWED IN NETSCAPE ⚡";
             white-space: pre;
             position: fixed;
-            bottom: 10px;
+            bottom: 50px;
             right: 10px;
             background: #ffff00;
             color: #ff0000;
@@ -1804,13 +1804,15 @@
             z-index: 999;
         }
 
-        /* MARQUEE STYLE ANIMATION */
+        /* MARQUEE STYLE ANIMATION - FIXED */
         [data-retro="true"] .hero-description {
             color: #00ffff !important;
             text-shadow: 1px 1px 0px #000000 !important;
-            animation: marquee 15s linear infinite !important;
+            animation: marquee 20s linear infinite !important;
             white-space: nowrap !important;
             overflow: hidden !important;
+            width: 100% !important;
+            display: block !important;
         }
 
         @keyframes marquee {
