@@ -162,7 +162,7 @@
         .work-item {
             position: relative;
             background: var(--gray-dark);
-            border: none;
+            border: 1px solid var(--black);
             overflow: hidden;
             aspect-ratio: 16/9;
         }
@@ -173,10 +173,12 @@
             object-fit: cover;
             display: block;
             filter: grayscale(100%);
+            transition: transform 0.3s ease;
         }
 
         .work-thumbnail:hover {
             filter: none;
+            transform: scale(1.05);
         }
 
         .work-overlay {
@@ -184,10 +186,11 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: var(--black);
+            background: rgba(0,0,0,0.8);
             color: var(--white);
             padding: 12px;
             transform: translateY(100%);
+            transition: transform 0.3s ease;
         }
 
         .work-item:hover .work-overlay {
@@ -254,10 +257,11 @@
         }
 
         .about-content {
-            padding: 40px;
+            padding: 20px 40px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
+            padding-top: 15vh;
         }
 
         .about-content p {
@@ -270,8 +274,28 @@
 
         /* Contact Form */
         .contact-form {
-            margin-top: 40px;
-            max-width: 500px;
+            margin-top: 10vh;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: 40px;
+            background: var(--black);
+            padding: 30px;
+            border: none;
+            position: relative;
+            width: 400px;
+            z-index: 10;
+            margin-bottom: 20px;
+        }
+
+        .contact-form::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 100%;
+            bottom: 0;
+            width: 100vw;
+            background: var(--black);
+            z-index: -1;
         }
 
         .contact-form h3 {
@@ -281,6 +305,7 @@
             text-transform: uppercase;
             letter-spacing: -1px;
             margin-bottom: 20px;
+            color: var(--white);
         }
 
         .form-group {
@@ -294,18 +319,18 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 5px;
-            color: var(--gray-medium);
+            color: var(--gray-light);
         }
 
         .form-group input,
         .form-group textarea {
             width: 100%;
             padding: 12px;
-            border: 2px solid var(--black);
-            background: var(--white);
+            border: 2px solid var(--white);
+            background: var(--black);
             font-family: var(--font-mono);
             font-size: 12px;
-            color: var(--black);
+            color: var(--white);
             resize: vertical;
         }
 
@@ -313,6 +338,7 @@
         .form-group textarea:focus {
             outline: none;
             border-color: var(--accent);
+            background: var(--gray-dark);
         }
 
         .form-group textarea {
@@ -320,9 +346,9 @@
         }
 
         .submit-btn {
-            background: var(--black);
-            color: var(--white);
-            border: none;
+            background: var(--white);
+            color: var(--black);
+            border: 2px solid var(--white);
             padding: 12px 24px;
             font-family: var(--font-mono);
             font-size: 10px;
@@ -335,6 +361,7 @@
         .submit-btn:hover {
             background: var(--accent);
             color: var(--black);
+            border-color: var(--accent);
         }
 
         .about-stats {
@@ -344,6 +371,19 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            position: relative;
+            height: 50vh;
+        }
+
+        .about-stats::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background: var(--white);
+            z-index: 1;
         }
 
         /* Footer - Minimal Corner Element */
@@ -469,38 +509,36 @@
     <section class="hero" id="home">
         <div class="hero-info">
             <!-- Empty but maintains white space -->
-        </div>
+            </div>
         <div class="hero-content">
             <h1 class="hero-title">TOBIAS<br>EFLER</h1>
             <p class="hero-subtitle">Video Editor / New Orleans, LA</p>
-        </div>
+                </div>
     </section>
 
     <!-- Stark Work Grid -->
     <section class="work-section" id="work">
         <div class="work-header">
             <h2 class="work-title">SELECTED WORK</h2>
-            <span class="work-count">[23 PROJECTS]</span>
-        </div>
+            <span class="work-count">[12 PROJECTS]</span>
+            </div>
         
         <div class="work-grid" id="workGrid">
             <!-- Work items will be populated by JavaScript -->
-        </div>
+                </div>
     </section>
 
     <!-- Asymmetric About -->
     <section class="about-section" id="about">
         <div class="about-sidebar">
-            <h2 class="about-title">ABOUT</h2>
-        </div>
+            
+            </div>
         <div class="about-content">
-            <p>SINCE 2012, I HAVE COLLABORATED WITH LEADING TELEVISION NETWORKS TO CRAFT COMPELLING NARRATIVES ACROSS DOCUMENTARIES, REALITY TV, AND GAME SHOWS.</p>
-            <p>WITH EXPERTISE IN AVID MEDIA COMPOSER, ADOBE PREMIERE PRO, AND COMPREHENSIVE POST-PRODUCTION WORKFLOWS, I BRING TECHNICAL EXCELLENCE AND CREATIVE VISION TO EVERY PROJECT.</p>
-            <p>MY WORK SPANS MAJOR GERMAN NETWORKS INCLUDING SAT.1, VOX, SWR, AND PROSIEBEN.</p>
+            <p>SINCE 2012, I'VE TEAMED UP WITH TOP NETWORKS, AGENCIES, AND CREATIVES TO TELL COMPELLING STORIES ACROSS MANY GENRES. WITH A BACKGROUND IN ENGINEERING IN MEDIA TECHNOLOGIES FROM THE UNIVERSITY OF APPLIED SCIENCES IN COLOGNE, I HAVE A DEEP KNOWLEDGE OF POST-PRODUCTION WORKFLOWS AND SPECIALIZE IN AVID MEDIA COMPOSER.</p>
             
             <!-- Contact Form -->
             <form class="contact-form" id="contact-form">
-                <h3>Contact</h3>
+                <h3>TELL ME ABOUT YOUR PROJECT</h3>
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" required>
@@ -509,12 +547,12 @@
                     <label for="message">Message</label>
                     <textarea id="message" name="message" required></textarea>
                 </div>
-                <button type="submit" class="submit-btn">Send Message</button>
+                <button type="submit" class="submit-btn">→</button>
             </form>
-        </div>
+            </div>
         <div class="about-stats">
             <!-- Empty but maintains yellow bar -->
-        </div>
+                </div>
     </section>
 
     <!-- Minimal Footer -->
@@ -531,31 +569,20 @@
     </div>
 
     <script>
-        // Work data - All 23 productions
+        // Work data - Videos with confirmed YouTube links
         const workData = [
-            { title: "NACHTSTREIFE", meta: "HEAD EDITOR / SWR", videoId: "zbVz7_OJNsQ", thumbnail: "https://img.youtube.com/vi/zbVz7_OJNsQ/maxresdefault.jpg" },
-            { title: "MEIN TRAUMHAUS AM MEER", meta: "EDITOR", videoId: "yMRCCWD9h0w", thumbnail: "https://img.youtube.com/vi/yMRCCWD9h0w/maxresdefault.jpg" },
-            { title: "VERRÜCKT NACH MEER", meta: "EDITOR", videoId: "7VkntMsqxqY", thumbnail: "https://img.youtube.com/vi/7VkntMsqxqY/maxresdefault.jpg" },
-            { title: "DIE KOSTÜMJÄGER", meta: "HEAD EDITOR", videoId: "placeholder1", thumbnail: "https://img.youtube.com/vi/placeholder1/maxresdefault.jpg" },
-            { title: "DIE NOTRUFZENTRALE", meta: "EDITOR", videoId: "placeholder2", thumbnail: "https://img.youtube.com/vi/placeholder2/maxresdefault.jpg" },
-            { title: "NÄCHSTE AUSFAHRT LIEBE", meta: "HEAD EDITOR", videoId: "placeholder3", thumbnail: "https://img.youtube.com/vi/placeholder3/maxresdefault.jpg" },
-            { title: "TIERBABYS – WILD & SÜß!", meta: "EDITOR / VOX", videoId: "T9IDBbhq8hg", thumbnail: "https://img.youtube.com/vi/T9IDBbhq8hg/maxresdefault.jpg" },
-            { title: "IM EINSATZ – JEDE SEKUNDE ZÄHLT", meta: "HEAD EDITOR", videoId: "ET8ABJncFuA", thumbnail: "https://img.youtube.com/vi/ET8ABJncFuA/maxresdefault.jpg" },
-            { title: "TIERRETTER MIT HERZ", meta: "HEAD EDITOR", videoId: "e2ktOnl6w10", thumbnail: "https://img.youtube.com/vi/e2ktOnl6w10/maxresdefault.jpg" },
-            { title: "JENKE: EXPERIMENT", meta: "EDITOR / PROSIEBEN", videoId: "H_2L7-2FBTQ", thumbnail: "https://img.youtube.com/vi/H_2L7-2FBTQ/maxresdefault.jpg" },
-            { title: "JENKE: CRIME", meta: "EDITOR / PROSIEBEN", videoId: "OPg_RHBS5-Q", thumbnail: "https://img.youtube.com/vi/OPg_RHBS5-Q/maxresdefault.jpg" },
-            { title: "PAAR LOVE", meta: "HEAD EDITOR / SAT.1", videoId: "0bONpYQuq2Y", thumbnail: "https://img.youtube.com/vi/0bONpYQuq2Y/maxresdefault.jpg" },
-            { title: "RATE MY DATE", meta: "HEAD EDITOR", videoId: "jJYq9-_gtyU", thumbnail: "https://img.youtube.com/vi/jJYq9-_gtyU/maxresdefault.jpg" },
-            { title: "HALBPENSION MIT SCHMITZ", meta: "HEAD EDITOR / SAT.1", videoId: "TXIPKDAA0g8", thumbnail: "https://img.youtube.com/vi/TXIPKDAA0g8/maxresdefault.jpg" },
-            { title: "DER KNOCHENKNACKER", meta: "HEAD EDITOR", videoId: "placeholder4", thumbnail: "https://img.youtube.com/vi/placeholder4/maxresdefault.jpg" },
-            { title: "EINSATZ MIT HERZ", meta: "HEAD EDITOR", videoId: "h3hl3O2nLO0", thumbnail: "https://img.youtube.com/vi/h3hl3O2nLO0/maxresdefault.jpg" },
-            { title: "FEUER WASSER ERDE LUFT", meta: "EDITOR", videoId: "hLsvuZUPQpo", thumbnail: "https://img.youtube.com/vi/hLsvuZUPQpo/maxresdefault.jpg" },
-            { title: "110 – IM DAUEREINSATZ", meta: "EDITOR", videoId: "UL1Ss_INkRY", thumbnail: "https://img.youtube.com/vi/UL1Ss_INkRY/maxresdefault.jpg" },
-            { title: "MIETEN KAUFEN WOHNEN", meta: "ASSISTANT EDITOR / COLOR GRADING", videoId: "placeholder5", thumbnail: "https://img.youtube.com/vi/placeholder5/maxresdefault.jpg" },
-            { title: "MEIN HIMMLISCHES HOTEL", meta: "ASSISTANT EDITOR / COLOR GRADING", videoId: "pMNgwsT-8q4", thumbnail: "https://img.youtube.com/vi/pMNgwsT-8q4/maxresdefault.jpg" },
-            { title: "WER WEIß ES, WER WEIß ES NICHT?", meta: "EDITOR", videoId: "placeholder6", thumbnail: "https://img.youtube.com/vi/placeholder6/maxresdefault.jpg" },
-            { title: "HOL DIR DIE KOHLE!", meta: "EDITOR", videoId: "placeholder7", thumbnail: "https://img.youtube.com/vi/placeholder7/maxresdefault.jpg" },
-            { title: "HAUTNAH: DIE TIERKLINIK", meta: "EDITOR", videoId: "TdPt9DbP0EY", thumbnail: "https://img.youtube.com/vi/TdPt9DbP0EY/maxresdefault.jpg" }
+            { title: "FEUER WASSER ERDE LUFT", meta: "EDITOR", videoId: "l_2R_L3g1qg", thumbnail: "https://img.youtube.com/vi/l_2R_L3g1qg/maxresdefault.jpg" },
+            { title: "EINSATZ MIT HERZ", meta: "HEAD EDITOR", videoId: "5rJ8p7y4j3A", thumbnail: "https://img.youtube.com/vi/5rJ8p7y4j3A/maxresdefault.jpg" },
+            { title: "HALBPENSION XXL", meta: "HEAD EDITOR / SAT.1", videoId: "Q7b4-3E-m_s", thumbnail: "https://img.youtube.com/vi/Q7b4-3E-m_s/maxresdefault.jpg" },
+            { title: "RATE MY DATE", meta: "HEAD EDITOR", videoId: "3-5_4Yn8TUc", thumbnail: "https://img.youtube.com/vi/3-5_4Yn8TUc/maxresdefault.jpg" },
+            { title: "JENKE: EXPERIMENT", meta: "EDITOR / PROSIEBEN", videoId: "L2vS_3n-m4c", thumbnail: "https://img.youtube.com/vi/L2vS_3n-m4c/maxresdefault.jpg" },
+            { title: "TIERRETTER MIT HERZ", meta: "HEAD EDITOR", videoId: "bQ6d-P1w-y4", thumbnail: "https://img.youtube.com/vi/bQ6d-P1w-y4/maxresdefault.jpg" },
+            { title: "IM EINSATZ: JEDE SEKUNDE ZÄHLT", meta: "HEAD EDITOR", videoId: "v9f-y-3Y_bI", thumbnail: "https://img.youtube.com/vi/v9f-y-3Y_bI/maxresdefault.jpg" },
+            { title: "TIERBABYS – WILD & SÜß!", meta: "EDITOR / VOX", videoId: "aG9i-g0o_pQ", thumbnail: "https://img.youtube.com/vi/aG9i-g0o_pQ/maxresdefault.jpg" },
+            { title: "DIE NOTRUFZENTRALE", meta: "EDITOR", videoId: "2r_5w-G_j8c", thumbnail: "https://img.youtube.com/vi/2r_5w-G_j8c/maxresdefault.jpg" },
+            { title: "MEIN TRAUMHAUS AM MEER", meta: "EDITOR", videoId: "T5F_O_n_i3o", thumbnail: "https://img.youtube.com/vi/T5F_O_n_i3o/maxresdefault.jpg" },
+            { title: "HAUTNAH: DIE TIERKLINIK", meta: "EDITOR", videoId: "Y-9b8rY_Z_s", thumbnail: "https://img.youtube.com/vi/Y-9b8rY_Z_s/maxresdefault.jpg" },
+            { title: "MEIN HIMMLISCHES HOTEL", meta: "ASSISTANT EDITOR / COLOR GRADING", videoId: "cM-t-d_b_4s", thumbnail: "https://img.youtube.com/vi/cM-t-d_b_4s/maxresdefault.jpg" }
         ];
 
         // Populate work grid
@@ -565,7 +592,7 @@
                 const workItem = document.createElement('div');
                 workItem.className = 'work-item interactive';
                 workItem.innerHTML = `
-                    <img src="${work.thumbnail}" alt="${work.title}" class="work-thumbnail" onerror="this.style.background='var(--gray-dark)'">
+                    <img src="${work.thumbnail}" alt="${work.title}" class="work-thumbnail" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/${work.videoId}/hqdefault.jpg';">
                     <div class="work-overlay">
                         <h3>${work.title}</h3>
                         <p>${work.meta}</p>
@@ -582,7 +609,7 @@
         const videoModalClose = document.getElementById('videoModalClose');
 
         function openVideoModal(videoId) {
-            const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+            const embedUrl = `https://www.youtube.com/embed/${videoId}?rel=0`;
             videoFrame.src = embedUrl;
             videoModal.classList.add('active');
             document.body.style.overflow = 'hidden';
