@@ -49,30 +49,6 @@
             color: var(--white);
         }
 
-        /* Corner Navigation */
-        .nav-trigger {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-            background: var(--black);
-            color: var(--white);
-            border: none;
-            padding: 12px 16px;
-            font-family: var(--font-mono);
-            font-size: 16px;
-            font-weight: 700;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .nav-trigger:hover {
-            background: var(--accent);
-            color: var(--black);
-        }
-
         /* Broken Grid Hero Section */
         .hero {
             height: 100vh;
@@ -175,7 +151,7 @@
             letter-spacing: 2px;
         }
 
-        /* Broken Grid Layout with Standard Aspect Ratios */
+        /* Broken Grid Layout with Videos Filling Space */
         .work-grid {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
@@ -240,10 +216,9 @@
         .work-thumbnail {
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: cover;
             display: block;
             filter: grayscale(100%);
-            background: var(--gray-dark);
         }
 
         .work-thumbnail:hover {
@@ -339,6 +314,75 @@
             max-width: 500px;
         }
 
+        /* Contact Form */
+        .contact-form {
+            margin-top: 40px;
+            max-width: 500px;
+        }
+
+        .contact-form h3 {
+            font-family: var(--font-primary);
+            font-size: 18px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-family: var(--font-mono);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            color: var(--gray-medium);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--black);
+            background: var(--white);
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--black);
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .form-group textarea {
+            height: 120px;
+        }
+
+        .submit-btn {
+            background: var(--black);
+            color: var(--white);
+            border: none;
+            padding: 12px 24px;
+            font-family: var(--font-mono);
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background: var(--accent);
+            color: var(--black);
+        }
+
         .about-stats {
             background: var(--accent);
             color: var(--black);
@@ -346,71 +390,6 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-        }
-
-        /* Contact Section */
-        .contact-section {
-            background: var(--gray-dark);
-            color: var(--white);
-            padding: 80px 40px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-        }
-
-        .contact-left h2 {
-            font-family: var(--font-primary);
-            font-size: 48px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: -2px;
-            margin-bottom: 40px;
-        }
-
-        .contact-item {
-            margin-bottom: 30px;
-        }
-
-        .contact-label {
-            font-family: var(--font-mono);
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--gray-light);
-            margin-bottom: 5px;
-        }
-
-        .contact-value {
-            font-family: var(--font-mono);
-            font-size: 16px;
-            font-weight: 700;
-        }
-
-        .contact-value a {
-            color: var(--white);
-            text-decoration: none;
-        }
-
-        .contact-value a:hover {
-            background: var(--accent);
-            color: var(--black);
-        }
-
-        .contact-cta {
-            background: var(--accent);
-            color: var(--black);
-            border: none;
-            padding: 20px 40px;
-            font-family: var(--font-mono);
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-top: 40px;
-        }
-
-        .contact-cta:hover {
-            background: var(--white);
         }
 
         /* Footer - Minimal Corner Element */
@@ -530,17 +509,13 @@
                 position: static;
             }
 
-            .contact-section {
-                grid-template-columns: 1fr;
-                gap: 40px;
+            .contact-form {
+                max-width: 100%;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Corner Navigation -->
-    <a href="#contact" class="nav-trigger" id="navTrigger">✉</a>
-    
     <!-- Broken Grid Hero -->
     <section class="hero" id="home">
         <div class="hero-info">
@@ -573,36 +548,23 @@
             <p>SINCE 2012, I HAVE COLLABORATED WITH LEADING TELEVISION NETWORKS TO CRAFT COMPELLING NARRATIVES ACROSS DOCUMENTARIES, REALITY TV, AND GAME SHOWS.</p>
             <p>WITH EXPERTISE IN AVID MEDIA COMPOSER, ADOBE PREMIERE PRO, AND COMPREHENSIVE POST-PRODUCTION WORKFLOWS, I BRING TECHNICAL EXCELLENCE AND CREATIVE VISION TO EVERY PROJECT.</p>
             <p>MY WORK SPANS MAJOR GERMAN NETWORKS INCLUDING SAT.1, VOX, SWR, AND PROSIEBEN.</p>
+            
+            <!-- Contact Form -->
+            <form class="contact-form" id="contact-form">
+                <h3>Contact</h3>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
         </div>
         <div class="about-stats">
             <!-- Empty but maintains yellow bar -->
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact-section" id="contact">
-        <div class="contact-left">
-            <h2>CONTACT</h2>
-            <div class="contact-item">
-                <div class="contact-label">EMAIL</div>
-                <div class="contact-value">
-                    <a href="mailto:tobias_efler@gmx.de">TOBIAS_EFLER@GMX.DE</a>
-                </div>
-            </div>
-            <div class="contact-item">
-                <div class="contact-label">PHONE</div>
-                <div class="contact-value">
-                    <a href="tel:+15045033819">(504) 503-3819</a>
-                </div>
-            </div>
-            <div class="contact-item">
-                <div class="contact-label">LOCATION</div>
-                <div class="contact-value">NEW ORLEANS, LA</div>
-            </div>
-            <button class="contact-cta">START PROJECT</button>
-        </div>
-        <div class="contact-right">
-            <!-- Intentionally asymmetric - empty space -->
         </div>
     </section>
 
@@ -651,16 +613,6 @@
             });
         }
 
-        // Smooth scrolling for contact link
-        document.addEventListener('click', function(e) {
-            if (e.target.getAttribute('href') === '#contact') {
-                e.preventDefault();
-                document.getElementById('contact').scrollIntoView({
-                    behavior: 'smooth'
-                });
-            }
-        });
-
         // Video Modal - Hard cuts
         const videoModal = document.getElementById('videoModal');
         const videoFrame = document.getElementById('videoFrame');
@@ -693,9 +645,32 @@
             }
         });
 
-        // Contact CTA
-        document.querySelector('.contact-cta').addEventListener('click', () => {
-            window.location.href = 'mailto:tobias_efler@gmx.de?subject=PROJECT INQUIRY';
+        // Contact Form Handler (ready for EmailJS integration)
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            // Here you can integrate with EmailJS
+            // emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
+            //     from_email: email,
+            //     message: message
+            // }).then(function(response) {
+            //     console.log('SUCCESS!', response.status, response.text);
+            //     // Reset form
+            //     document.getElementById('contact-form').reset();
+            // }, function(error) {
+            //     console.log('FAILED...', error);
+            // });
+            
+            // For now, just log the data
+            console.log('Form submitted:', { email, message });
+            alert('Form submitted! (Add EmailJS integration)');
+            
+            // Reset form
+            this.reset();
         });
 
         // Initialize
