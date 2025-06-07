@@ -6,6 +6,9 @@
     <title>Tobias Efler - Professional Video Editor | 12+ Years Experience</title>
     <meta name="description" content="Professional video editor with 12+ years experience in German television. Specializing in documentaries, reality TV, and game shows. Available for freelance projects.">
     
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>♟️</text></svg>">
+    
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     
@@ -179,6 +182,28 @@
 
         .dark-mode-btn::after {
             display: none !important;
+        }
+
+        /* Theme Icon Styling */
+        .theme-icon {
+            font-size: 1rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .light-icon {
+            display: inline;
+        }
+
+        .dark-icon {
+            display: none;
+        }
+
+        [data-theme="dark"] .light-icon {
+            display: none;
+        }
+
+        [data-theme="dark"] .dark-icon {
+            display: inline;
         }
 
         /* Hero Section */
@@ -646,6 +671,8 @@
             text-decoration: none;
             font-size: 1.1rem;
             transition: color 0.3s ease;
+            display: block;
+            text-align: center;
         }
 
         .contact-item a:hover {
@@ -982,12 +1009,24 @@
             text-transform: uppercase;
             letter-spacing: 0.05em;
             border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .grid-btn:hover {
             border-color: var(--highlight-color);
             color: var(--highlight-color);
             background: rgba(99, 102, 241, 0.05);
+        }
+
+        .btn-arrow {
+            transition: transform 0.3s ease;
+            font-size: 0.8rem;
+        }
+
+        .grid-btn.expanded .btn-arrow {
+            transform: rotate(180deg);
         }
 
         /* Work Grid Responsive */
@@ -1030,7 +1069,10 @@
                 <li><a href="#work">Work</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><a href="javascript:void(0)" id="translateBtn" class="dark-mode-btn">🌓</a></li>
+                <li><a href="javascript:void(0)" id="translateBtn" class="dark-mode-btn">
+                    <span class="theme-icon light-icon">☀️</span>
+                    <span class="theme-icon dark-icon">🌙</span>
+                </a></li>
             </ul>
         </div>
     </nav>
@@ -1292,7 +1334,10 @@
 
             <!-- Grid Navigation -->
             <div class="grid-nav">
-                <button class="grid-btn" id="showMoreBtn">Show More Projects</button>
+                <button class="grid-btn" id="showMoreBtn">
+                    <span class="btn-text">Show More Projects</span>
+                    <span class="btn-arrow">▼</span>
+                </button>
             </div>
         </div>
     </section>
@@ -1388,18 +1433,15 @@
 
             <div class="contact-grid">
                 <div class="contact-item">
-                    <h3>General</h3>
                     <a href="mailto:tobias_efler@gmx.de">tobias_efler@gmx.de</a>
                 </div>
 
                 <div class="contact-item">
-                    <h3>Phone</h3>
                     <a href="tel:+15045033819">(504) 503-3819</a>
                 </div>
 
                 <div class="contact-item">
-                    <h3>Location</h3>
-                    <span>New Orleans, Louisiana</span>
+                    <a href="https://www.google.com/maps/place/New+Orleans,+LA" target="_blank">New Orleans, Louisiana</a>
                 </div>
             </div>
         </div>
@@ -1470,6 +1512,7 @@
             if (savedTheme === 'dark') {
                 document.body.setAttribute('data-theme', 'dark');
             }
+            // Icons will automatically show/hide via CSS based on data-theme attribute
         }
 
         // Video Modal functionality
@@ -1529,21 +1572,36 @@
             }
         });
 
+        // Add click handlers for YouTube link video images
+        document.addEventListener('click', function(e) {
+            const workCard = e.target.closest('.work-card');
+            if (workCard && !workCard.hasAttribute('data-video') && (e.target.closest('.work-card-image') || e.target.classList.contains('work-card-image'))) {
+                // Find the YouTube link in this card
+                const youtubeLink = workCard.querySelector('a[href*="youtube.com"]');
+                if (youtubeLink) {
+                    window.open(youtubeLink.href, '_blank');
+                }
+            }
+        });
+
         // Grid show more/less functionality
         function toggleGridExpansion() {
             const workGrid = document.getElementById('workCarousel');
             const showMoreBtn = document.getElementById('showMoreBtn');
+            const btnText = showMoreBtn.querySelector('.btn-text');
             
             isExpanded = !isExpanded;
             
             if (isExpanded) {
                 workGrid.style.maxHeight = 'none';
                 workGrid.style.gridTemplateRows = 'auto';
-                showMoreBtn.textContent = 'Show Less Projects';
+                btnText.textContent = 'Show Less Projects';
+                showMoreBtn.classList.add('expanded');
             } else {
                 workGrid.style.maxHeight = '800px';
                 workGrid.style.gridTemplateRows = 'repeat(2, 1fr)';
-                showMoreBtn.textContent = 'Show More Projects';
+                btnText.textContent = 'Show More Projects';
+                showMoreBtn.classList.remove('expanded');
                 
                 // Scroll back to work section
                 document.getElementById('work').scrollIntoView({
