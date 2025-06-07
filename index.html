@@ -1527,7 +1527,11 @@
         // Load saved theme on page load
         function loadTheme() {
             const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark') {
+            if (savedTheme === 'light') {
+                // Only set light mode if explicitly saved as light
+                document.body.removeAttribute('data-theme');
+            } else {
+                // Default to dark mode (when no theme saved or when saved as dark)
                 document.body.setAttribute('data-theme', 'dark');
             }
             // Icons will automatically show/hide via CSS based on data-theme attribute
