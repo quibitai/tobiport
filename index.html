@@ -14,8 +14,8 @@
             --primary-color: #000000;
             --secondary-color: #666666;
             --accent-color: #999999;
-            --highlight-color: #6366f1;
-            --accent-blue: #3b82f6;
+            --highlight-color: #8b5cf6;
+            --accent-blue: #0ea5e9;
             --accent-green: #10b981;
             --accent-orange: #f59e0b;
             --bg-primary: #ffffff;
@@ -30,13 +30,13 @@
             --primary-color: #ffffff;
             --secondary-color: #a1a1aa;
             --accent-color: #71717a;
-            --highlight-color: #6366f1;
-            --accent-blue: #3b82f6;
+            --highlight-color: #8b5cf6;
+            --accent-blue: #0ea5e9;
             --accent-green: #10b981;
             --accent-orange: #f59e0b;
-            --bg-primary: #0f0f23;
-            --bg-secondary: #1a1a2e;
-            --border-color: #27272a;
+            --bg-primary: #000000;
+            --bg-secondary: #111111;
+            --border-color: #333333;
             --text-primary: #ffffff;
             --text-secondary: #a1a1aa;
             --text-muted: #71717a;
@@ -71,10 +71,18 @@
             border-bottom: 1px solid transparent;
         }
 
+        [data-theme="dark"] .navbar {
+            background: rgba(0, 0, 0, 0.95);
+        }
+
         .navbar.scrolled {
             background: rgba(255, 255, 255, 0.98);
             border-bottom: 1px solid var(--border-color);
             padding: 1.5rem 0;
+        }
+
+        [data-theme="dark"] .navbar.scrolled {
+            background: rgba(0, 0, 0, 0.98);
         }
 
         .nav-container {
@@ -149,20 +157,23 @@
 
         /* Dark Mode Toggle Button */
         .dark-mode-btn {
-            background: var(--highlight-color) !important;
-            color: white !important;
-            border-radius: 20px !important;
-            padding: 0.5rem 1rem !important;
-            font-size: 0.9rem !important;
+            background: transparent !important;
+            color: var(--text-secondary) !important;
+            border: 1px solid var(--border-color) !important;
+            border-radius: 50% !important;
+            padding: 0.4rem !important;
+            font-size: 1rem !important;
             transition: all 0.3s ease !important;
-            border: none !important;
             display: flex !important;
             align-items: center !important;
-            gap: 0.3rem !important;
+            justify-content: center !important;
+            width: 36px !important;
+            height: 36px !important;
         }
 
         .dark-mode-btn:hover {
-            background: var(--primary-color) !important;
+            border-color: var(--highlight-color) !important;
+            color: var(--highlight-color) !important;
             transform: translateY(-2px);
         }
 
@@ -260,11 +271,11 @@
 
         /* Stats Section */
         .stats-section {
-            background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(99, 102, 241, 0.03) 100%);
+            background: var(--bg-secondary);
             padding: 4rem 3rem;
             margin: 2rem 0;
-            border-top: 1px solid rgba(99, 102, 241, 0.1);
-            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
         }
 
         .stats-container {
@@ -556,9 +567,9 @@
 
         /* Contact Section */
         .contact-section {
-            background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(99, 102, 241, 0.03) 100%);
+            background: var(--bg-secondary);
             padding: 5rem 3rem;
-            border-top: 1px solid rgba(99, 102, 241, 0.1);
+            border-top: 1px solid var(--border-color);
         }
 
         .contact-container {
@@ -576,11 +587,12 @@
         .contact-item {
             text-align: center;
             padding: 2rem;
-            background: white;
+            background: var(--bg-primary);
             border-radius: 8px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
             border-top: 3px solid var(--highlight-color);
+            border: 1px solid var(--border-color);
         }
 
         .contact-item:nth-child(2) {
@@ -594,6 +606,14 @@
         .contact-item:hover {
             transform: translateY(-5px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] .contact-item {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        [data-theme="dark"] .contact-item:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
 
         .contact-item h3 {
@@ -620,7 +640,7 @@
             border-top: 1px solid var(--border-color);
             padding: 3rem 3rem;
             text-align: center;
-            background: linear-gradient(135deg, transparent 0%, rgba(99, 102, 241, 0.02) 100%);
+            background: var(--bg-secondary);
         }
 
         .footer-content {
@@ -1633,14 +1653,14 @@
                         const genre = workCard.querySelector('.work-genre').textContent;
                         
                         const gradients = {
-                            'Documentary': 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
+                            'Documentary': 'linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%)',
                             'Entertainment': 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
                             'Dating Show': 'linear-gradient(135deg, #ec4899 0%, #be185d 100%)',
                             'Emergency Services': 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',
-                            'Lifestyle': 'linear-gradient(135deg, #06b6d4 0%, #0891b2 100%)',
-                            'Travel Documentary': 'linear-gradient(135deg, #06b6d4 0%, #0891b2 100%)',
+                            'Lifestyle': 'linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%)',
+                            'Travel Documentary': 'linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%)',
                             'Game Show': 'linear-gradient(135deg, #f97316 0%, #ea580c 100%)',
-                            'Reality TV': 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
+                            'Reality TV': 'linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%)',
                             'Digital Content': 'linear-gradient(135deg, #10b981 0%, #047857 100%)'
                         };
                         
