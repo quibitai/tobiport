@@ -26,6 +26,22 @@
             --text-muted: #999999;
         }
 
+        [data-theme="dark"] {
+            --primary-color: #ffffff;
+            --secondary-color: #a1a1aa;
+            --accent-color: #71717a;
+            --highlight-color: #6366f1;
+            --accent-blue: #3b82f6;
+            --accent-green: #10b981;
+            --accent-orange: #f59e0b;
+            --bg-primary: #0f0f23;
+            --bg-secondary: #1a1a2e;
+            --border-color: #27272a;
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -38,6 +54,7 @@
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         /* Navigation */
@@ -130,33 +147,36 @@
             width: 100%;
         }
 
-        /* Translate Button */
-        .translate-btn {
+        /* Dark Mode Toggle Button */
+        .dark-mode-btn {
             background: var(--highlight-color) !important;
             color: white !important;
             border-radius: 20px !important;
             padding: 0.5rem 1rem !important;
-            font-size: 0.8rem !important;
+            font-size: 0.9rem !important;
             transition: all 0.3s ease !important;
             border: none !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 0.3rem !important;
         }
 
-        .translate-btn:hover {
+        .dark-mode-btn:hover {
             background: var(--primary-color) !important;
             transform: translateY(-2px);
         }
 
-        .translate-btn::after {
+        .dark-mode-btn::after {
             display: none !important;
         }
 
         /* Hero Section */
         .hero {
-            min-height: 100vh;
+            min-height: 80vh;
             display: flex;
             align-items: center;
             padding: 0 3rem;
-            margin-top: 120px;
+            margin-top: 80px;
         }
 
         .hero-container {
@@ -171,9 +191,9 @@
 
         .hero-title {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(4rem, 8vw, 8rem);
+            font-size: clamp(3rem, 6vw, 6rem);
             font-weight: 400;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             line-height: 0.9;
             letter-spacing: -0.03em;
             background: linear-gradient(135deg, var(--primary-color) 0%, var(--highlight-color) 100%);
@@ -183,66 +203,66 @@
         }
 
         .hero-subtitle {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: var(--text-secondary);
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             font-weight: 300;
             line-height: 1.4;
         }
 
         .hero-location {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--highlight-color);
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            margin-bottom: 4rem;
+            margin-bottom: 2.5rem;
         }
 
         .hero-description {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--text-secondary);
             line-height: 1.7;
             max-width: 600px;
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
         }
 
         /* Section Styling */
         .section {
-            padding: 8rem 3rem;
+            padding: 5rem 3rem;
             max-width: 1400px;
             margin: 0 auto;
         }
 
         .section-divider {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: var(--highlight-color);
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
             font-weight: 300;
         }
 
         .section-title {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-size: clamp(2rem, 4vw, 3rem);
             font-weight: 400;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             line-height: 1.1;
             letter-spacing: -0.02em;
         }
 
         .section-description {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--text-secondary);
             line-height: 1.8;
             max-width: 700px;
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
         }
 
         /* Stats Section */
         .stats-section {
             background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(99, 102, 241, 0.03) 100%);
-            padding: 6rem 3rem;
-            margin: 4rem 0;
+            padding: 4rem 3rem;
+            margin: 2rem 0;
             border-top: 1px solid rgba(99, 102, 241, 0.1);
             border-bottom: 1px solid rgba(99, 102, 241, 0.1);
         }
@@ -252,7 +272,7 @@
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 4rem;
+            gap: 3rem;
         }
 
         .stat-item {
@@ -482,21 +502,21 @@
 
         /* Experience Timeline */
         .timeline {
-            margin: 4rem 0;
+            margin: 3rem 0;
         }
 
         .timeline-item {
             border-left: 3px solid var(--highlight-color);
-            padding: 3rem 0 3rem 3rem;
+            padding: 2rem 0 2rem 3rem;
             position: relative;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .timeline-item::before {
             content: '';
             position: absolute;
             left: -8px;
-            top: 3rem;
+            top: 2rem;
             width: 13px;
             height: 13px;
             border-radius: 50%;
@@ -516,20 +536,20 @@
             font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
             font-weight: 500;
         }
 
         .timeline-title {
             font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 500;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
         }
 
         .timeline-description {
             color: var(--text-secondary);
-            font-size: 1.1rem;
+            font-size: 1rem;
             line-height: 1.7;
             max-width: 700px;
         }
@@ -537,7 +557,7 @@
         /* Contact Section */
         .contact-section {
             background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(99, 102, 241, 0.03) 100%);
-            padding: 8rem 3rem;
+            padding: 5rem 3rem;
             border-top: 1px solid rgba(99, 102, 241, 0.1);
         }
 
@@ -549,8 +569,8 @@
         .contact-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 4rem;
-            margin-top: 4rem;
+            gap: 3rem;
+            margin-top: 3rem;
         }
 
         .contact-item {
@@ -598,7 +618,7 @@
         /* Footer */
         .footer {
             border-top: 1px solid var(--border-color);
-            padding: 4rem 3rem;
+            padding: 3rem 3rem;
             text-align: center;
             background: linear-gradient(135deg, transparent 0%, rgba(99, 102, 241, 0.02) 100%);
         }
@@ -617,8 +637,8 @@
         /* CTA Buttons */
         .cta-buttons {
             display: flex;
-            gap: 2rem;
-            margin-top: 3rem;
+            gap: 1.5rem;
+            margin-top: 2rem;
             flex-wrap: wrap;
         }
 
@@ -690,11 +710,24 @@
             }
 
             .hero {
-                margin-top: 100px;
+                margin-top: 60px;
+                min-height: 70vh;
+            }
+
+            .section {
+                padding: 3rem 1.5rem;
+            }
+
+            .contact-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .stats-section {
+                padding: 3rem 1.5rem;
             }
 
             .work-card {
-                flex: 0 0 300px;
+                height: 320px;
             }
 
             .skills-grid {
@@ -704,6 +737,7 @@
             .cta-buttons {
                 flex-direction: column;
                 align-items: flex-start;
+                gap: 1rem;
             }
 
             .timeline-item {
@@ -740,10 +774,11 @@
             margin: 5% auto;
             width: 90%;
             max-width: 1200px;
-            background: white;
+            background: var(--bg-primary);
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-color);
         }
 
         .video-modal-close {
@@ -784,6 +819,26 @@
             width: 100%;
             height: 100%;
             border: none;
+        }
+
+        /* Enhanced work card styles for dark mode */
+        .work-card {
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            background: var(--bg-primary);
+            border-radius: 8px;
+            overflow: hidden;
+            height: 350px;
+        }
+
+        .work-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-color: var(--highlight-color);
+        }
+
+        [data-theme="dark"] .work-card:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
 
         /* Enhanced thumbnail styles */
@@ -938,7 +993,7 @@
                 <li><a href="#work">Work</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><a href="javascript:void(0)" id="translateBtn" class="translate-btn">🌐 EN</a></li>
+                <li><a href="javascript:void(0)" id="translateBtn" class="dark-mode-btn">🌓</a></li>
             </ul>
         </div>
     </nav>
@@ -1423,34 +1478,6 @@
     </footer>
 
     <script>
-        // Translation data
-        const translations = {
-            'Nachtstreife - Suche in der Dunkelheit': 'Night Patrol - Search in the Darkness',
-            'Halbpension mit Schmitz': 'Half Board with Schmitz',
-            'Tierbabys - Wild & Süß!': 'Animal Babies - Wild & Sweet!',
-            'Jenke: Crime': 'Jenke: Crime',
-            'Tierretter mit Herz': 'Animal Rescuers with Heart',
-            'Einsatz mit Herz': 'Mission with Heart',
-            'Paar Love': 'Couple Love',
-            'Verrückt nach Meer': 'Crazy for the Sea',
-            'Im Einsatz - Jede Sekunde zählt': 'On Duty - Every Second Counts',
-            'Rate My Date': 'Rate My Date',
-            'Feuer Wasser Erde Luft': 'Fire Water Earth Air',
-            'Mein Traumhaus am Meer': 'My Dream House by the Sea',
-            'Jenke: Experiment': 'Jenke: Experiment',
-            'Hautnah: Die Tierklinik': 'Up Close: The Veterinary Clinic',
-            'Mein himmlisches Hotel': 'My Heavenly Hotel',
-            '110 - Im Dauereinsatz': '110 - On Permanent Duty',
-            'Die Kostümjäger': 'The Costume Hunters',
-            'Die Notrufzentrale': 'The Emergency Call Center',
-            'Der Knochenknacker - Tierisch verrenkt': 'The Bone Cracker - Animal Twists',
-            'Nächste Ausfahrt Liebe': 'Next Exit Love',
-            'Mieten Kaufen Wohnen': 'Rent Buy Live',
-            'Wer weiß es, wer weiß es nicht?': 'Who Knows It, Who Doesn\'t?',
-            'Hol dir die Kohle!': 'Get the Cash!'
-        };
-
-        let isTranslated = false;
         let isExpanded = false;
 
         // Navbar scroll effect
@@ -1477,28 +1504,26 @@
             });
         });
 
-        // Translation functionality
-        function toggleTranslation() {
-            isTranslated = !isTranslated;
-            const translateBtn = document.getElementById('translateBtn');
+        // Dark mode functionality
+        function toggleDarkMode() {
+            const body = document.body;
+            const isDark = body.hasAttribute('data-theme');
             
-            // Update button text
-            translateBtn.textContent = isTranslated ? '🌐 DE' : '🌐 EN';
-            
-            // Translate work titles
-            document.querySelectorAll('.work-title').forEach(title => {
-                const originalText = title.textContent.trim();
-                if (isTranslated && translations[originalText]) {
-                    title.textContent = translations[originalText];
-                } else if (!isTranslated) {
-                    // Find original German text
-                    const englishText = originalText;
-                    const germanText = Object.keys(translations).find(key => translations[key] === englishText);
-                    if (germanText) {
-                        title.textContent = germanText;
-                    }
-                }
-            });
+            if (isDark) {
+                body.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Load saved theme on page load
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.setAttribute('data-theme', 'dark');
+            }
         }
 
         // Video Modal functionality
@@ -1639,10 +1664,11 @@
 
         // Initialize everything when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
+            loadTheme();
             setupImageFallbacks();
             
-            // Add translate button event listener
-            document.getElementById('translateBtn').addEventListener('click', toggleTranslation);
+            // Add dark mode button event listener
+            document.getElementById('translateBtn').addEventListener('click', toggleDarkMode);
             
             // Add show more button event listener
             document.getElementById('showMoreBtn').addEventListener('click', toggleGridExpansion);
