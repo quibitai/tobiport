@@ -3,48 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tobias Efler - Professional Video Editor | 12+ Years Experience</title>
-    <meta name="description" content="Professional video editor with 12+ years experience in German television. Specializing in documentaries, reality TV, and game shows. Available for freelance projects.">
+    <title>TOBIAS EFLER / VIDEO EDITOR</title>
+    <meta name="description" content="Freelance video editor. Television production specialist. Technical excellence.">
     
     <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>♟️</text></svg>">
     
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary-color: #000000;
-            --secondary-color: #666666;
-            --accent-color: #999999;
-            --highlight-color: #8b5cf6;
-            --accent-blue: #0ea5e9;
-            --accent-green: #10b981;
-            --accent-orange: #f59e0b;
-            --accent-yellow: #eab308;
-            --bg-primary: #ffffff;
-            --bg-secondary: #fafafa;
-            --border-color: #e5e5e5;
-            --text-primary: #000000;
-            --text-secondary: #666666;
-            --text-muted: #999999;
-        }
-
-        [data-theme="dark"] {
-            --primary-color: #ffffff;
-            --secondary-color: #a1a1aa;
-            --accent-color: #71717a;
-            --highlight-color: #8b5cf6;
-            --accent-blue: #0ea5e9;
-            --accent-green: #10b981;
-            --accent-orange: #f59e0b;
-            --accent-yellow: #eab308;
-            --bg-primary: #000000;
-            --bg-secondary: #111111;
-            --border-color: #333333;
-            --text-primary: #ffffff;
-            --text-secondary: #a1a1aa;
-            --text-muted: #71717a;
+            --black: #000000;
+            --white: #ffffff;
+            --gray-dark: #1a1a1a;
+            --gray-medium: #666666;
+            --gray-light: #cccccc;
+            --accent: #ffff00;
+            --font-primary: 'Space Grotesk', monospace;
+            --font-mono: 'Space Mono', monospace;
         }
 
         * {
@@ -54,2079 +31,802 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
+            font-family: var(--font-mono);
+            background: var(--white);
+            color: var(--black);
             overflow-x: hidden;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            cursor: crosshair;
         }
 
-        /* Navigation */
-        .navbar {
+        /* Harsh Digital Interactions - No Smooth Animations */
+        a, button, .interactive {
+            cursor: pointer;
+            transition: none;
+        }
+
+        a:hover, button:hover, .interactive:hover {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        /* Corner Navigation */
+        .nav-trigger {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--black);
+            color: var(--white);
+            border: none;
+            padding: 8px 16px;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-trigger:hover {
+            background: var(--accent);
+            color: var(--black);
+        }
+
+        /* Stark Full-Screen Navigation */
+        .nav-overlay {
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 2rem 0;
-            transition: all 0.3s ease;
-            border-bottom: 1px solid transparent;
-        }
-
-        [data-theme="dark"] .navbar {
-            background: rgba(0, 0, 0, 0.95);
-        }
-
-        .navbar.scrolled {
-            background: rgba(255, 255, 255, 0.98);
-            border-bottom: 1px solid var(--border-color);
-            padding: 1.5rem 0;
-        }
-
-        [data-theme="dark"] .navbar.scrolled {
-            background: rgba(0, 0, 0, 0.98);
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 3rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            text-decoration: none;
-            letter-spacing: -0.02em;
-            position: relative;
-        }
-
-        .logo::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 30px;
-            height: 2px;
-            background: var(--highlight-color);
-            transition: width 0.3s ease;
-        }
-
-        .logo:hover::after {
-            width: 100%;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 3rem;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 400;
-            font-size: 0.95rem;
-            transition: color 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--highlight-color);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--highlight-color);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Dark Mode Toggle Button */
-        .dark-mode-btn {
-            background: transparent !important;
-            color: var(--text-secondary) !important;
-            border: none !important;
-            padding: 0.4rem !important;
-            font-size: 1rem !important;
-            transition: all 0.3s ease !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-        }
-
-        .dark-mode-btn:hover {
-            color: var(--highlight-color) !important;
-            transform: translateY(-2px);
-        }
-
-        .dark-mode-btn::after {
-            display: none !important;
-        }
-
-        /* Theme Icon Styling */
-        .theme-icon {
-            font-size: 1rem;
-            transition: opacity 0.3s ease;
-        }
-
-        .light-icon {
-            display: inline;
-        }
-
-        .dark-icon {
-            display: none;
-        }
-
-        [data-theme="dark"] .light-icon {
-            display: none;
-        }
-
-        [data-theme="dark"] .dark-icon {
-            display: inline;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 80vh;
-            display: flex;
-            align-items: center;
-            padding: 0 3rem;
-            margin-top: 80px;
-        }
-
-        .hero-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            width: 100%;
-        }
-
-        .hero-content {
-            max-width: 800px;
-        }
-
-        .hero-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(3rem, 6vw, 6rem);
-            font-weight: 400;
-            margin-bottom: 1.5rem;
-            line-height: 0.9;
-            letter-spacing: -0.03em;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--highlight-color) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-subtitle {
-            font-size: 1.3rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            font-weight: 300;
-            line-height: 1.4;
-        }
-
-        .hero-location {
-            font-size: 1rem;
-            color: var(--highlight-color);
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 2.5rem;
-        }
-
-        .hero-description {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            line-height: 1.7;
-            max-width: 600px;
-            margin-bottom: 3rem;
-        }
-
-        /* Section Styling */
-        .section {
-            padding: 5rem 3rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-divider {
-            font-size: 1.3rem;
-            color: var(--accent-blue);
-            margin-bottom: 0.8rem;
-            font-weight: 300;
-        }
-
-        /* Section-specific divider colors */
-        #work .section-divider {
-            color: var(--accent-blue);
-        }
-
-        #about .section-divider {
-            color: var(--accent-green);
-        }
-
-        #experience .section-divider {
-            color: var(--highlight-color);
-        }
-
-        #contact .section-divider {
-            color: var(--accent-yellow);
-        }
-
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 400;
-            margin-bottom: 2rem;
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-        }
-
-        .section-description {
-            font-size: 1rem;
-            color: var(--text-secondary);
-            line-height: 1.8;
-            max-width: 700px;
-            margin-bottom: 3rem;
-        }
-
-        /* Stats Section */
-        .stats-section {
-            background: var(--bg-secondary);
-            padding: 4rem 3rem;
-            margin: 2rem 0;
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .stats-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            position: relative;
-        }
-
-        .stat-item::before {
-            content: '';
-            position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40px;
-            height: 2px;
-            background: var(--highlight-color);
-        }
-
-        .stat-number {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            font-weight: 400;
-            color: var(--primary-color);
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        /* Work Grid Styles */
-        .work-carousel-container {
-            position: relative;
-            margin-top: 4rem;
-        }
-
-        .work-carousel {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            grid-template-rows: repeat(2, 1fr);
-            gap: 2rem;
-            max-height: 800px;
-            overflow: hidden;
-            padding: 1rem 0;
-        }
-
-        .work-card {
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-            background: var(--bg-primary);
-            border-radius: 8px;
-            overflow: hidden;
-            height: 350px;
-        }
-
-        .work-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            border-color: var(--highlight-color);
-        }
-
-        .work-card-image {
-            width: 100%;
-            height: 180px;
-            background: var(--bg-secondary);
-            overflow: hidden;
-            position: relative;
-            cursor: pointer;
-        }
-
-        .work-card-image img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-            opacity: 0;
+            background: var(--black);
+            z-index: 999;
+            display: none;
         }
 
-        .work-card-image img.loaded {
-            opacity: 1;
+        .nav-overlay.active {
+            display: block;
         }
 
-        .work-card:hover .work-card-image img {
-            transform: scale(1.05);
-        }
-
-        .work-card-image::before {
-            content: '';
+        .nav-close {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, transparent 0%, rgba(99, 102, 241, 0.1) 100%);
-            z-index: 1;
-            pointer-events: none;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-family: var(--font-mono);
+            font-size: 24px;
+            font-weight: 700;
         }
 
-        .work-card-image::after {
-            content: '▶';
+        .nav-close:hover {
+            color: var(--accent);
+        }
+
+        .nav-menu {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 3rem;
-            color: white;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            list-style: none;
+            text-align: left;
+        }
+
+        .nav-menu li {
+            margin: 0;
+            border-bottom: 1px solid var(--gray-dark);
+        }
+
+        .nav-menu a {
+            display: block;
+            color: var(--white);
+            text-decoration: none;
+            font-family: var(--font-primary);
+            font-size: 48px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            padding: 20px 0;
+            line-height: 1;
+        }
+
+        .nav-menu a:hover {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        /* Broken Grid Hero Section */
+        .hero {
+            height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 200px 1fr;
+            grid-template-rows: 100px 1fr 200px;
+            background: var(--white);
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 60%;
+            height: 100%;
+            background: var(--black);
+            z-index: 1;
+        }
+
+        .hero-content {
+            grid-column: 2 / 4;
+            grid-row: 2 / 3;
             z-index: 2;
-            pointer-events: none;
-        }
-
-        .work-card:hover .work-card-image::after {
-            opacity: 1;
-        }
-
-        .work-card-content {
-            padding: 1.5rem;
-            height: 170px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: center;
+            background: var(--white);
+            padding: 40px;
+            position: relative;
         }
 
-        .work-genre {
-            color: var(--highlight-color);
-            font-size: 0.85rem;
+        .hero-content::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 40px;
+            height: 40px;
+            background: var(--accent);
+            z-index: -1;
+        }
+
+        .hero-title {
+            font-family: var(--font-primary);
+            font-size: 72px;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
+            letter-spacing: -4px;
+            line-height: 0.8;
+            margin-bottom: 20px;
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-mono);
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gray-medium);
+        }
+
+        .hero-info {
+            grid-column: 1 / 2;
+            grid-row: 1 / 2;
+            background: var(--white);
+            padding: 20px;
+            z-index: 2;
+            border-bottom: 4px solid var(--black);
+        }
+
+        .hero-info p {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            line-height: 1.4;
+        }
+
+        /* Stark Work Grid */
+        .work-section {
+            padding: 0;
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .work-header {
+            padding: 40px;
+            border-bottom: 1px solid var(--gray-dark);
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
         }
 
         .work-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-            line-height: 1.3;
-        }
-
-        .work-role {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .work-link {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-size: 0.9rem;
+            font-family: var(--font-primary);
+            font-size: 32px;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            transition: color 0.3s ease;
-            border-bottom: 1px solid transparent;
-            padding-bottom: 2px;
+            letter-spacing: -1px;
         }
 
-        .work-link:hover {
-            color: var(--highlight-color);
-            border-bottom-color: var(--highlight-color);
+        .work-count {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        /* Skills Grid */
-        .skills-grid {
+        /* Broken Grid Layout */
+        .work-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            margin-top: 4rem;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: repeat(4, 300px);
+            gap: 0;
         }
 
-        .skill-category {
-            border-top: 3px solid var(--highlight-color);
-            padding-top: 2rem;
-            transition: all 0.3s ease;
-        }
-
-        .skill-category:nth-child(2) {
-            border-top-color: var(--accent-blue);
-        }
-
-        .skill-category:nth-child(3) {
-            border-top-color: var(--accent-green);
-        }
-
-        .skill-category:nth-child(4) {
-            border-top-color: var(--accent-orange);
-        }
-
-        .skill-category:hover {
-            transform: translateY(-5px);
-        }
-
-        .skill-category h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            font-weight: 500;
-            margin-bottom: 1.5rem;
-            color: var(--text-primary);
-        }
-
-        .skill-list {
-            list-style: none;
-        }
-
-        .skill-list li {
-            color: var(--text-secondary);
-            margin-bottom: 0.8rem;
-            font-size: 1rem;
-            line-height: 1.6;
+        .work-item {
             position: relative;
-            padding-left: 1rem;
+            background: var(--gray-dark);
+            border: 1px solid var(--black);
+            overflow: hidden;
         }
 
-        .skill-list li::before {
-            content: '→';
+        /* Deliberate Grid Breaking */
+        .work-item:nth-child(1) {
+            grid-column: 1 / 3;
+            grid-row: 1 / 2;
+        }
+
+        .work-item:nth-child(2) {
+            grid-column: 3 / 4;
+            grid-row: 1 / 3;
+        }
+
+        .work-item:nth-child(3) {
+            grid-column: 1 / 2;
+            grid-row: 2 / 4;
+        }
+
+        .work-item:nth-child(4) {
+            grid-column: 2 / 4;
+            grid-row: 2 / 3;
+        }
+
+        .work-item:nth-child(5) {
+            grid-column: 2 / 3;
+            grid-row: 3 / 4;
+        }
+
+        .work-item:nth-child(6) {
+            grid-column: 3 / 4;
+            grid-row: 3 / 5;
+        }
+
+        .work-item:nth-child(7) {
+            grid-column: 1 / 2;
+            grid-row: 4 / 5;
+        }
+
+        .work-item:nth-child(8) {
+            grid-column: 2 / 3;
+            grid-row: 4 / 5;
+        }
+
+        .work-item:nth-child(9) {
+            grid-column: 1 / 4;
+            grid-row: 5 / 6;
+            height: 200px;
+        }
+
+        .work-thumbnail {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: grayscale(100%);
+        }
+
+        .work-thumbnail:hover {
+            filter: none;
+        }
+
+        .work-overlay {
             position: absolute;
+            bottom: 0;
             left: 0;
-            color: var(--highlight-color);
-            font-weight: bold;
+            right: 0;
+            background: var(--black);
+            color: var(--white);
+            padding: 12px;
+            transform: translateY(100%);
         }
 
-        /* Experience Timeline */
-        .timeline {
-            margin: 3rem 0;
+        .work-item:hover .work-overlay {
+            transform: translateY(0);
         }
 
-        .timeline-item {
-            border-left: 3px solid var(--highlight-color);
-            padding: 2rem 0 2rem 3rem;
+        .work-overlay h3 {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .work-overlay p {
+            font-family: var(--font-mono);
+            font-size: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gray-light);
+        }
+
+        /* Asymmetric About Section */
+        .about-section {
+            background: var(--white);
+            color: var(--black);
+            display: grid;
+            grid-template-columns: 300px 1fr 200px;
+            min-height: 100vh;
+        }
+
+        .about-sidebar {
+            background: var(--black);
+            color: var(--white);
+            padding: 40px;
             position: relative;
-            margin-bottom: 1.5rem;
         }
 
-        .timeline-item::before {
+        .about-sidebar::after {
             content: '';
             position: absolute;
-            left: -8px;
-            top: 2rem;
-            width: 13px;
-            height: 13px;
-            border-radius: 50%;
-            background: var(--highlight-color);
+            top: 0;
+            right: -20px;
+            width: 0;
+            height: 0;
+            border-left: 20px solid var(--black);
+            border-top: 100vh solid transparent;
         }
 
-        .timeline-item:last-child {
-            border-left-color: var(--accent-green);
-        }
-
-        .timeline-item:last-child::before {
-            background: var(--accent-green);
-        }
-
-        /* Second timeline item - Major Television Productions - Blue */
-        .timeline-item:nth-child(2) {
-            border-left-color: var(--accent-blue);
-        }
-
-        .timeline-item:nth-child(2)::before {
-            background: var(--accent-blue);
-        }
-
-        .timeline-item:nth-child(2) .timeline-year {
-            color: var(--accent-blue);
-        }
-
-        /* Third timeline item - Education - Green */
-        .timeline-item:nth-child(3) .timeline-year {
-            color: var(--accent-green);
-        }
-
-        .timeline-year {
-            color: var(--highlight-color);
-            font-size: 0.9rem;
+        .about-title {
+            font-family: var(--font-primary);
+            font-size: 24px;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 0.8rem;
-            font-weight: 500;
+            letter-spacing: -1px;
+            margin-bottom: 20px;
+            transform: rotate(-90deg);
+            transform-origin: left bottom;
+            position: absolute;
+            bottom: 40px;
+            left: 40px;
+            white-space: nowrap;
         }
 
-        .timeline-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
-            font-weight: 500;
-            margin-bottom: 0.8rem;
+        .about-content {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
-        .timeline-description {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            line-height: 1.7;
-            max-width: 700px;
+        .about-content p {
+            font-family: var(--font-mono);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            max-width: 500px;
+        }
+
+        .about-stats {
+            background: var(--accent);
+            color: var(--black);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .stat {
+            margin-bottom: 30px;
+        }
+
+        .stat-number {
+            font-family: var(--font-primary);
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1;
+            display: block;
+        }
+
+        .stat-label {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
         }
 
         /* Contact Section */
         .contact-section {
-            background: var(--bg-secondary);
-            padding: 5rem 3rem;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .contact-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .contact-grid {
+            background: var(--gray-dark);
+            color: var(--white);
+            padding: 80px 40px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            margin-top: 3rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+        }
+
+        .contact-left h2 {
+            font-family: var(--font-primary);
+            font-size: 48px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            margin-bottom: 40px;
         }
 
         .contact-item {
-            text-align: center;
-            padding: 2rem;
-            background: var(--bg-primary);
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-            border-top: 3px solid var(--highlight-color);
-            border: 1px solid var(--border-color);
+            margin-bottom: 30px;
         }
 
-        .contact-item:nth-child(1) {
-            border-top-color: var(--highlight-color);
-        }
-
-        .contact-item:nth-child(2) {
-            border-top-color: var(--accent-blue);
-        }
-
-        .contact-item:nth-child(3) {
-            border-top-color: var(--accent-green);
-        }
-
-        .contact-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        [data-theme="dark"] .contact-item {
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        [data-theme="dark"] .contact-item:hover {
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .contact-item h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.2rem;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-        }
-
-        .contact-item a,
-        .contact-item span {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 1.1rem;
-            transition: color 0.3s ease;
-            display: block;
-            text-align: center;
-        }
-
-        .contact-item a:hover {
-            color: var(--highlight-color);
-        }
-
-        /* Footer */
-        .footer {
-            border-top: 1px solid var(--border-color);
-            padding: 3rem 3rem;
-            text-align: center;
-            background: var(--bg-secondary);
-        }
-
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .footer p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-        }
-
-        /* CTA Buttons */
-        .cta-buttons {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 1rem 2rem;
-            text-decoration: none;
-            font-size: 0.9rem;
+        .contact-label {
+            font-family: var(--font-mono);
+            font-size: 10px;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            transition: all 0.3s ease;
-            border: 1px solid var(--primary-color);
-            background: transparent;
-            color: var(--primary-color);
-            border-radius: 4px;
-            position: relative;
-            overflow: hidden;
+            letter-spacing: 2px;
+            color: var(--gray-light);
+            margin-bottom: 5px;
         }
 
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--highlight-color);
-            transition: left 0.3s ease;
-            z-index: -1;
+        .contact-value {
+            font-family: var(--font-mono);
+            font-size: 16px;
+            font-weight: 700;
         }
 
-        .btn:hover::before {
-            left: 0;
+        .contact-value a {
+            color: var(--white);
+            text-decoration: none;
         }
 
-        .btn:hover {
-            border-color: var(--highlight-color);
-            color: white;
+        .contact-value a:hover {
+            background: var(--accent);
+            color: var(--black);
         }
 
-        .btn-primary {
-            background: var(--highlight-color);
-            color: white;
-            border-color: var(--highlight-color);
+        .contact-cta {
+            background: var(--accent);
+            color: var(--black);
+            border: none;
+            padding: 20px 40px;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 40px;
         }
 
-        .btn-primary::before {
-            background: var(--primary-color);
+        .contact-cta:hover {
+            background: var(--white);
         }
 
-        .btn-primary:hover {
-            border-color: var(--primary-color);
-        }
-
-        /* Mobile Responsiveness */
-        @media (max-width: 768px) {
-            .nav-container {
-                padding: 0 1.5rem;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .hero,
-            .section,
-            .contact-section {
-                padding-left: 1.5rem;
-                padding-right: 1.5rem;
-            }
-
-            .hero {
-                margin-top: 60px;
-                min-height: 70vh;
-            }
-
-            .section {
-                padding: 3rem 1.5rem;
-            }
-
-            .contact-section {
-                padding: 3rem 1.5rem;
-            }
-
-            .stats-section {
-                padding: 3rem 1.5rem;
-            }
-
-            .work-card {
-                height: 320px;
-            }
-
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-            }
-
-            .timeline-item {
-                padding-left: 2rem;
-            }
-        }
-
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Selection styling */
-        ::selection {
-            background: var(--highlight-color);
-            color: white;
-        }
-
-        /* Video Modal Styles */
-        .video-modal {
-            display: none;
+        /* Footer - Minimal Corner Element */
+        .footer {
             position: fixed;
-            z-index: 2000;
-            left: 0;
+            bottom: 20px;
+            left: 20px;
+            z-index: 100;
+            font-family: var(--font-mono);
+            font-size: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gray-medium);
+        }
+
+        /* Video Modal - Hard Cut Aesthetic */
+        .video-modal {
+            position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(5px);
+            background: var(--black);
+            z-index: 2000;
+            display: none;
+        }
+
+        .video-modal.active {
+            display: block;
         }
 
         .video-modal-content {
             position: relative;
-            margin: 5% auto;
-            width: 90%;
-            max-width: 1200px;
-            background: var(--bg-primary);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--border-color);
+            width: 100%;
+            height: 100%;
         }
 
         .video-modal-close {
             position: absolute;
-            top: -50px;
-            right: 0;
-            color: white;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-family: var(--font-mono);
+            font-size: 24px;
+            font-weight: 700;
             z-index: 2001;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 50%;
-            transition: all 0.3s ease;
         }
 
         .video-modal-close:hover {
-            background: var(--highlight-color);
-            transform: scale(1.1);
+            color: var(--accent);
         }
 
-        .video-container {
-            position: relative;
-            width: 100%;
-            height: 0;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-        }
-
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .video-modal iframe {
             width: 100%;
             height: 100%;
             border: none;
         }
 
-        /* Enhanced work card styles for dark mode */
-        .work-card {
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-            background: var(--bg-primary);
-            border-radius: 8px;
-            overflow: hidden;
-            height: 350px;
+        /* Glitch Effect for Page Transitions */
+        .glitch {
+            animation: glitch 0.1s;
         }
 
-        .work-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            border-color: var(--highlight-color);
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
         }
 
-        [data-theme="dark"] .work-card:hover {
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Enhanced thumbnail styles */
-        .work-card-image {
-            width: 100%;
-            height: 225px;
-            background: var(--bg-secondary);
-            overflow: hidden;
-            position: relative;
-            cursor: pointer;
-        }
-
-        .work-card-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-            opacity: 0;
-        }
-
-        .work-card-image img.loaded {
-            opacity: 1;
-        }
-
-        .work-card:hover .work-card-image img {
-            transform: scale(1.05);
-        }
-
-        .work-card-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, transparent 0%, rgba(99, 102, 241, 0.1) 100%);
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .work-card-image::after {
-            content: '▶';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 3rem;
-            color: white;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        .work-card:hover .work-card-image::after {
-            opacity: 1;
-        }
-
-        .thumbnail-placeholder {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            text-align: center;
-            padding: 1rem;
-        }
-
-        /* Mobile responsiveness for modal */
+        /* Mobile Responsiveness */
         @media (max-width: 768px) {
-            .video-modal-content {
-                margin: 10% auto;
-                width: 95%;
-            }
-
-            .video-modal-close {
-                top: -40px;
-                font-size: 24px;
-                width: 35px;
-                height: 35px;
-            }
-        }
-
-        /* Grid Navigation */
-        .grid-nav {
-            display: flex;
-            justify-content: center;
-            margin-top: 3rem;
-        }
-
-        .grid-btn {
-            background: transparent;
-            border: 1px solid var(--border-color);
-            color: var(--text-secondary);
-            padding: 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 60px;
-            height: 60px;
-        }
-
-        .grid-btn:hover {
-            border-color: var(--highlight-color);
-            color: var(--highlight-color);
-            background: rgba(99, 102, 241, 0.05);
-        }
-
-        .btn-arrow {
-            transition: transform 0.3s ease;
-            font-size: 1.5rem;
-        }
-
-        .grid-btn.expanded .btn-arrow {
-            transform: rotate(180deg);
-        }
-
-        /* Work Grid Responsive */
-        @media (max-width: 1200px) {
-            .work-carousel {
-                grid-template-columns: repeat(2, 1fr);
-                max-height: 800px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .work-carousel {
+            .hero {
                 grid-template-columns: 1fr;
-                max-height: 400px;
+                grid-template-rows: auto 1fr auto;
             }
-            
-            .work-card {
-                height: 320px;
+
+            .hero::before {
+                width: 100%;
+                height: 50%;
             }
-            
-            .work-card-image {
-                height: 160px;
+
+            .hero-content {
+                grid-column: 1;
+                grid-row: 2;
             }
-            
-            .work-card-content {
-                height: 160px;
-                padding: 1rem;
+
+            .hero-title {
+                font-size: 48px;
+            }
+
+            .work-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(9, 300px);
+            }
+
+            .work-item:nth-child(n) {
+                grid-column: 1;
+                grid-row: auto;
+            }
+
+            .about-section {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto 1fr auto;
+            }
+
+            .about-sidebar::after {
+                display: none;
+            }
+
+            .about-title {
+                transform: none;
+                position: static;
+            }
+
+            .contact-section {
+                grid-template-columns: 1fr;
+                gap: 40px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <a href="#home" class="logo">Tobias Efler</a>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#work">Work</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="javascript:void(0)" id="translateBtn" class="dark-mode-btn">
-                    <span class="theme-icon light-icon">☀️</span>
-                    <span class="theme-icon dark-icon">🌙</span>
-                </a></li>
+    <!-- Corner Navigation -->
+    <button class="nav-trigger" id="navTrigger">[INDEX]</button>
+    
+    <div class="nav-overlay" id="navOverlay">
+        <button class="nav-close" id="navClose">×</button>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="#work" class="nav-link">WORK</a></li>
+                <li><a href="#about" class="nav-link">ABOUT</a></li>
+                <li><a href="#contact" class="nav-link">CONTACT</a></li>
             </ul>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <h1 class="hero-title">Tobias Efler</h1>
-                <div class="hero-location">/ New Orleans, LA</div>
-                <p class="hero-subtitle">Professional video editor specializing in television production</p>
-                <p class="hero-description">
-                    Since 2012, I've collaborated with leading television networks to craft compelling narratives across documentaries, reality TV, and game shows. With expertise in Avid Media Composer, Adobe Premiere Pro, and comprehensive post-production workflows, I bring technical excellence and creative vision to every project.
-                </p>
-                <div class="cta-buttons">
-                    <a href="#work" class="btn btn-primary">View Work</a>
-                    <a href="#contact" class="btn">Get In Touch</a>
-            </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats Section -->
-    <div class="stats-section">
-        <div class="stats-container">
-            <div class="stat-item">
-                <span class="stat-number">12+</span>
-                <span class="stat-label">Years Experience</span>
-                </div>
-            <div class="stat-item">
-                <span class="stat-number">25+</span>
-                <span class="stat-label">TV Productions</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number">100%</span>
-                <span class="stat-label">Client Satisfaction</span>
-                </div>
-            </div>
-                </div>
-
-    <!-- Featured Work -->
-    <section id="work" class="section">
-        <div class="section-divider">/ Featured Work</div>
-        <h2 class="section-title">Selected Projects</h2>
-        <p class="section-description">
-            A comprehensive portfolio of television productions spanning documentaries, reality TV, and game shows. Each project represents hundreds of hours of meticulous editing and storytelling for major networks.
-        </p>
-
-        <div class="work-carousel-container">
-            <div class="work-carousel" id="workCarousel">
-                <!-- Nachtstreife -->
-                <div class="work-card" data-video="zbVz7_OJNsQ">
-                    <div class="work-card-image">
-                        <img src="https://img.youtube.com/vi/zbVz7_OJNsQ/hqdefault.jpg" alt="Nachtstreife - Suche in der Dunkelheit" onload="this.classList.add('loaded')" onerror="this.parentElement.innerHTML='<div class=&quot;thumbnail-placeholder&quot; style=&quot;background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);&quot;>Documentary Series</div>'">
-            </div>
-                    <div class="work-card-content">
-                        <div class="work-genre">Documentary</div>
-                        <h3 class="work-title">Nachtstreife - Suche in der Dunkelheit</h3>
-                        <p class="work-role">Head Editor | SWR</p>
-                        <a href="javascript:void(0)" class="work-link video-trigger" data-video="zbVz7_OJNsQ">Watch on YouTube</a>
-                </div>
-            </div>
-
-                <!-- Halbpension mit Schmitz -->
-                <div class="work-card" data-video="TXIPKDAA0g8">
-                    <div class="work-card-image">
-                        <img src="https://img.youtube.com/vi/TXIPKDAA0g8/hqdefault.jpg" alt="Halbpension mit Schmitz" onload="this.classList.add('loaded')" onerror="this.parentElement.innerHTML='<div class=&quot;thumbnail-placeholder&quot; style=&quot;background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);&quot;>Game Show</div>'">
-                </div>
-                    <div class="work-card-content">
-                        <div class="work-genre">Entertainment</div>
-                        <h3 class="work-title">Halbpension mit Schmitz</h3>
-                        <p class="work-role">Head Editor | SAT.1</p>
-                        <a href="javascript:void(0)" class="work-link video-trigger" data-video="TXIPKDAA0g8">Watch on YouTube</a>
-            </div>
-                </div>
-
-                <!-- Tierbabys -->
-                <div class="work-card">
-                    <div class="work-card-image">
-                        <img src="https://img.youtube.com/vi/T9IDBbhq8hg/hqdefault.jpg" alt="Tierbabys - Wild & Süß!" onload="this.classList.add('loaded')" onerror="this.parentElement.innerHTML='<div class=&quot;thumbnail-placeholder&quot; style=&quot;background: linear-gradient(135deg, #10b981 0%, #047857 100%);&quot;>Nature Documentary</div>'">
-            </div>
-                    <div class="work-card-content">
-                        <div class="work-genre">Documentary</div>
-                        <h3 class="work-title">Tierbabys - Wild & Süß!</h3>
-                        <p class="work-role">Editor | VOX</p>
-                        <a href="https://www.youtube.com/watch?v=T9IDBbhq8hg" class="work-link" target="_blank">Watch Preview</a>
-                </div>
-            </div>
-
-                <!-- Jenke: Crime -->
-                <div class="work-card" data-video="OPg_RHBS5-Q">
-                    <div class="work-card-image">
-                        <img src="https://img.youtube.com/vi/OPg_RHBS5-Q/hqdefault.jpg" alt="Jenke: Crime" onload="this.classList.add('loaded')" onerror="this.parentElement.innerHTML='<div class=&quot;thumbnail-placeholder&quot; style=&quot;background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);&quot;>Crime Documentary</div>'">
-                </div>
-                    <div class="work-card-content">
-                        <div class="work-genre">Documentary</div>
-                        <h3 class="work-title">Jenke: Crime</h3>
-                        <p class="work-role">Editor | ProSieben</p>
-                        <a href="javascript:void(0)" class="work-link video-trigger" data-video="OPg_RHBS5-Q">Watch Preview</a>
-            </div>
-                </div>
-
-                <!-- Tierretter mit Herz -->
-                <div class="work-card">
-                    <div class="work-card-image">
-                        <img src="https://img.youtube.com/vi/e2ktOnl6w10/hqdefault.jpg" alt="Tierretter mit Herz" onload="this.classList.add('loaded')" onerror="this.parentElement.innerHTML='<div class=&quot;thumbnail-placeholder&quot; style=&quot;background: linear-gradient(135deg, #10b981 0%, #047857 100%);&quot;>Animal Rescue</div>'">
-            </div>
-                    <div class="work-card-content">
-                        <div class="work-genre">Documentary</div>
-                        <h3 class="work-title">Tierretter mit Herz</h3>
-                        <p class="work-role">Head Editor</p>
-                        <a href="https://www.youtube.com/watch?v=e2ktOnl6w10" class="work-link" target="_blank">Watch Episode</a>
-                </div>
-            </div>
-
-                <!-- Einsatz mit Herz -->
-                <div class="work-card">
-                    <div class="work-card-image">
-                        <img src="https://img.youtube.com/vi/h3hl3O2nLO0/hqdefault.jpg" alt="Einsatz mit Herz" onload="this.classList.add('loaded')" onerror="this.parentElement.innerHTML='<div class=&quot;thumbnail-placeholder&quot; style=&quot;background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);&quot;>Emergency Services</div>'">
-                </div>
-                    <div class="work-card-content">
-                        <div class="work-genre">Emergency Services</div>
-                        <h3 class="work-title">Einsatz mit Herz</h3>
-                        <p class="work-role">Head Editor</p>
-                        <a href="https://www.youtube.com/watch?v=h3hl3O2nLO0" class="work-link" target="_blank">Watch Episode</a>
-            </div>
-                </div>
-
-                <!-- Paar Love -->
-                <div class="work-card" data-video="0bONpYQuq2Y">
-                    <div class="work-card-image">
-                        <img src="https://img.youtube.com/vi/0bONpYQuq2Y/hqdefault.jpg" alt="Paar Love" onload="this.classList.add('loaded')" onerror="this.parentElement.innerHTML='<div class=&quot;thumbnail-placeholder&quot; style=&quot;background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);&quot;>Dating Show</div>'">
-            </div>
-                    <div class="work-card-content">
-                        <div class="work-genre">Dating Show</div>
-                        <h3 class="work-title">Paar Love</h3>
-                        <p class="work-role">Head Editor | SAT.1</p>
-                        <a href="javascript:void(0)" class="work-link video-trigger" data-video="0bONpYQuq2Y">Watch Highlight</a>
-                </div>
-            </div>
-
-                <!-- Verrückt nach Meer -->
-                <div class="work-card" data-video="7VkntMsqxqY">
-                    <div class="work-card-image">
-                        <img src="https://img.youtube.com/vi/7VkntMsqxqY/hqdefault.jpg" alt="Verrückt nach Meer" onload="this.classList.add('loaded')" onerror="this.parentElement.innerHTML='<div class=&quot;thumbnail-placeholder&quot; style=&quot;background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);&quot;>Travel Documentary</div>'">
-                </div>
-                    <div class="work-card-content">
-                        <div class="work-genre">Travel Documentary</div>
-                        <h3 class="work-title">Verrückt nach Meer</h3>
-                        <p class="work-role">Editor</p>
-                        <a href="javascript:void(0)" class="work-link video-trigger" data-video="7VkntMsqxqY">Watch Episode</a>
-            </div>
-                </div>
-
-                <!-- Im Einsatz -->
-                <div class="work-card">
-                    <div class="work-card-image">
-                        <img src="https://img.youtube.com/vi/ET8ABJncFuA/hqdefault.jpg" alt="Im Einsatz - Jede Sekunde zählt" onload="this.classList.add('loaded')" onerror="this.parentElement.innerHTML='<div class=&quot;thumbnail-placeholder&quot; style=&quot;background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);&quot;>Emergency Services</div>'">
-            </div>
-                    <div class="work-card-content">
-                        <div class="work-genre">Emergency Services</div>
-                        <h3 class="work-title">Im Einsatz - Jede Sekunde zählt</h3>
-                        <p class="work-role">Head Editor</p>
-                        <a href="https://www.youtube.com/watch?v=ET8ABJncFuA" class="work-link" target="_blank">Watch Episode</a>
-                </div>
-            </div>
-
-                <!-- Rate My Date -->
-                <div class="work-card" data-video="jJYq9-_gtyU">
-                    <div class="work-card-image">
-                        <img src="https://img.youtube.com/vi/jJYq9-_gtyU/hqdefault.jpg" alt="Rate My Date" onload="this.classList.add('loaded')" onerror="this.parentElement.innerHTML='<div class=&quot;thumbnail-placeholder&quot; style=&quot;background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);&quot;>Dating Show</div>'">
-                </div>
-                    <div class="work-card-content">
-                        <div class="work-genre">Dating Show</div>
-                        <h3 class="work-title">Rate My Date</h3>
-                        <p class="work-role">Head Editor</p>
-                        <a href="javascript:void(0)" class="work-link video-trigger" data-video="jJYq9-_gtyU">Watch Episode</a>
-            </div>
-                </div>
-
-                <!-- Feuer Wasser Erde Luft -->
-                <div class="work-card" data-video="hLsvuZUPQpo">
-                    <div class="work-card-image">
-                        <img src="https://img.youtube.com/vi/hLsvuZUPQpo/hqdefault.jpg" alt="Feuer Wasser Erde Luft" onload="this.classList.add('loaded')" onerror="this.parentElement.innerHTML='<div class=&quot;thumbnail-placeholder&quot; style=&quot;background: linear-gradient(135deg, #84cc16 0%, #65a30d 100%);&quot;>Nature Documentary</div>'">
-                    </div>
-                    <div class="work-card-content">
-                        <div class="work-genre">Documentary</div>
-                        <h3 class="work-title">Feuer Wasser Erde Luft</h3>
-                        <p class="work-role">Editor</p>
-                        <a href="javascript:void(0)" class="work-link video-trigger" data-video="hLsvuZUPQpo">Watch Preview</a>
-        </div>
+        </nav>
     </div>
 
-                <!-- Mein Traumhaus am Meer -->
-                <div class="work-card" data-video="yMRCCWD9h0w">
-                    <div class="work-card-image">
-                        <img src="https://img.youtube.com/vi/yMRCCWD9h0w/hqdefault.jpg" alt="Mein Traumhaus am Meer" onload="this.classList.add('loaded')" onerror="this.parentElement.innerHTML='<div class=&quot;thumbnail-placeholder&quot; style=&quot;background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);&quot;>Lifestyle</div>'">
-                    </div>
-                    <div class="work-card-content">
-                        <div class="work-genre">Lifestyle</div>
-                        <h3 class="work-title">Mein Traumhaus am Meer</h3>
-                        <p class="work-role">Editor</p>
-                        <a href="javascript:void(0)" class="work-link video-trigger" data-video="yMRCCWD9h0w">Watch Episode</a>
-                    </div>
-                </div>
-
-                <!-- Jenke: Experiment -->
-                <div class="work-card" data-video="H_2L7-2FBTQ">
-                    <div class="work-card-image">
-                        <img src="https://img.youtube.com/vi/H_2L7-2FBTQ/hqdefault.jpg" alt="Jenke: Experiment" onload="this.classList.add('loaded')" onerror="this.parentElement.innerHTML='<div class=&quot;thumbnail-placeholder&quot; style=&quot;background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);&quot;>Experimental Documentary</div>'">
-                    </div>
-                    <div class="work-card-content">
-                        <div class="work-genre">Documentary</div>
-                        <h3 class="work-title">Jenke: Experiment</h3>
-                        <p class="work-role">Editor | ProSieben</p>
-                        <a href="javascript:void(0)" class="work-link video-trigger" data-video="H_2L7-2FBTQ">Watch Preview</a>
-                    </div>
-                </div>
-
-                <!-- Hautnah: Die Tierklinik -->
-                <div class="work-card">
-                    <div class="work-card-image">
-                        <img src="https://img.youtube.com/vi/TdPt9DbP0EY/hqdefault.jpg" alt="Hautnah: Die Tierklinik" onload="this.classList.add('loaded')" onerror="this.parentElement.innerHTML='<div class=&quot;thumbnail-placeholder&quot; style=&quot;background: linear-gradient(135deg, #10b981 0%, #047857 100%);&quot;>Veterinary Documentary</div>'">
-                    </div>
-                    <div class="work-card-content">
-                        <div class="work-genre">Documentary</div>
-                        <h3 class="work-title">Hautnah: Die Tierklinik</h3>
-                        <p class="work-role">Editor</p>
-                        <a href="https://www.youtube.com/watch?v=TdPt9DbP0EY" class="work-link" target="_blank">Watch Episode</a>
-                    </div>
-                </div>
-
-                <!-- Mein himmlisches Hotel -->
-                <div class="work-card">
-                    <div class="work-card-image">
-                        <img src="https://img.youtube.com/vi/pMNgwsT-8q4/hqdefault.jpg" alt="Mein himmlisches Hotel" onload="this.classList.add('loaded')" onerror="this.parentElement.innerHTML='<div class=&quot;thumbnail-placeholder&quot; style=&quot;background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);&quot;>Lifestyle</div>'">
-                    </div>
-                    <div class="work-card-content">
-                        <div class="work-genre">Lifestyle</div>
-                        <h3 class="work-title">Mein himmlisches Hotel</h3>
-                        <p class="work-role">Assistant Editor / Color Grading</p>
-                        <a href="https://www.youtube.com/watch?v=pMNgwsT-8q4" class="work-link" target="_blank">Watch Episode</a>
-                    </div>
-                </div>
-
-                <!-- 110 - Im Dauereinsatz -->
-                <div class="work-card">
-                    <div class="work-card-image">
-                        <img src="https://img.youtube.com/vi/UL1Ss_INkRY/hqdefault.jpg" alt="110 - Im Dauereinsatz" onload="this.classList.add('loaded')" onerror="this.parentElement.innerHTML='<div class=&quot;thumbnail-placeholder&quot; style=&quot;background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);&quot;>Police Documentary</div>'">
-                    </div>
-                    <div class="work-card-content">
-                        <div class="work-genre">Emergency Services</div>
-                        <h3 class="work-title">110 - Im Dauereinsatz</h3>
-                        <p class="work-role">Editor</p>
-                        <a href="https://www.youtube.com/watch?v=UL1Ss_INkRY" class="work-link" target="_blank">Watch Episode</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Grid Navigation -->
-            <div class="grid-nav">
-                <button class="grid-btn" id="showMoreBtn">
-                    <span class="btn-arrow">▼</span>
-                </button>
-            </div>
+    <!-- Broken Grid Hero -->
+    <section class="hero" id="home">
+        <div class="hero-info">
+            <p>PROFESSIONAL<br>VIDEO EDITOR<br>NEW ORLEANS, LA<br>EST. 2012</p>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">TOBIAS<br>EFLER</h1>
+            <p class="hero-subtitle">TECHNICAL EXCELLENCE / CREATIVE VISION</p>
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="about" class="section">
-        <div class="section-divider">/ Technical Expertise</div>
-        <h2 class="section-title">Skills & Software</h2>
-
-        <div class="skills-grid">
-            <div class="skill-category">
-                <h3>Non-Linear Editing</h3>
-                <ul class="skill-list">
-                    <li>Avid Media Composer (Expert Level)</li>
-                    <li>Adobe Premiere Pro (Advanced)</li>
-                    <li>Multi-Camera Editing</li>
-                    <li>Broadcast Delivery Standards</li>
-                </ul>
-            </div>
-
-            <div class="skill-category">
-                <h3>Post-Production</h3>
-                <ul class="skill-list">
-                    <li>Color Correction & Grading</li>
-                    <li>Sound Design & Mixing</li>
-                    <li>Media Management Systems</li>
-                    <li>Workflow Optimization</li>
-                </ul>
-            </div>
-
-            <div class="skill-category">
-                <h3>Motion Graphics</h3>
-                <ul class="skill-list">
-                    <li>Adobe After Effects</li>
-                    <li>Title Design & Animation</li>
-                    <li>Lower Thirds Creation</li>
-                    <li>Visual Effects Integration</li>
-                </ul>
-            </div>
-
-            <div class="skill-category">
-                <h3>Media Formats</h3>
-                <ul class="skill-list">
-                    <li>XDCAM Professional</li>
-                    <li>ProRes & DNxHD</li>
-                    <li>AVC-Intra Standards</li>
-                    <li>Cross-platform Delivery</li>
-                </ul>
-            </div>
+    <!-- Stark Work Grid -->
+    <section class="work-section" id="work">
+        <div class="work-header">
+            <h2 class="work-title">SELECTED WORK</h2>
+            <span class="work-count">[16 PROJECTS]</span>
+        </div>
+        
+        <div class="work-grid" id="workGrid">
+            <!-- Work items will be populated by JavaScript -->
         </div>
     </section>
 
-    <!-- Experience Timeline -->
-    <section id="experience" class="section">
-        <div class="section-divider">/ Professional Experience</div>
-        <h2 class="section-title">Career Timeline</h2>
-
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-year">2012 - Present</div>
-                <h3 class="timeline-title">Head Editor & Editor - Freelance</h3>
-                <p class="timeline-description">
-                    Leading post-production workflows for major German television productions. Specialized in documentary series, reality TV formats, and game shows with consistent delivery excellence and creative storytelling. Collaborated with leading networks including SAT.1, VOX, SWR, and ProSieben.
-                </p>
+    <!-- Asymmetric About -->
+    <section class="about-section" id="about">
+        <div class="about-sidebar">
+            <h2 class="about-title">ABOUT</h2>
+        </div>
+        <div class="about-content">
+            <p>SINCE 2012, I HAVE COLLABORATED WITH LEADING TELEVISION NETWORKS TO CRAFT COMPELLING NARRATIVES ACROSS DOCUMENTARIES, REALITY TV, AND GAME SHOWS.</p>
+            <p>WITH EXPERTISE IN AVID MEDIA COMPOSER, ADOBE PREMIERE PRO, AND COMPREHENSIVE POST-PRODUCTION WORKFLOWS, I BRING TECHNICAL EXCELLENCE AND CREATIVE VISION TO EVERY PROJECT.</p>
+            <p>MY WORK SPANS MAJOR GERMAN NETWORKS INCLUDING SAT.1, VOX, SWR, AND PROSIEBEN.</p>
+        </div>
+        <div class="about-stats">
+            <div class="stat">
+                <span class="stat-number">12+</span>
+                <div class="stat-label">YEARS EXPERIENCE</div>
             </div>
-
-            <div class="timeline-item">
-                <div class="timeline-year">2018 - 2023</div>
-                <h3 class="timeline-title">Major Television Productions</h3>
-                <p class="timeline-description">
-                    Head Editor roles on premium shows including "Jenke: Crime", "Paar Love", and "Rate My Date". Managed complex multi-camera workflows and tight broadcast deadlines while maintaining creative vision and technical excellence.
-                </p>
+            <div class="stat">
+                <span class="stat-number">25+</span>
+                <div class="stat-label">TV PRODUCTIONS</div>
             </div>
-
-            <div class="timeline-item">
-                <div class="timeline-year">Education</div>
-                <h3 class="timeline-title">Bachelor of Engineering - Media Technologies</h3>
-                <p class="timeline-description">
-                    University of Applied Sciences, Cologne, Germany. Comprehensive foundation in media technology, production workflows, and broadcast standards. Graduated with specialization in post-production and digital media systems.
-                </p>
+            <div class="stat">
+                <span class="stat-number">100%</span>
+                <div class="stat-label">CLIENT SATISFACTION</div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-        <div class="contact-container">
-            <div class="section-divider">/ Contact</div>
-            <h2 class="section-title">Let's Work Together</h2>
-            <p class="section-description">
-                Whether you're curious about my work, want to discuss a project, or just want to say hello — don't be shy. I'm available for freelance editing projects and would love to help bring your story to life.
-            </p>
-
-            <div class="contact-grid">
-                <div class="contact-item">
-                    <a href="mailto:tobias_efler@gmx.de">tobias_efler@gmx.de</a>
-                </div>
-
-                <div class="contact-item">
-                    <a href="tel:+15045033819">(504) 503-3819</a>
-                </div>
-
-                <div class="contact-item">
-                    <a href="https://www.google.com/maps/place/New+Orleans,+LA" target="_blank">New Orleans, Louisiana</a>
+    <section class="contact-section" id="contact">
+        <div class="contact-left">
+            <h2>CONTACT</h2>
+            <div class="contact-item">
+                <div class="contact-label">EMAIL</div>
+                <div class="contact-value">
+                    <a href="mailto:tobias_efler@gmx.de">TOBIAS_EFLER@GMX.DE</a>
                 </div>
             </div>
+            <div class="contact-item">
+                <div class="contact-label">PHONE</div>
+                <div class="contact-value">
+                    <a href="tel:+15045033819">(504) 503-3819</a>
+                </div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-label">LOCATION</div>
+                <div class="contact-value">NEW ORLEANS, LA</div>
+            </div>
+            <button class="contact-cta">START PROJECT</button>
+        </div>
+        <div class="contact-right">
+            <!-- Intentionally asymmetric - empty space -->
         </div>
     </section>
 
-    <!-- Video Popup Modal -->
-    <div id="videoModal" class="video-modal">
+    <!-- Minimal Footer -->
+    <footer class="footer">
+        <div>© 2024 TOBIAS EFLER</div>
+    </footer>
+
+    <!-- Video Modal -->
+    <div class="video-modal" id="videoModal">
         <div class="video-modal-content">
-            <span class="video-modal-close">&times;</span>
-            <div class="video-container">
-                <iframe id="videoFrame" src="" frameborder="0" allowfullscreen></iframe>
-            </div>
+            <button class="video-modal-close" id="videoModalClose">×</button>
+            <iframe id="videoFrame" src="" allowfullscreen></iframe>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <p>&copy; 2024 Tobias Efler. Professional Video Editor.</p>
-            <p>Available for freelance projects worldwide. <button id="retro-btn" class="retro-toggle-btn">♟️</button></p>
-        </div>
-    </footer>
-
-    <style id="retro-styles" style="display: none;">
-        /* 1990s RETRO MODE - GEOCITIES/ANGELFIRE STYLE */
-        [data-retro="true"] {
-            background: #000080 url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><rect width="40" height="40" fill="%23000080"/><circle cx="10" cy="10" r="1" fill="%2300ff00" opacity="0.6"/><circle cx="30" cy="30" r="1" fill="%23ff00ff" opacity="0.6"/></svg>') repeat !important;
-            font-family: "Comic Sans MS", cursive, fantasy !important;
-            color: #00ff00 !important;
-            animation: rainbow-bg 3s infinite !important;
-        }
-
-        @keyframes rainbow-bg {
-            0% { background-color: #ff00ff; }
-            16% { background-color: #00ff00; }
-            33% { background-color: #00ffff; }
-            50% { background-color: #0080ff; }
-            66% { background-color: #8000ff; }
-            83% { background-color: #ff0080; }
-            100% { background-color: #ff00ff; }
-        }
-
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
-        }
-
-        @keyframes sparkle {
-            0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
-            50% { transform: scale(1.5) rotate(180deg); opacity: 0.5; }
-        }
-
-        [data-retro="true"] .navbar {
-            background: linear-gradient(45deg, #ff00ff, #00ff00, #00ffff, #0080ff, #8000ff, #ff0080) !important;
-            background-size: 400% 400% !important;
-            animation: rainbow-bg 2s infinite !important;
-            border: 3px solid #00ff00 !important;
-            border-style: dashed !important;
-        }
-
-        [data-retro="true"] .logo {
-            color: #00ff00 !important;
-            text-shadow: 2px 2px 0px #ff00ff, 4px 4px 0px #00ffff !important;
-            animation: bounce 1s infinite !important;
-            font-size: 2rem !important;
-        }
-
-        [data-retro="true"] .logo::before {
-            content: "🌟 ";
-            animation: sparkle 1s infinite !important;
-        }
-
-        [data-retro="true"] .logo::after {
-            content: " 🌟";
-            animation: sparkle 1s infinite reverse !important;
-            width: auto !important;
-            height: auto !important;
-            position: static !important;
-            background: none !important;
-        }
-
-        [data-retro="true"] .nav-links a {
-            color: #00ff00 !important;
-            text-shadow: 1px 1px 0px #000000 !important;
-            text-decoration: underline !important;
-            animation: blink 2s infinite !important;
-        }
-
-        [data-retro="true"] .hero-title {
-            background: linear-gradient(45deg, #ff00ff, #00ff00, #00ffff, #0080ff, #8000ff, #ff0080) !important;
-            background-size: 400% 400% !important;
-            -webkit-background-clip: text !important;
-            -webkit-text-fill-color: transparent !important;
-            animation: rainbow-bg 1s infinite !important;
-            text-shadow: 2px 2px 0px #000000 !important;
-            font-family: "Comic Sans MS", cursive !important;
-        }
-
-        [data-retro="true"] .hero-title::before {
-            content: "✨ WELCOME TO ✨\A";
-            white-space: pre;
-            color: #ff00ff !important;
-            font-size: 0.3em !important;
-            display: block !important;
-            text-align: center !important;
-            animation: blink 1s infinite !important;
-            -webkit-text-fill-color: #ff00ff !important;
-        }
-
-        [data-retro="true"] .hero-subtitle {
-            color: #00ffff !important;
-            text-shadow: 1px 1px 0px #000000 !important;
-            text-decoration: underline !important;
-            animation: bounce 2s infinite !important;
-        }
-
-        [data-retro="true"] .hero-location {
-            color: #ff00ff !important;
-            text-shadow: 1px 1px 0px #000000 !important;
-            font-size: 1.5rem !important;
-        }
-
-        [data-retro="true"] .hero-location::before {
-            content: "🎬 ";
-            animation: sparkle 1.5s infinite !important;
-        }
-
-        [data-retro="true"] .hero-location::after {
-            content: " 🎬";
-            animation: sparkle 1.5s infinite reverse !important;
-        }
-
-        [data-retro="true"] .section-title {
-            color: #00ff00 !important;
-            text-shadow: 2px 2px 0px #ff00ff !important;
-            text-align: center !important;
-            text-decoration: underline !important;
-            animation: bounce 3s infinite !important;
-        }
-
-        [data-retro="true"] .section-title::before {
-            content: "⭐ ";
-            animation: sparkle 1s infinite !important;
-        }
-
-        [data-retro="true"] .section-title::after {
-            content: " ⭐";
-            animation: sparkle 1s infinite reverse !important;
-        }
-
-        [data-retro="true"] .section-divider {
-            color: #ff00ff !important;
-            text-shadow: 1px 1px 0px #000000 !important;
-            font-size: 1.5rem !important;
-            animation: blink 2s infinite !important;
-            text-align: center !important;
-        }
-
-        [data-retro="true"] .work-card {
-            background: linear-gradient(45deg, #ff00ff, #8000ff) !important;
-            border: 3px solid #00ff00 !important;
-            border-style: double !important;
-            box-shadow: 5px 5px 0px #00ffff !important;
-            animation: bounce 4s infinite !important;
-        }
-
-        [data-retro="true"] .work-card:hover {
-            transform: scale(1.1) rotate(2deg) !important;
-            animation: sparkle 0.5s infinite !important;
-        }
-
-        [data-retro="true"] .work-title {
-            color: #00ff00 !important;
-            text-shadow: 1px 1px 0px #000000 !important;
-            text-align: center !important;
-        }
-
-        [data-retro="true"] .work-genre {
-            color: #00ffff !important;
-            text-shadow: 1px 1px 0px #000000 !important;
-            animation: blink 3s infinite !important;
-            text-align: center !important;
-        }
-
-        [data-retro="true"] .work-role {
-            color: #ff00ff !important;
-            text-shadow: 1px 1px 0px #000000 !important;
-            text-align: center !important;
-        }
-
-        [data-retro="true"] .work-link {
-            color: #00ff00 !important;
-            text-shadow: 1px 1px 0px #000000 !important;
-            text-decoration: underline !important;
-            animation: blink 1.5s infinite !important;
-            text-align: center !important;
-            display: block !important;
-        }
-
-        [data-retro="true"] .stats-section {
-            background: linear-gradient(90deg, #ff00ff, #00ff00, #00ffff, #0080ff, #8000ff, #ff0080) !important;
-            background-size: 400% 400% !important;
-            animation: rainbow-bg 3s infinite !important;
-            border: 5px solid #00ff00 !important;
-            border-style: ridge !important;
-        }
-
-        [data-retro="true"] .stat-number {
-            color: #00ff00 !important;
-            text-shadow: 2px 2px 0px #ff00ff !important;
-            animation: bounce 2s infinite !important;
-        }
-
-        [data-retro="true"] .stat-label {
-            color: #00ffff !important;
-            text-shadow: 1px 1px 0px #000000 !important;
-            animation: blink 2s infinite !important;
-        }
-
-        [data-retro="true"] .timeline-item {
-            border-left: 5px solid #00ff00 !important;
-            border-style: dashed !important;
-            background: rgba(255, 0, 255, 0.3) !important;
-            margin: 1rem 0 !important;
-            padding: 1rem !important;
-            border-radius: 0 !important;
-        }
-
-        [data-retro="true"] .timeline-title {
-            color: #00ff00 !important;
-            text-shadow: 1px 1px 0px #000000 !important;
-            animation: blink 3s infinite !important;
-        }
-
-        [data-retro="true"] .timeline-year {
-            color: #00ffff !important;
-            text-shadow: 1px 1px 0px #000000 !important;
-            font-weight: bold !important;
-        }
-
-        [data-retro="true"] .timeline-description {
-            color: #ff00ff !important;
-            text-shadow: 1px 1px 0px #000000 !important;
-        }
-
-        [data-retro="true"] .contact-section {
-            background: linear-gradient(45deg, #8000ff, #ff00ff) !important;
-            border: 3px solid #00ff00 !important;
-            border-style: groove !important;
-        }
-
-        [data-retro="true"] .contact-item {
-            background: linear-gradient(45deg, #ff00ff, #00ff00) !important;
-            border: 3px solid #00ffff !important;
-            border-style: outset !important;
-            animation: bounce 3s infinite !important;
-        }
-
-        [data-retro="true"] .contact-item a {
-            color: #000080 !important;
-            text-shadow: 1px 1px 0px #00ff00 !important;
-            font-weight: bold !important;
-            text-decoration: underline !important;
-        }
-
-        [data-retro="true"] .footer {
-            background: linear-gradient(90deg, #ff00ff, #00ff00, #00ffff, #0080ff, #8000ff, #ff0080) !important;
-            background-size: 400% 400% !important;
-            animation: rainbow-bg 2s infinite !important;
-            border: 3px solid #00ff00 !important;
-            border-style: inset !important;
-        }
-
-        [data-retro="true"] .footer p {
-            color: #00ff00 !important;
-            text-shadow: 1px 1px 0px #000000 !important;
-            font-weight: bold !important;
-            animation: blink 4s infinite !important;
-        }
-
-        [data-retro="true"] .btn {
-            background: linear-gradient(45deg, #ff00ff, #00ff00) !important;
-            color: #000080 !important;
-            border: 3px solid #00ffff !important;
-            border-style: outset !important;
-            text-shadow: 1px 1px 0px #00ff00 !important;
-            font-weight: bold !important;
-            animation: bounce 2s infinite !important;
-        }
-
-        [data-retro="true"] .btn:hover {
-            background: linear-gradient(45deg, #00ffff, #ff0080) !important;
-            animation: sparkle 0.5s infinite !important;
-        }
-
-        [data-retro="true"] .skill-category {
-            background: rgba(255, 0, 255, 0.3) !important;
-            border: 3px solid #00ff00 !important;
-            border-style: ridge !important;
-            animation: bounce 4s infinite !important;
-        }
-
-        [data-retro="true"] .skill-category h3 {
-            color: #00ff00 !important;
-            text-shadow: 1px 1px 0px #ff00ff !important;
-            text-align: center !important;
-            animation: blink 3s infinite !important;
-        }
-
-        [data-retro="true"] .skill-list li {
-            color: #00ffff !important;
-            text-shadow: 1px 1px 0px #000000 !important;
-        }
-
-        [data-retro="true"] .dark-mode-btn {
-            background: linear-gradient(45deg, #ff00ff, #00ff00) !important;
-            border: 2px solid #00ffff !important;
-            animation: sparkle 1s infinite !important;
-        }
-
-        /* VISITOR COUNTER STYLE */
-        [data-retro="true"] .hero::after {
-            content: "👾 VISITOR #1337 👾 \A🚧 UNDER CONSTRUCTION 🚧 \A⚡ BEST VIEWED IN NETSCAPE ⚡";
-            white-space: pre;
-            position: fixed;
-            bottom: 50px;
-            right: 10px;
-            background: #00ff00;
-            color: #ff00ff;
-            padding: 10px;
-            border: 3px solid #000000;
-            border-style: inset;
-            font-size: 0.8rem;
-            font-weight: bold;
-            animation: blink 1s infinite;
-            z-index: 999;
-        }
-
-        /* MARQUEE STYLE ANIMATION - FIXED */
-        [data-retro="true"] .hero-description {
-            color: #00ffff !important;
-            text-shadow: 1px 1px 0px #000000 !important;
-            animation: marquee 20s linear infinite !important;
-            white-space: nowrap !important;
-            overflow: hidden !important;
-            width: 100% !important;
-            display: block !important;
-        }
-
-        @keyframes marquee {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-
-        /* SPARKLE DECORATIONS */
-        [data-retro="true"] body::before {
-            content: "✨⭐✨⭐✨⭐✨⭐✨⭐✨⭐✨⭐✨";
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: #000080;
-            color: #00ff00;
-            text-align: center;
-            z-index: 1001;
-            animation: sparkle 2s infinite;
-            padding: 5px;
-            border-bottom: 3px solid #ff00ff;
-        }
-
-        [data-retro="true"] body::after {
-            content: "🎵 NOW PLAYING: MIDI MUSIC 🎵";
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: #ff00ff;
-            color: #00ff00;
-            text-align: center;
-            z-index: 1001;
-            animation: blink 1s infinite;
-            padding: 5px;
-            font-weight: bold;
-            border-top: 3px solid #00ffff;
-        }
-    </style>
-
-    <style>
-        .retro-toggle-btn {
-            background: none;
-            border: none;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            padding: 0.2rem;
-            border-radius: 4px;
-            color: var(--text-muted);
-        }
-
-        .retro-toggle-btn:hover {
-            background: var(--bg-secondary);
-            transform: scale(1.1);
-        }
-
-        [data-theme="dark"] .retro-toggle-btn:hover {
-            background: var(--bg-secondary);
-        }
-    </style>
-
     <script>
-        let isExpanded = false;
-        let isRetroMode = false;
+        // Work data
+        const workData = [
+            { title: "NACHTSTREIFE", meta: "DOCUMENTARY / SWR", videoId: "zbVz7_OJNsQ", thumbnail: "https://img.youtube.com/vi/zbVz7_OJNsQ/maxresdefault.jpg" },
+            { title: "HALBPENSION MIT SCHMITZ", meta: "ENTERTAINMENT / SAT.1", videoId: "TXIPKDAA0g8", thumbnail: "https://img.youtube.com/vi/TXIPKDAA0g8/maxresdefault.jpg" },
+            { title: "TIERBABYS", meta: "DOCUMENTARY / VOX", videoId: "T9IDBbhq8hg", thumbnail: "https://img.youtube.com/vi/T9IDBbhq8hg/maxresdefault.jpg" },
+            { title: "JENKE: CRIME", meta: "DOCUMENTARY / PROSIEBEN", videoId: "OPg_RHBS5-Q", thumbnail: "https://img.youtube.com/vi/OPg_RHBS5-Q/maxresdefault.jpg" },
+            { title: "TIERRETTER MIT HERZ", meta: "DOCUMENTARY", videoId: "e2ktOnl6w10", thumbnail: "https://img.youtube.com/vi/e2ktOnl6w10/maxresdefault.jpg" },
+            { title: "EINSATZ MIT HERZ", meta: "EMERGENCY SERVICES", videoId: "h3hl3O2nLO0", thumbnail: "https://img.youtube.com/vi/h3hl3O2nLO0/maxresdefault.jpg" },
+            { title: "PAAR LOVE", meta: "DATING SHOW / SAT.1", videoId: "0bONpYQuq2Y", thumbnail: "https://img.youtube.com/vi/0bONpYQuq2Y/maxresdefault.jpg" },
+            { title: "VERRÜCKT NACH MEER", meta: "TRAVEL DOCUMENTARY", videoId: "7VkntMsqxqY", thumbnail: "https://img.youtube.com/vi/7VkntMsqxqY/maxresdefault.jpg" },
+            { title: "RATE MY DATE", meta: "DATING SHOW", videoId: "jJYq9-_gtyU", thumbnail: "https://img.youtube.com/vi/jJYq9-_gtyU/maxresdefault.jpg" }
+        ];
 
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+        // Populate work grid
+        function populateWorkGrid() {
+            const workGrid = document.getElementById('workGrid');
+            workData.forEach(work => {
+                const workItem = document.createElement('div');
+                workItem.className = 'work-item interactive';
+                workItem.innerHTML = `
+                    <img src="${work.thumbnail}" alt="${work.title}" class="work-thumbnail" onerror="this.style.background='var(--gray-dark)'">
+                    <div class="work-overlay">
+                        <h3>${work.title}</h3>
+                        <p>${work.meta}</p>
+                    </div>
+                `;
+                workItem.addEventListener('click', () => openVideoModal(work.videoId));
+                workGrid.appendChild(workItem);
             });
+        }
+
+        // Navigation - Immediate state changes
+        const navTrigger = document.getElementById('navTrigger');
+        const navOverlay = document.getElementById('navOverlay');
+        const navClose = document.getElementById('navClose');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        navTrigger.addEventListener('click', () => {
+            document.body.classList.add('glitch');
+            setTimeout(() => {
+                navOverlay.classList.add('active');
+                document.body.classList.remove('glitch');
+            }, 100);
         });
 
-        // Dark mode functionality
-        function toggleDarkMode() {
-            const body = document.body;
-            const isDark = body.hasAttribute('data-theme');
-            
-            if (isDark) {
-                body.removeAttribute('data-theme');
-                localStorage.setItem('theme', 'light');
-            } else {
-                body.setAttribute('data-theme', 'dark');
-                localStorage.setItem('theme', 'dark');
-            }
+        navClose.addEventListener('click', closeNav);
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', closeNav);
+        });
+
+        function closeNav() {
+            navOverlay.classList.remove('active');
         }
 
-        // Load saved theme on page load
-        function loadTheme() {
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'light') {
-                // Only set light mode if explicitly saved as light
-                document.body.removeAttribute('data-theme');
-            } else {
-                // Default to dark mode (when no theme saved or when saved as dark)
-                document.body.setAttribute('data-theme', 'dark');
-            }
-            // Icons will automatically show/hide via CSS based on data-theme attribute
-        }
-
-        // Retro mode functionality
-        function toggleRetroMode() {
-            const body = document.body;
-            const retroStyles = document.getElementById('retro-styles');
-            
-            isRetroMode = !isRetroMode;
-            
-            if (isRetroMode) {
-                body.setAttribute('data-retro', 'true');
-                retroStyles.style.display = 'block';
-                localStorage.setItem('retroMode', 'true');
-                
-                // Add some fun console messages
-                console.log('%c🌟 WELCOME TO 1990s MODE! 🌟', 'color: #ff00ff; font-size: 20px; font-family: Comic Sans MS');
-                console.log('%c🚧 UNDER CONSTRUCTION 🚧', 'color: #ffff00; background: #ff0000; font-weight: bold');
-                console.log('%c Best viewed in Netscape Navigator! 🌐', 'color: #00ffff; font-style: italic');
-            } else {
-                body.removeAttribute('data-retro');
-                retroStyles.style.display = 'none';
-                localStorage.removeItem('retroMode');
-                
-                console.log('%c👋 Back to the modern world!', 'color: #8b5cf6; font-size: 16px');
-            }
-        }
-
-        // Load saved retro mode on page load
-        function loadRetroMode() {
-            const savedRetroMode = localStorage.getItem('retroMode');
-            if (savedRetroMode === 'true') {
-                isRetroMode = true;
-                document.body.setAttribute('data-retro', 'true');
-                document.getElementById('retro-styles').style.display = 'block';
-            }
-        }
-
-        // Video Modal functionality
+        // Video Modal - Hard cuts
         const videoModal = document.getElementById('videoModal');
         const videoFrame = document.getElementById('videoFrame');
-        const closeModal = document.querySelector('.video-modal-close');
+        const videoModalClose = document.getElementById('videoModalClose');
 
         function openVideoModal(videoId) {
             const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
             videoFrame.src = embedUrl;
-            videoModal.style.display = 'block';
+            videoModal.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
 
         function closeVideoModal() {
-            videoModal.style.display = 'none';
+            videoModal.classList.remove('active');
             videoFrame.src = '';
             document.body.style.overflow = 'auto';
         }
 
-        // Close modal when clicking the X button
-        closeModal.addEventListener('click', closeVideoModal);
+        videoModalClose.addEventListener('click', closeVideoModal);
 
-        // Close modal when clicking outside the video
-        videoModal.addEventListener('click', function(e) {
+        videoModal.addEventListener('click', (e) => {
             if (e.target === videoModal) {
                 closeVideoModal();
             }
         });
 
-        // Close modal with Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && videoModal.style.display === 'block') {
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
                 closeVideoModal();
+                closeNav();
             }
         });
 
-        // Add click handlers for video triggers
-        document.addEventListener('click', function(e) {
-            if (e.target.classList.contains('video-trigger')) {
-                e.preventDefault();
-                const videoId = e.target.getAttribute('data-video');
-                if (videoId) {
-                    openVideoModal(videoId);
-                }
-            }
+        // Contact CTA
+        document.querySelector('.contact-cta').addEventListener('click', () => {
+            window.location.href = 'mailto:tobias_efler@gmx.de?subject=PROJECT INQUIRY';
         });
 
-        // Add click handlers for work card images with videos
-        document.addEventListener('click', function(e) {
-            const workCard = e.target.closest('.work-card');
-            if (workCard && workCard.hasAttribute('data-video')) {
-                const videoId = workCard.getAttribute('data-video');
-                if (videoId && (e.target.closest('.work-card-image') || e.target.classList.contains('work-card-image'))) {
-                    openVideoModal(videoId);
-                }
-            }
-        });
-
-        // Add click handlers for YouTube link video images
-        document.addEventListener('click', function(e) {
-            const workCard = e.target.closest('.work-card');
-            if (workCard && !workCard.hasAttribute('data-video') && (e.target.closest('.work-card-image') || e.target.classList.contains('work-card-image'))) {
-                // Find the YouTube link in this card
-                const youtubeLink = workCard.querySelector('a[href*="youtube.com"]');
-                if (youtubeLink) {
-                    window.open(youtubeLink.href, '_blank');
-                }
-            }
-        });
-
-        // Grid show more/less functionality
-        function toggleGridExpansion() {
-            const workGrid = document.getElementById('workCarousel');
-            const showMoreBtn = document.getElementById('showMoreBtn');
-            
-            isExpanded = !isExpanded;
-            
-            if (isExpanded) {
-                workGrid.style.maxHeight = 'none';
-                workGrid.style.gridTemplateRows = 'auto';
-                showMoreBtn.classList.add('expanded');
-            } else {
-                workGrid.style.maxHeight = '800px';
-                workGrid.style.gridTemplateRows = 'repeat(2, 1fr)';
-                showMoreBtn.classList.remove('expanded');
-                
-                // Scroll back to work section
-                document.getElementById('work').scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        }
-
-        // Enhanced image loading with multiple fallback options
-        function setupImageFallbacks() {
-            const images = document.querySelectorAll('.work-card-image img');
-            
-            images.forEach(img => {
-                const videoId = img.src.match(/\/vi\/([^\/]+)\//)?.[1];
-                if (!videoId) return;
-
-                let fallbackAttempts = 0;
-                const fallbackOptions = [
-                    `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
-                    `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`,
-                    `https://img.youtube.com/vi/${videoId}/default.jpg`
-                ];
-
-                function tryNextFallback() {
-                    fallbackAttempts++;
-                    if (fallbackAttempts < fallbackOptions.length) {
-                        img.src = fallbackOptions[fallbackAttempts];
-                    } else {
-                        // All fallbacks failed, use gradient placeholder
-                        const parent = img.parentElement;
-                        const workCard = parent.closest('.work-card');
-                        const genre = workCard.querySelector('.work-genre').textContent;
-                        
-                        const gradients = {
-                            'Documentary': 'linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%)',
-                            'Entertainment': 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
-                            'Dating Show': 'linear-gradient(135deg, #ec4899 0%, #be185d 100%)',
-                            'Emergency Services': 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',
-                            'Lifestyle': 'linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%)',
-                            'Travel Documentary': 'linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%)',
-                            'Game Show': 'linear-gradient(135deg, #f97316 0%, #ea580c 100%)',
-                            'Reality TV': 'linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%)',
-                            'Digital Content': 'linear-gradient(135deg, #10b981 0%, #047857 100%)'
-                        };
-                        
-                        const gradient = gradients[genre] || 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)';
-                        
-                        parent.innerHTML = `
-                            <div class="thumbnail-placeholder" style="background: ${gradient};">
-                                ${genre || 'Video Content'}
-                            </div>
-                        `;
-                    }
-                }
-
-                img.addEventListener('error', tryNextFallback);
-                
-                img.addEventListener('load', function() {
-                    this.classList.add('loaded');
-                });
-            });
-        }
-
-        // Initialize everything when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            loadTheme();
-            loadRetroMode();
-            setupImageFallbacks();
-            
-            // Add dark mode button event listener
-            document.getElementById('translateBtn').addEventListener('click', toggleDarkMode);
-            
-            // Add show more button event listener
-            document.getElementById('showMoreBtn').addEventListener('click', toggleGridExpansion);
-            
-            // Add retro mode button event listener
-            document.getElementById('retro-btn').addEventListener('click', toggleRetroMode);
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            populateWorkGrid();
         });
     </script>
 </body>
