@@ -151,11 +151,10 @@
             letter-spacing: 2px;
         }
 
-        /* Broken Grid Layout with 16:9 YouTube Aspect Ratios */
+        /* Standard 3-Column Grid with 16:9 Aspect Ratios */
         .work-grid {
             display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            grid-auto-rows: 60px;
+            grid-template-columns: repeat(3, 1fr);
             gap: 0;
             padding: 0;
         }
@@ -165,62 +164,7 @@
             background: var(--gray-dark);
             border: none;
             overflow: hidden;
-        }
-
-        /* 16:9 Aspect Ratio Grid Items - Various Sizes */
-        
-        /* Large 16:9 (4 columns wide) */
-        .work-item:nth-child(1) {
-            grid-column: span 4;
-            grid-row: span 9; /* 4 * 9/16 ≈ 2.25, so 9 units for proper 16:9 */
-        }
-
-        /* Medium 16:9 (3 columns wide) */
-        .work-item:nth-child(2) {
-            grid-column: span 3;
-            grid-row: span 7; /* 3 * 9/16 ≈ 1.69, so 7 units for proper 16:9 */
-        }
-
-        /* Small 16:9 (2 columns wide) */
-        .work-item:nth-child(3) {
-            grid-column: span 2;
-            grid-row: span 5; /* 2 * 9/16 ≈ 1.125, so 5 units for proper 16:9 */
-        }
-
-        /* Medium 16:9 */
-        .work-item:nth-child(4) {
-            grid-column: span 3;
-            grid-row: span 7;
-        }
-
-        /* Small 16:9 */
-        .work-item:nth-child(5) {
-            grid-column: span 2;
-            grid-row: span 5;
-        }
-
-        /* Large 16:9 */
-        .work-item:nth-child(6) {
-            grid-column: span 4;
-            grid-row: span 9;
-        }
-
-        /* Small 16:9 */
-        .work-item:nth-child(7) {
-            grid-column: span 2;
-            grid-row: span 5;
-        }
-
-        /* Medium 16:9 */
-        .work-item:nth-child(8) {
-            grid-column: span 3;
-            grid-row: span 7;
-        }
-
-        /* Extra Large 16:9 (6 columns wide - full width) */
-        .work-item:nth-child(9) {
-            grid-column: span 6;
-            grid-row: span 13; /* 6 * 9/16 ≈ 3.375, so 13 units for proper 16:9 */
+            aspect-ratio: 16/9;
         }
 
         .work-thumbnail {
@@ -495,21 +439,9 @@
                 font-size: 48px;
             }
 
-            /* Mobile: Stack videos in single column with 16:9 aspect ratio */
+            /* Mobile: Single column grid */
             .work-grid {
                 grid-template-columns: 1fr;
-                grid-auto-rows: auto;
-                gap: 0;
-                padding: 0;
-            }
-
-            .work-item {
-                aspect-ratio: 16/9;
-            }
-
-            .work-item:nth-child(n) {
-                grid-column: 1;
-                grid-row: auto;
             }
 
             .about-section {
