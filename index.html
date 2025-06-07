@@ -162,7 +162,7 @@
         .work-item {
             position: relative;
             background: var(--gray-dark);
-            border: 1px solid var(--black);
+            border: none;
             overflow: hidden;
             aspect-ratio: 16/9;
         }
@@ -268,8 +268,27 @@
             font-family: var(--font-mono);
             font-size: 14px;
             line-height: 1.6;
-            margin-bottom: 20px;
+            margin-bottom: 0;
             max-width: 500px;
+            position: relative;
+            z-index: 2;
+            left: -8rem;
+        }
+
+        .blurb-wrapper {
+            position: relative;
+            padding: 2em 0;
+        }
+
+        .blurb-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: -340px; /* 300px sidebar + 40px padding */
+            right: 0;
+            background: var(--white);
+            z-index: 1;
         }
 
         /* Contact Form */
@@ -534,7 +553,9 @@
             
             </div>
         <div class="about-content">
-            <p>SINCE 2012, I'VE TEAMED UP WITH TOP NETWORKS, AGENCIES, AND CREATIVES TO TELL COMPELLING STORIES ACROSS MANY GENRES. WITH A BACKGROUND IN ENGINEERING IN MEDIA TECHNOLOGIES FROM THE UNIVERSITY OF APPLIED SCIENCES IN COLOGNE, I HAVE A DEEP KNOWLEDGE OF POST-PRODUCTION WORKFLOWS AND SPECIALIZE IN AVID MEDIA COMPOSER.</p>
+            <div class="blurb-wrapper">
+                <p>SINCE 2012, I'VE TEAMED UP WITH TOP NETWORKS, AGENCIES, AND CREATIVES TO TELL COMPELLING STORIES ACROSS MANY GENRES. WITH A BACKGROUND IN ENGINEERING IN MEDIA TECHNOLOGIES FROM THE UNIVERSITY OF APPLIED SCIENCES IN COLOGNE, I HAVE A DEEP KNOWLEDGE OF POST-PRODUCTION WORKFLOWS AND SPECIALIZE IN AVID MEDIA COMPOSER.</p>
+            </div>
             
             <!-- Contact Form -->
             <form class="contact-form" id="contact-form">
@@ -571,18 +592,18 @@
     <script>
         // Work data - Videos with confirmed YouTube links
         const workData = [
-            { title: "FEUER WASSER ERDE LUFT", meta: "EDITOR", videoId: "l_2R_L3g1qg", thumbnail: "https://img.youtube.com/vi/l_2R_L3g1qg/maxresdefault.jpg" },
-            { title: "EINSATZ MIT HERZ", meta: "HEAD EDITOR", videoId: "5rJ8p7y4j3A", thumbnail: "https://img.youtube.com/vi/5rJ8p7y4j3A/maxresdefault.jpg" },
-            { title: "HALBPENSION XXL", meta: "HEAD EDITOR / SAT.1", videoId: "Q7b4-3E-m_s", thumbnail: "https://img.youtube.com/vi/Q7b4-3E-m_s/maxresdefault.jpg" },
-            { title: "RATE MY DATE", meta: "HEAD EDITOR", videoId: "3-5_4Yn8TUc", thumbnail: "https://img.youtube.com/vi/3-5_4Yn8TUc/maxresdefault.jpg" },
-            { title: "JENKE: EXPERIMENT", meta: "EDITOR / PROSIEBEN", videoId: "L2vS_3n-m4c", thumbnail: "https://img.youtube.com/vi/L2vS_3n-m4c/maxresdefault.jpg" },
-            { title: "TIERRETTER MIT HERZ", meta: "HEAD EDITOR", videoId: "bQ6d-P1w-y4", thumbnail: "https://img.youtube.com/vi/bQ6d-P1w-y4/maxresdefault.jpg" },
-            { title: "IM EINSATZ: JEDE SEKUNDE ZÄHLT", meta: "HEAD EDITOR", videoId: "v9f-y-3Y_bI", thumbnail: "https://img.youtube.com/vi/v9f-y-3Y_bI/maxresdefault.jpg" },
-            { title: "TIERBABYS – WILD & SÜß!", meta: "EDITOR / VOX", videoId: "aG9i-g0o_pQ", thumbnail: "https://img.youtube.com/vi/aG9i-g0o_pQ/maxresdefault.jpg" },
-            { title: "DIE NOTRUFZENTRALE", meta: "EDITOR", videoId: "2r_5w-G_j8c", thumbnail: "https://img.youtube.com/vi/2r_5w-G_j8c/maxresdefault.jpg" },
-            { title: "MEIN TRAUMHAUS AM MEER", meta: "EDITOR", videoId: "T5F_O_n_i3o", thumbnail: "https://img.youtube.com/vi/T5F_O_n_i3o/maxresdefault.jpg" },
-            { title: "HAUTNAH: DIE TIERKLINIK", meta: "EDITOR", videoId: "Y-9b8rY_Z_s", thumbnail: "https://img.youtube.com/vi/Y-9b8rY_Z_s/maxresdefault.jpg" },
-            { title: "MEIN HIMMLISCHES HOTEL", meta: "ASSISTANT EDITOR / COLOR GRADING", videoId: "cM-t-d_b_4s", thumbnail: "https://img.youtube.com/vi/cM-t-d_b_4s/maxresdefault.jpg" }
+            { title: "TIERRETTER MIT HERZ", meta: "Head Editor", videoId: "bQ6d-P1w-y4", thumbnail: "https://img.youtube.com/vi/bQ6d-P1w-y4/maxresdefault.jpg" },
+            { title: "EINSATZ MIT HERZ", meta: "Head Editor", videoId: "h3hl3O2nLO0", thumbnail: "https://img.youtube.com/vi/h3hl3O2nLO0/maxresdefault.jpg", openInNewTab: true },
+            { title: "PAAR LOVE", meta: "Head Editor | SAT.1", videoId: "0bONpYQuq2Y", thumbnail: "https://img.youtube.com/vi/0bONpYQuq2Y/maxresdefault.jpg" },
+            { title: "VERRÜCKT NACH MEER", meta: "Editor", videoId: "7VkntMsqxqY", thumbnail: "https://img.youtube.com/vi/7VkntMsqxqY/maxresdefault.jpg" },
+            { title: "IM EINSATZ - JEDE SEKUNDE ZÄHLT", meta: "Head Editor", videoId: "ET8ABJncFuA", thumbnail: "https://img.youtube.com/vi/ET8ABJncFuA/hqdefault.jpg", openInNewTab: true },
+            { title: "RATE MY DATE", meta: "Head Editor", videoId: "jJYq9-_gtyU", thumbnail: "https://img.youtube.com/vi/jJYq9-_gtyU/maxresdefault.jpg" },
+            { title: "FEUER WASSER ERDE LUFT", meta: "Editor", videoId: "hLsvuZUPQpo", thumbnail: "https://img.youtube.com/vi/hLsvuZUPQpo/maxresdefault.jpg" },
+            { title: "MEIN TRAUMHAUS AM MEER", meta: "Editor", videoId: "yMRCCWD9h0w", thumbnail: "https://img.youtube.com/vi/yMRCCWD9h0w/maxresdefault.jpg" },
+            { title: "JENKE: EXPERIMENT", meta: "Editor | ProSieben", videoId: "H_2L7-2FBTQ", thumbnail: "https://img.youtube.com/vi/H_2L7-2FBTQ/maxresdefault.jpg" },
+            { title: "HAUTNAH: DIE TIERKLINIK", meta: "Editor", videoId: "TdPt9DbP0EY", thumbnail: "https://img.youtube.com/vi/TdPt9DbP0EY/hqdefault.jpg", openInNewTab: true },
+            { title: "MEIN HIMMLISCHES HOTEL", meta: "Assistant Editor / Color Grading", videoId: "pMNgwsT-8q4", thumbnail: "https://img.youtube.com/vi/pMNgwsT-8q4/hqdefault.jpg", openInNewTab: true },
+            { title: "110 - IM DAUEREINSATZ", meta: "Editor", videoId: "UL1Ss_INkRY", thumbnail: "https://img.youtube.com/vi/UL1Ss_INkRY/hqdefault.jpg", openInNewTab: true }
         ];
 
         // Populate work grid
@@ -598,7 +619,13 @@
                         <p>${work.meta}</p>
                     </div>
                 `;
-                workItem.addEventListener('click', () => openVideoModal(work.videoId));
+                if (work.openInNewTab) {
+                    workItem.addEventListener('click', () => {
+                        window.open(`https://www.youtube.com/watch?v=${work.videoId}`, '_blank');
+                    });
+                } else {
+                    workItem.addEventListener('click', () => openVideoModal(work.videoId));
+                }
                 workGrid.appendChild(workItem);
             });
         }
@@ -609,7 +636,7 @@
         const videoModalClose = document.getElementById('videoModalClose');
 
         function openVideoModal(videoId) {
-            const embedUrl = `https://www.youtube.com/embed/${videoId}?rel=0`;
+            const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
             videoFrame.src = embedUrl;
             videoModal.classList.add('active');
             document.body.style.overflow = 'hidden';
