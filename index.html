@@ -1836,20 +1836,58 @@
             border-bottom: 3px solid #ff00ff;
         }
 
+        /* Bottom banner - ensure it doesn't show CSS code */
         [data-retro="true"] body::after {
-            content: "🎵 NOW PLAYING: MIDI MUSIC 🎵";
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: #ff00ff;
-            color: #ffff00;
-            text-align: center;
-            z-index: 1001;
-            animation: blink 1s infinite;
-            padding: 5px;
-            font-weight: bold;
-            border-top: 3px solid #00ff00;
+            content: "🎵 NOW PLAYING: MIDI MUSIC 🎵" !important;
+            position: fixed !important;
+            bottom: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            background: #ff00ff !important;
+            color: #ffff00 !important;
+            text-align: center !important;
+            z-index: 1002 !important;
+            animation: blink 1s infinite !important;
+            padding: 5px !important;
+            font-weight: bold !important;
+            border-top: 3px solid #00ff00 !important;
+            font-family: "Comic Sans MS", cursive !important;
+            font-size: 0.9rem !important;
+            height: auto !important;
+            width: 100% !important;
+            overflow: hidden !important;
+            white-space: nowrap !important;
+        }
+
+        /* Completely hide any CSS text that might appear */
+        [data-retro="true"] #retro-styles {
+            display: none !important;
+            visibility: hidden !important;
+            position: absolute !important;
+            left: -99999px !important;
+            top: -99999px !important;
+            width: 0 !important;
+            height: 0 !important;
+            opacity: 0 !important;
+        }
+
+        /* Hide any stray CSS content from browser dev tools or inspector */
+        [data-retro="true"] * {
+            -webkit-user-select: none !important;
+            -moz-user-select: none !important;
+            user-select: none !important;
+        }
+
+        /* Ensure no pseudo-content contains CSS */
+        [data-retro="true"] *:not(body)::before,
+        [data-retro="true"] *:not(body)::after {
+            content: "" !important;
+        }
+
+        /* Override any content that might leak through */
+        [data-retro="true"] *:not(.hero):not(body)::after {
+            content: none !important;
+            display: none !important;
         }
     </style>
 
@@ -2100,7 +2138,7 @@
                         parent.innerHTML = `
                             <div class="thumbnail-placeholder" style="background: ${gradient};">
                                 ${genre || 'Video Content'}
-                            </div>
+                </div>
                         `;
                     }
                 }
