@@ -302,13 +302,19 @@
             background: var(--bg-secondary);
             overflow: hidden;
             position: relative;
+            cursor: pointer;
         }
 
         .work-card-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .work-card-image img.loaded {
+            opacity: 1;
         }
 
         .work-card:hover .work-card-image img {
@@ -324,6 +330,26 @@
             bottom: 0;
             background: linear-gradient(45deg, transparent 0%, rgba(99, 102, 241, 0.1) 100%);
             z-index: 1;
+            pointer-events: none;
+        }
+
+        .work-card-image::after {
+            content: '▶';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .work-card:hover .work-card-image::after {
+            opacity: 1;
         }
 
         .work-card-content {
@@ -716,6 +742,156 @@
             background: var(--highlight-color);
             color: white;
         }
+
+        /* Video Modal Styles */
+        .video-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(5px);
+        }
+
+        .video-modal-content {
+            position: relative;
+            margin: 5% auto;
+            width: 90%;
+            max-width: 1200px;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .video-modal-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 2001;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .video-modal-close:hover {
+            background: var(--highlight-color);
+            transform: scale(1.1);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Enhanced thumbnail styles */
+        .work-card-image {
+            width: 100%;
+            height: 225px;
+            background: var(--bg-secondary);
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .work-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .work-card-image img.loaded {
+            opacity: 1;
+        }
+
+        .work-card:hover .work-card-image img {
+            transform: scale(1.05);
+        }
+
+        .work-card-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 0%, rgba(99, 102, 241, 0.1) 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .work-card-image::after {
+            content: '▶';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .work-card:hover .work-card-image::after {
+            opacity: 1;
+        }
+
+        .thumbnail-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        /* Mobile responsiveness for modal */
+        @media (max-width: 768px) {
+            .video-modal-content {
+                margin: 10% auto;
+                width: 95%;
+            }
+
+            .video-modal-close {
+                top: -40px;
+                font-size: 24px;
+                width: 35px;
+                height: 35px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -741,7 +917,7 @@
                 <div class="hero-location">/ New Orleans, LA</div>
                 <p class="hero-subtitle">Professional video editor specializing in television production</p>
                 <p class="hero-description">
-                    Since 2012, I've collaborated with leading German television networks to craft compelling narratives across documentaries, reality TV, and game shows. With expertise in Avid Media Composer, Adobe Premiere Pro, and comprehensive post-production workflows, I bring technical excellence and creative vision to every project.
+                    Since 2012, I've collaborated with leading television networks to craft compelling narratives across documentaries, reality TV, and game shows. With expertise in Avid Media Composer, Adobe Premiere Pro, and comprehensive post-production workflows, I bring technical excellence and creative vision to every project.
                 </p>
                 <div class="cta-buttons">
                     <a href="#work" class="btn btn-primary">View Work</a>
@@ -774,223 +950,223 @@
         <div class="section-divider">/ Featured Work</div>
         <h2 class="section-title">Selected Projects</h2>
         <p class="section-description">
-            A comprehensive portfolio of television productions spanning documentaries, reality TV, and game shows. Each project represents hundreds of hours of meticulous editing and storytelling for major German networks.
+            A comprehensive portfolio of television productions spanning documentaries, reality TV, and game shows. Each project represents hundreds of hours of meticulous editing and storytelling for major networks.
         </p>
 
         <div class="work-carousel-container">
             <div class="work-carousel" id="workCarousel">
                 <!-- Nachtstreife -->
-                <div class="work-card">
+                <div class="work-card" data-video="zbVz7_OJNsQ">
                     <div class="work-card-image">
-                        <img src="https://img.youtube.com/vi/zbVz7_OJNsQ/maxresdefault.jpg" alt="Nachtstreife - Suche in der Dunkelheit">
+                        <img src="https://img.youtube.com/vi/zbVz7_OJNsQ/hqdefault.jpg" alt="Nachtstreife - Suche in der Dunkelheit" onload="this.classList.add('loaded')" onerror="this.parentElement.innerHTML='<div class=&quot;thumbnail-placeholder&quot; style=&quot;background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);&quot;>Documentary Series</div>'">
                     </div>
                     <div class="work-card-content">
                         <div class="work-genre">Documentary</div>
                         <h3 class="work-title">Nachtstreife - Suche in der Dunkelheit</h3>
                         <p class="work-role">Head Editor | SWR</p>
-                        <a href="https://www.youtube.com/watch?v=zbVz7_OJNsQ&list=PL1BMduwJCLydaCYAewR7PbADMw46qhSTb" class="work-link" target="_blank">Watch on YouTube</a>
+                        <a href="javascript:void(0)" class="work-link video-trigger" data-video="zbVz7_OJNsQ">Watch on YouTube</a>
                     </div>
                 </div>
 
                 <!-- Halbpension mit Schmitz -->
-                <div class="work-card">
+                <div class="work-card" data-video="TXIPKDAA0g8">
                     <div class="work-card-image">
-                        <img src="https://img.youtube.com/vi/TXIPKDAA0g8/maxresdefault.jpg" alt="Halbpension mit Schmitz">
+                        <img src="https://img.youtube.com/vi/TXIPKDAA0g8/hqdefault.jpg" alt="Halbpension mit Schmitz" onload="this.classList.add('loaded')" onerror="this.parentElement.innerHTML='<div class=&quot;thumbnail-placeholder&quot; style=&quot;background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);&quot;>Game Show</div>'">
                     </div>
                     <div class="work-card-content">
                         <div class="work-genre">Entertainment</div>
                         <h3 class="work-title">Halbpension mit Schmitz</h3>
                         <p class="work-role">Head Editor | SAT.1</p>
-                        <a href="https://www.youtube.com/watch?v=TXIPKDAA0g8" class="work-link" target="_blank">Watch on YouTube</a>
+                        <a href="javascript:void(0)" class="work-link video-trigger" data-video="TXIPKDAA0g8">Watch on YouTube</a>
                     </div>
                 </div>
 
                 <!-- Tierbabys -->
-                <div class="work-card">
+                <div class="work-card" data-video="T9IDBbhq8hg">
                     <div class="work-card-image">
-                        <img src="https://img.youtube.com/vi/T9IDBbhq8hg/maxresdefault.jpg" alt="Tierbabys - Wild & Süß!">
+                        <img src="https://img.youtube.com/vi/T9IDBbhq8hg/hqdefault.jpg" alt="Tierbabys - Wild & Süß!" onload="this.classList.add('loaded')" onerror="this.parentElement.innerHTML='<div class=&quot;thumbnail-placeholder&quot; style=&quot;background: linear-gradient(135deg, #10b981 0%, #047857 100%);&quot;>Nature Documentary</div>'">
                     </div>
                     <div class="work-card-content">
                         <div class="work-genre">Documentary</div>
                         <h3 class="work-title">Tierbabys - Wild & Süß!</h3>
                         <p class="work-role">Editor | VOX</p>
-                        <a href="https://www.youtube.com/watch?v=T9IDBbhq8hg" class="work-link" target="_blank">Watch Preview</a>
+                        <a href="javascript:void(0)" class="work-link video-trigger" data-video="T9IDBbhq8hg">Watch Preview</a>
                     </div>
                 </div>
 
                 <!-- Jenke: Crime -->
-                <div class="work-card">
+                <div class="work-card" data-video="OPg_RHBS5-Q">
                     <div class="work-card-image">
-                        <img src="https://img.youtube.com/vi/OPg_RHBS5-Q/maxresdefault.jpg" alt="Jenke: Crime">
+                        <img src="https://img.youtube.com/vi/OPg_RHBS5-Q/hqdefault.jpg" alt="Jenke: Crime" onload="this.classList.add('loaded')" onerror="this.parentElement.innerHTML='<div class=&quot;thumbnail-placeholder&quot; style=&quot;background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);&quot;>Crime Documentary</div>'">
                     </div>
                     <div class="work-card-content">
                         <div class="work-genre">Documentary</div>
                         <h3 class="work-title">Jenke: Crime</h3>
                         <p class="work-role">Editor | ProSieben</p>
-                        <a href="https://www.youtube.com/watch?v=OPg_RHBS5-Q" class="work-link" target="_blank">Watch Preview</a>
+                        <a href="javascript:void(0)" class="work-link video-trigger" data-video="OPg_RHBS5-Q">Watch Preview</a>
                     </div>
                 </div>
 
                 <!-- Tierretter mit Herz -->
-                <div class="work-card">
+                <div class="work-card" data-video="e2ktOnl6w10">
                     <div class="work-card-image">
-                        <img src="https://img.youtube.com/vi/e2ktOnl6w10/maxresdefault.jpg" alt="Tierretter mit Herz">
+                        <img src="https://img.youtube.com/vi/e2ktOnl6w10/hqdefault.jpg" alt="Tierretter mit Herz" onload="this.classList.add('loaded')" onerror="this.parentElement.innerHTML='<div class=&quot;thumbnail-placeholder&quot; style=&quot;background: linear-gradient(135deg, #10b981 0%, #047857 100%);&quot;>Animal Rescue</div>'">
                     </div>
                     <div class="work-card-content">
                         <div class="work-genre">Documentary</div>
                         <h3 class="work-title">Tierretter mit Herz</h3>
                         <p class="work-role">Head Editor</p>
-                        <a href="https://www.youtube.com/watch?v=e2ktOnl6w10" class="work-link" target="_blank">Watch Episode</a>
+                        <a href="javascript:void(0)" class="work-link video-trigger" data-video="e2ktOnl6w10">Watch Episode</a>
                     </div>
                 </div>
 
                 <!-- Einsatz mit Herz -->
-                <div class="work-card">
+                <div class="work-card" data-video="h3hl3O2nLO0">
                     <div class="work-card-image">
-                        <img src="https://img.youtube.com/vi/h3hl3O2nLO0/maxresdefault.jpg" alt="Einsatz mit Herz">
+                        <img src="https://img.youtube.com/vi/h3hl3O2nLO0/hqdefault.jpg" alt="Einsatz mit Herz" onload="this.classList.add('loaded')" onerror="this.parentElement.innerHTML='<div class=&quot;thumbnail-placeholder&quot; style=&quot;background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);&quot;>Emergency Services</div>'">
                     </div>
                     <div class="work-card-content">
                         <div class="work-genre">Emergency Services</div>
                         <h3 class="work-title">Einsatz mit Herz</h3>
                         <p class="work-role">Head Editor</p>
-                        <a href="https://www.youtube.com/watch?v=h3hl3O2nLO0" class="work-link" target="_blank">Watch Episode</a>
+                        <a href="javascript:void(0)" class="work-link video-trigger" data-video="h3hl3O2nLO0">Watch Episode</a>
                     </div>
                 </div>
 
                 <!-- Paar Love -->
-                <div class="work-card">
+                <div class="work-card" data-video="0bONpYQuq2Y">
                     <div class="work-card-image">
-                        <img src="https://img.youtube.com/vi/0bONpYQuq2Y/maxresdefault.jpg" alt="Paar Love">
+                        <img src="https://img.youtube.com/vi/0bONpYQuq2Y/hqdefault.jpg" alt="Paar Love" onload="this.classList.add('loaded')" onerror="this.parentElement.innerHTML='<div class=&quot;thumbnail-placeholder&quot; style=&quot;background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);&quot;>Dating Show</div>'">
                     </div>
                     <div class="work-card-content">
                         <div class="work-genre">Dating Show</div>
                         <h3 class="work-title">Paar Love</h3>
                         <p class="work-role">Head Editor | SAT.1</p>
-                        <a href="https://www.youtube.com/watch?v=0bONpYQuq2Y" class="work-link" target="_blank">Watch Highlight</a>
+                        <a href="javascript:void(0)" class="work-link video-trigger" data-video="0bONpYQuq2Y">Watch Highlight</a>
                     </div>
                 </div>
 
                 <!-- Verrückt nach Meer -->
-                <div class="work-card">
+                <div class="work-card" data-video="7VkntMsqxqY">
                     <div class="work-card-image">
-                        <img src="https://img.youtube.com/vi/7VkntMsqxqY/maxresdefault.jpg" alt="Verrückt nach Meer">
+                        <img src="https://img.youtube.com/vi/7VkntMsqxqY/hqdefault.jpg" alt="Verrückt nach Meer" onload="this.classList.add('loaded')" onerror="this.parentElement.innerHTML='<div class=&quot;thumbnail-placeholder&quot; style=&quot;background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);&quot;>Travel Documentary</div>'">
                     </div>
                     <div class="work-card-content">
                         <div class="work-genre">Travel Documentary</div>
                         <h3 class="work-title">Verrückt nach Meer</h3>
                         <p class="work-role">Editor</p>
-                        <a href="https://www.youtube.com/watch?v=7VkntMsqxqY" class="work-link" target="_blank">Watch Episode</a>
+                        <a href="javascript:void(0)" class="work-link video-trigger" data-video="7VkntMsqxqY">Watch Episode</a>
                     </div>
                 </div>
 
                 <!-- Im Einsatz -->
-                <div class="work-card">
+                <div class="work-card" data-video="ET8ABJncFuA">
                     <div class="work-card-image">
-                        <img src="https://img.youtube.com/vi/ET8ABJncFuA/maxresdefault.jpg" alt="Im Einsatz - Jede Sekunde zählt">
+                        <img src="https://img.youtube.com/vi/ET8ABJncFuA/hqdefault.jpg" alt="Im Einsatz - Jede Sekunde zählt" onload="this.classList.add('loaded')" onerror="this.parentElement.innerHTML='<div class=&quot;thumbnail-placeholder&quot; style=&quot;background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);&quot;>Emergency Services</div>'">
                     </div>
                     <div class="work-card-content">
                         <div class="work-genre">Emergency Services</div>
                         <h3 class="work-title">Im Einsatz - Jede Sekunde zählt</h3>
                         <p class="work-role">Head Editor</p>
-                        <a href="https://www.youtube.com/watch?v=ET8ABJncFuA" class="work-link" target="_blank">Watch Episode</a>
+                        <a href="javascript:void(0)" class="work-link video-trigger" data-video="ET8ABJncFuA">Watch Episode</a>
                     </div>
                 </div>
 
                 <!-- Rate My Date -->
-                <div class="work-card">
+                <div class="work-card" data-video="jJYq9-_gtyU">
                     <div class="work-card-image">
-                        <img src="https://img.youtube.com/vi/jJYq9-_gtyU/maxresdefault.jpg" alt="Rate My Date">
+                        <img src="https://img.youtube.com/vi/jJYq9-_gtyU/hqdefault.jpg" alt="Rate My Date" onload="this.classList.add('loaded')" onerror="this.parentElement.innerHTML='<div class=&quot;thumbnail-placeholder&quot; style=&quot;background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);&quot;>Dating Show</div>'">
                     </div>
                     <div class="work-card-content">
                         <div class="work-genre">Dating Show</div>
                         <h3 class="work-title">Rate My Date</h3>
                         <p class="work-role">Head Editor</p>
-                        <a href="https://www.youtube.com/watch?v=jJYq9-_gtyU" class="work-link" target="_blank">Watch Episode</a>
+                        <a href="javascript:void(0)" class="work-link video-trigger" data-video="jJYq9-_gtyU">Watch Episode</a>
                     </div>
                 </div>
 
                 <!-- Feuer Wasser Erde Luft -->
-                <div class="work-card">
+                <div class="work-card" data-video="hLsvuZUPQpo">
                     <div class="work-card-image">
-                        <img src="https://img.youtube.com/vi/hLsvuZUPQpo/maxresdefault.jpg" alt="Feuer Wasser Erde Luft">
+                        <img src="https://img.youtube.com/vi/hLsvuZUPQpo/hqdefault.jpg" alt="Feuer Wasser Erde Luft" onload="this.classList.add('loaded')" onerror="this.parentElement.innerHTML='<div class=&quot;thumbnail-placeholder&quot; style=&quot;background: linear-gradient(135deg, #84cc16 0%, #65a30d 100%);&quot;>Nature Documentary</div>'">
                     </div>
                     <div class="work-card-content">
                         <div class="work-genre">Documentary</div>
                         <h3 class="work-title">Feuer Wasser Erde Luft</h3>
                         <p class="work-role">Editor</p>
-                        <a href="https://www.youtube.com/watch?v=hLsvuZUPQpo" class="work-link" target="_blank">Watch Preview</a>
+                        <a href="javascript:void(0)" class="work-link video-trigger" data-video="hLsvuZUPQpo">Watch Preview</a>
                     </div>
                 </div>
 
                 <!-- Mein Traumhaus am Meer -->
-                <div class="work-card">
+                <div class="work-card" data-video="yMRCCWD9h0w">
                     <div class="work-card-image">
-                        <img src="https://img.youtube.com/vi/yMRCCWD9h0w/maxresdefault.jpg" alt="Mein Traumhaus am Meer">
+                        <img src="https://img.youtube.com/vi/yMRCCWD9h0w/hqdefault.jpg" alt="Mein Traumhaus am Meer" onload="this.classList.add('loaded')" onerror="this.parentElement.innerHTML='<div class=&quot;thumbnail-placeholder&quot; style=&quot;background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);&quot;>Lifestyle</div>'">
                     </div>
                     <div class="work-card-content">
                         <div class="work-genre">Lifestyle</div>
                         <h3 class="work-title">Mein Traumhaus am Meer</h3>
                         <p class="work-role">Editor</p>
-                        <a href="https://www.youtube.com/watch?v=yMRCCWD9h0w" class="work-link" target="_blank">Watch Episode</a>
+                        <a href="javascript:void(0)" class="work-link video-trigger" data-video="yMRCCWD9h0w">Watch Episode</a>
                     </div>
                 </div>
 
                 <!-- Jenke: Experiment -->
-                <div class="work-card">
+                <div class="work-card" data-video="H_2L7-2FBTQ">
                     <div class="work-card-image">
-                        <img src="https://img.youtube.com/vi/H_2L7-2FBTQ/maxresdefault.jpg" alt="Jenke: Experiment">
+                        <img src="https://img.youtube.com/vi/H_2L7-2FBTQ/hqdefault.jpg" alt="Jenke: Experiment" onload="this.classList.add('loaded')" onerror="this.parentElement.innerHTML='<div class=&quot;thumbnail-placeholder&quot; style=&quot;background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);&quot;>Experimental Documentary</div>'">
                     </div>
                     <div class="work-card-content">
                         <div class="work-genre">Documentary</div>
                         <h3 class="work-title">Jenke: Experiment</h3>
                         <p class="work-role">Editor | ProSieben</p>
-                        <a href="https://www.youtube.com/watch?v=H_2L7-2FBTQ" class="work-link" target="_blank">Watch Preview</a>
+                        <a href="javascript:void(0)" class="work-link video-trigger" data-video="H_2L7-2FBTQ">Watch Preview</a>
                     </div>
                 </div>
 
                 <!-- Hautnah: Die Tierklinik -->
-                <div class="work-card">
+                <div class="work-card" data-video="TdPt9DbP0EY">
                     <div class="work-card-image">
-                        <img src="https://img.youtube.com/vi/TdPt9DbP0EY/maxresdefault.jpg" alt="Hautnah: Die Tierklinik">
+                        <img src="https://img.youtube.com/vi/TdPt9DbP0EY/hqdefault.jpg" alt="Hautnah: Die Tierklinik" onload="this.classList.add('loaded')" onerror="this.parentElement.innerHTML='<div class=&quot;thumbnail-placeholder&quot; style=&quot;background: linear-gradient(135deg, #10b981 0%, #047857 100%);&quot;>Veterinary Documentary</div>'">
                     </div>
                     <div class="work-card-content">
                         <div class="work-genre">Documentary</div>
                         <h3 class="work-title">Hautnah: Die Tierklinik</h3>
                         <p class="work-role">Editor</p>
-                        <a href="https://www.youtube.com/watch?v=TdPt9DbP0EY" class="work-link" target="_blank">Watch Episode</a>
+                        <a href="javascript:void(0)" class="work-link video-trigger" data-video="TdPt9DbP0EY">Watch Episode</a>
                     </div>
                 </div>
 
                 <!-- Mein himmlisches Hotel -->
-                <div class="work-card">
+                <div class="work-card" data-video="pMNgwsT-8q4">
                     <div class="work-card-image">
-                        <img src="https://img.youtube.com/vi/pMNgwsT-8q4/maxresdefault.jpg" alt="Mein himmlisches Hotel">
+                        <img src="https://img.youtube.com/vi/pMNgwsT-8q4/hqdefault.jpg" alt="Mein himmlisches Hotel" onload="this.classList.add('loaded')" onerror="this.parentElement.innerHTML='<div class=&quot;thumbnail-placeholder&quot; style=&quot;background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);&quot;>Lifestyle</div>'">
                     </div>
                     <div class="work-card-content">
                         <div class="work-genre">Lifestyle</div>
                         <h3 class="work-title">Mein himmlisches Hotel</h3>
                         <p class="work-role">Assistant Editor / Color Grading</p>
-                        <a href="https://www.youtube.com/watch?v=pMNgwsT-8q4" class="work-link" target="_blank">Watch Episode</a>
+                        <a href="javascript:void(0)" class="work-link video-trigger" data-video="pMNgwsT-8q4">Watch Episode</a>
                     </div>
                 </div>
 
                 <!-- 110 - Im Dauereinsatz -->
-                <div class="work-card">
+                <div class="work-card" data-video="UL1Ss_INkRY">
                     <div class="work-card-image">
-                        <img src="https://img.youtube.com/vi/UL1Ss_INkRY/maxresdefault.jpg" alt="110 - Im Dauereinsatz">
+                        <img src="https://img.youtube.com/vi/UL1Ss_INkRY/hqdefault.jpg" alt="110 - Im Dauereinsatz" onload="this.classList.add('loaded')" onerror="this.parentElement.innerHTML='<div class=&quot;thumbnail-placeholder&quot; style=&quot;background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);&quot;>Police Documentary</div>'">
                     </div>
                     <div class="work-card-content">
                         <div class="work-genre">Emergency Services</div>
                         <h3 class="work-title">110 - Im Dauereinsatz</h3>
                         <p class="work-role">Editor</p>
-                        <a href="https://www.youtube.com/watch?v=UL1Ss_INkRY" class="work-link" target="_blank">Watch Episode</a>
+                        <a href="javascript:void(0)" class="work-link video-trigger" data-video="UL1Ss_INkRY">Watch Episode</a>
                     </div>
                 </div>
 
                 <!-- Die Kostümjäger -->
-                <div class="work-card">
+                <div class="work-card" data-external="https://www.fandangofilm.de/produktionen/die-kostuem-jaeger/">
                     <div class="work-card-image">
-                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em;">Entertainment Series</div>
+                        <div class="thumbnail-placeholder" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">Entertainment Series</div>
                     </div>
                     <div class="work-card-content">
                         <div class="work-genre">Entertainment</div>
@@ -1001,9 +1177,9 @@
                 </div>
 
                 <!-- Die Notrufzentrale -->
-                <div class="work-card">
+                <div class="work-card" data-external="https://www.vox.de/videos/unruhe-in-der-obdachlosenunterkunft-66f3d7fa35900c0e7f00a222.html">
                     <div class="work-card-image">
-                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em;">Reality TV</div>
+                        <div class="thumbnail-placeholder" style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);">Reality TV</div>
                     </div>
                     <div class="work-card-content">
                         <div class="work-genre">Reality TV</div>
@@ -1014,9 +1190,9 @@
                 </div>
 
                 <!-- Der Knochenknacker -->
-                <div class="work-card">
+                <div class="work-card" data-external="https://www.tiktok.com/@boneshandsanimals/video/7290478732937006368">
                     <div class="work-card-image">
-                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #10b981 0%, #047857 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em;">TikTok Series</div>
+                        <div class="thumbnail-placeholder" style="background: linear-gradient(135deg, #10b981 0%, #047857 100%);">TikTok Series</div>
                     </div>
                     <div class="work-card-content">
                         <div class="work-genre">Digital Content</div>
@@ -1027,9 +1203,9 @@
                 </div>
 
                 <!-- Nächste Ausfahrt Liebe -->
-                <div class="work-card">
+                <div class="work-card" data-external="https://www.youtube.com/@nachsteausfahrtliebe4687">
                     <div class="work-card-image">
-                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #ec4899 0%, #be185d 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em;">Dating Channel</div>
+                        <div class="thumbnail-placeholder" style="background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);">Dating Channel</div>
                     </div>
                     <div class="work-card-content">
                         <div class="work-genre">Dating Show</div>
@@ -1040,9 +1216,9 @@
                 </div>
 
                 <!-- Mieten Kaufen Wohnen -->
-                <div class="work-card">
+                <div class="work-card" data-external="https://www.youtube.com/@mietenkaufenwohnen">
                     <div class="work-card-image">
-                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em;">Lifestyle Channel</div>
+                        <div class="thumbnail-placeholder" style="background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);">Lifestyle Channel</div>
                     </div>
                     <div class="work-card-content">
                         <div class="work-genre">Lifestyle</div>
@@ -1053,9 +1229,9 @@
                 </div>
 
                 <!-- Wer weiß es, wer weiß es nicht? -->
-                <div class="work-card">
+                <div class="work-card" data-external="https://www.fandangofilm.de/produktionen/wer-weiss-es-wer-weiss-es-nicht/">
                     <div class="work-card-image">
-                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em;">Game Show</div>
+                        <div class="thumbnail-placeholder" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">Game Show</div>
                     </div>
                     <div class="work-card-content">
                         <div class="work-genre">Game Show</div>
@@ -1066,9 +1242,9 @@
                 </div>
 
                 <!-- Hol dir die Kohle! -->
-                <div class="work-card">
+                <div class="work-card" data-external="https://www.fandangofilm.de/produktionen/hol-dir-die-kohle/">
                     <div class="work-card-image">
-                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em;">Game Show</div>
+                        <div class="thumbnail-placeholder" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">Game Show</div>
                     </div>
                     <div class="work-card-content">
                         <div class="work-genre">Game Show</div>
@@ -1198,6 +1374,16 @@
         </div>
     </section>
 
+    <!-- Video Popup Modal -->
+    <div id="videoModal" class="video-modal">
+        <div class="video-modal-content">
+            <span class="video-modal-close">&times;</span>
+            <div class="video-container">
+                <iframe id="videoFrame" src="" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
@@ -1231,14 +1417,79 @@
             });
         });
 
+        // Video Modal functionality
+        const videoModal = document.getElementById('videoModal');
+        const videoFrame = document.getElementById('videoFrame');
+        const closeModal = document.querySelector('.video-modal-close');
+
+        function openVideoModal(videoId) {
+            const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+            videoFrame.src = embedUrl;
+            videoModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeVideoModal() {
+            videoModal.style.display = 'none';
+            videoFrame.src = '';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking the X button
+        closeModal.addEventListener('click', closeVideoModal);
+
+        // Close modal when clicking outside the video
+        videoModal.addEventListener('click', function(e) {
+            if (e.target === videoModal) {
+                closeVideoModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && videoModal.style.display === 'block') {
+                closeVideoModal();
+            }
+        });
+
+        // Add click handlers for video triggers
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('video-trigger')) {
+                e.preventDefault();
+                const videoId = e.target.getAttribute('data-video');
+                if (videoId) {
+                    openVideoModal(videoId);
+                }
+            }
+        });
+
+        // Add click handlers for work card images with videos
+        document.addEventListener('click', function(e) {
+            const workCard = e.target.closest('.work-card');
+            if (workCard && workCard.hasAttribute('data-video')) {
+                const videoId = workCard.getAttribute('data-video');
+                if (videoId && (e.target.closest('.work-card-image') || e.target.classList.contains('work-card-image'))) {
+                    openVideoModal(videoId);
+                }
+            }
+        });
+
         // Carousel functionality
         let currentPosition = 0;
         const carousel = document.getElementById('workCarousel');
         const cards = carousel.querySelectorAll('.work-card');
         const totalCards = cards.length;
-        const cardsPerView = window.innerWidth <= 768 ? 1 : window.innerWidth <= 1024 ? 2 : 3;
+        
+        // Determine cards per view based on screen size
+        function getCardsPerView() {
+            if (window.innerWidth <= 768) return 1;
+            if (window.innerWidth <= 1024) return 2;
+            return 3;
+        }
+
+        let cardsPerView = getCardsPerView();
         const cardWidth = 400 + 32; // card width + gap
-        const maxPosition = Math.max(0, totalCards - cardsPerView);
+        let maxPosition = Math.max(0, totalCards - cardsPerView);
 
         // Create dots
         function createDots() {
@@ -1295,38 +1546,17 @@
             carousel.style.transform = `translateX(${translateX}px)`;
         }
 
-        // Auto-scroll carousel
-        function autoScrollCarousel() {
-            if (currentPosition >= maxPosition) {
-                currentPosition = 0;
-            } else {
-                currentPosition += cardsPerView;
-                if (currentPosition > maxPosition) currentPosition = maxPosition;
-            }
-            updateCarouselPosition();
-            updateDots();
-        }
-
-        // Initialize carousel
-        function initCarousel() {
-            createDots();
-            updateCarouselPosition();
-            
-            // Auto-scroll every 5 seconds
-            setInterval(autoScrollCarousel, 5000);
-        }
-
         // Handle window resize
         window.addEventListener('resize', function() {
-            const newCardsPerView = window.innerWidth <= 768 ? 1 : window.innerWidth <= 1024 ? 2 : 3;
+            const newCardsPerView = getCardsPerView();
             if (newCardsPerView !== cardsPerView) {
-                location.reload(); // Simple solution for responsive changes
+                cardsPerView = newCardsPerView;
+                maxPosition = Math.max(0, totalCards - cardsPerView);
+                currentPosition = Math.min(currentPosition, maxPosition);
+                createDots();
+                updateCarouselPosition();
+                updateDots();
             }
-        });
-
-        // Initialize when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            initCarousel();
         });
 
         // Touch/swipe support for mobile
@@ -1359,30 +1589,70 @@
             }
         });
 
-        // Image lazy loading and error handling
-        document.addEventListener('DOMContentLoaded', function() {
+        // Enhanced image loading with multiple fallback options
+        function setupImageFallbacks() {
             const images = document.querySelectorAll('.work-card-image img');
             
             images.forEach(img => {
-                img.addEventListener('error', function() {
-                    // Fallback to a placeholder if YouTube thumbnail fails
-                    const parent = this.parentElement;
-                    parent.innerHTML = `
-                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em;">
-                            Video Content
-                        </div>
-                    `;
-                });
+                const videoId = img.src.match(/\/vi\/([^\/]+)\//)?.[1];
+                if (!videoId) return;
+
+                let fallbackAttempts = 0;
+                const fallbackOptions = [
+                    `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
+                    `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`,
+                    `https://img.youtube.com/vi/${videoId}/default.jpg`
+                ];
+
+                function tryNextFallback() {
+                    fallbackAttempts++;
+                    if (fallbackAttempts < fallbackOptions.length) {
+                        img.src = fallbackOptions[fallbackAttempts];
+                    } else {
+                        // All fallbacks failed, use gradient placeholder
+                        const parent = img.parentElement;
+                        const workCard = parent.closest('.work-card');
+                        const genre = workCard.querySelector('.work-genre').textContent;
+                        
+                        const gradients = {
+                            'Documentary': 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
+                            'Entertainment': 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
+                            'Dating Show': 'linear-gradient(135deg, #ec4899 0%, #be185d 100%)',
+                            'Emergency Services': 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',
+                            'Lifestyle': 'linear-gradient(135deg, #06b6d4 0%, #0891b2 100%)',
+                            'Travel Documentary': 'linear-gradient(135deg, #06b6d4 0%, #0891b2 100%)',
+                            'Game Show': 'linear-gradient(135deg, #f97316 0%, #ea580c 100%)',
+                            'Reality TV': 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
+                            'Digital Content': 'linear-gradient(135deg, #10b981 0%, #047857 100%)'
+                        };
+                        
+                        const gradient = gradients[genre] || 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)';
+                        
+                        parent.innerHTML = `
+                            <div class="thumbnail-placeholder" style="background: ${gradient};">
+                                ${genre || 'Video Content'}
+                            </div>
+                        `;
+                    }
+                }
+
+                img.addEventListener('error', tryNextFallback);
                 
                 img.addEventListener('load', function() {
-                    this.style.opacity = '1';
+                    this.classList.add('loaded');
                 });
-                
-                // Set initial opacity for fade-in effect
-                img.style.opacity = '0';
-                img.style.transition = 'opacity 0.3s ease';
             });
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            createDots();
+            updateCarouselPosition();
+            setupImageFallbacks();
         });
+
+        // Make scrollCarousel function globally available for button clicks
+        window.scrollCarousel = scrollCarousel;
     </script>
 </body>
 </html>
