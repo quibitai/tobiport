@@ -130,6 +130,26 @@
             width: 100%;
         }
 
+        /* Translate Button */
+        .translate-btn {
+            background: var(--highlight-color) !important;
+            color: white !important;
+            border-radius: 20px !important;
+            padding: 0.5rem 1rem !important;
+            font-size: 0.8rem !important;
+            transition: all 0.3s ease !important;
+            border: none !important;
+        }
+
+        .translate-btn:hover {
+            background: var(--primary-color) !important;
+            transform: translateY(-2px);
+        }
+
+        .translate-btn::after {
+            display: none !important;
+        }
+
         /* Hero Section */
         .hero {
             min-height: 100vh;
@@ -267,27 +287,29 @@
             letter-spacing: 0.1em;
         }
 
-        /* Carousel Styles */
+        /* Work Grid Styles */
         .work-carousel-container {
             position: relative;
             margin-top: 4rem;
-            overflow: hidden;
         }
 
         .work-carousel {
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-rows: repeat(2, 1fr);
             gap: 2rem;
-            transition: transform 0.5s ease;
+            max-height: 800px;
+            overflow: hidden;
             padding: 1rem 0;
         }
 
         .work-card {
-            flex: 0 0 400px;
             border: 1px solid var(--border-color);
             transition: all 0.3s ease;
             background: var(--bg-primary);
             border-radius: 8px;
             overflow: hidden;
+            height: 350px;
         }
 
         .work-card:hover {
@@ -298,7 +320,7 @@
 
         .work-card-image {
             width: 100%;
-            height: 225px;
+            height: 180px;
             background: var(--bg-secondary);
             overflow: hidden;
             position: relative;
@@ -353,7 +375,11 @@
         }
 
         .work-card-content {
-            padding: 2rem;
+            padding: 1.5rem;
+            height: 170px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .work-genre {
@@ -393,53 +419,6 @@
         .work-link:hover {
             color: var(--highlight-color);
             border-bottom-color: var(--highlight-color);
-        }
-
-        /* Carousel Navigation */
-        .carousel-nav {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 3rem;
-        }
-
-        .carousel-btn {
-            background: transparent;
-            border: 1px solid var(--border-color);
-            color: var(--text-secondary);
-            padding: 0.8rem 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .carousel-btn:hover,
-        .carousel-btn.active {
-            border-color: var(--highlight-color);
-            color: var(--highlight-color);
-        }
-
-        .carousel-dots {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            margin-top: 2rem;
-        }
-
-        .carousel-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--border-color);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .carousel-dot.active {
-            background: var(--highlight-color);
-            transform: scale(1.2);
         }
 
         /* Skills Grid */
@@ -892,6 +871,60 @@
                 height: 35px;
             }
         }
+
+        /* Grid Navigation */
+        .grid-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 3rem;
+        }
+
+        .grid-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 1rem 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-radius: 4px;
+        }
+
+        .grid-btn:hover {
+            border-color: var(--highlight-color);
+            color: var(--highlight-color);
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        /* Work Grid Responsive */
+        @media (max-width: 1200px) {
+            .work-carousel {
+                grid-template-columns: repeat(2, 1fr);
+                max-height: 800px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .work-carousel {
+                grid-template-columns: 1fr;
+                max-height: 400px;
+            }
+            
+            .work-card {
+                height: 320px;
+            }
+            
+            .work-card-image {
+                height: 160px;
+            }
+            
+            .work-card-content {
+                height: 160px;
+                padding: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -905,6 +938,7 @@
                 <li><a href="#work">Work</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><a href="javascript:void(0)" id="translateBtn" class="translate-btn">🌐 EN</a></li>
             </ul>
         </div>
     </nav>
@@ -1255,14 +1289,10 @@
                 </div>
             </div>
 
-            <!-- Carousel Navigation -->
-            <div class="carousel-nav">
-                <button class="carousel-btn" onclick="scrollCarousel(-1)">← Previous</button>
-                <button class="carousel-btn" onclick="scrollCarousel(1)">Next →</button>
+            <!-- Grid Navigation -->
+            <div class="grid-nav">
+                <button class="grid-btn" id="showMoreBtn">Show More Projects</button>
             </div>
-
-            <!-- Carousel Dots -->
-            <div class="carousel-dots" id="carouselDots"></div>
         </div>
     </section>
 
@@ -1393,6 +1423,36 @@
     </footer>
 
     <script>
+        // Translation data
+        const translations = {
+            'Nachtstreife - Suche in der Dunkelheit': 'Night Patrol - Search in the Darkness',
+            'Halbpension mit Schmitz': 'Half Board with Schmitz',
+            'Tierbabys - Wild & Süß!': 'Animal Babies - Wild & Sweet!',
+            'Jenke: Crime': 'Jenke: Crime',
+            'Tierretter mit Herz': 'Animal Rescuers with Heart',
+            'Einsatz mit Herz': 'Mission with Heart',
+            'Paar Love': 'Couple Love',
+            'Verrückt nach Meer': 'Crazy for the Sea',
+            'Im Einsatz - Jede Sekunde zählt': 'On Duty - Every Second Counts',
+            'Rate My Date': 'Rate My Date',
+            'Feuer Wasser Erde Luft': 'Fire Water Earth Air',
+            'Mein Traumhaus am Meer': 'My Dream House by the Sea',
+            'Jenke: Experiment': 'Jenke: Experiment',
+            'Hautnah: Die Tierklinik': 'Up Close: The Veterinary Clinic',
+            'Mein himmlisches Hotel': 'My Heavenly Hotel',
+            '110 - Im Dauereinsatz': '110 - On Permanent Duty',
+            'Die Kostümjäger': 'The Costume Hunters',
+            'Die Notrufzentrale': 'The Emergency Call Center',
+            'Der Knochenknacker - Tierisch verrenkt': 'The Bone Cracker - Animal Twists',
+            'Nächste Ausfahrt Liebe': 'Next Exit Love',
+            'Mieten Kaufen Wohnen': 'Rent Buy Live',
+            'Wer weiß es, wer weiß es nicht?': 'Who Knows It, Who Doesn\'t?',
+            'Hol dir die Kohle!': 'Get the Cash!'
+        };
+
+        let isTranslated = false;
+        let isExpanded = false;
+
         // Navbar scroll effect
         window.addEventListener('scroll', function() {
             const navbar = document.getElementById('navbar');
@@ -1416,6 +1476,30 @@
                 }
             });
         });
+
+        // Translation functionality
+        function toggleTranslation() {
+            isTranslated = !isTranslated;
+            const translateBtn = document.getElementById('translateBtn');
+            
+            // Update button text
+            translateBtn.textContent = isTranslated ? '🌐 DE' : '🌐 EN';
+            
+            // Translate work titles
+            document.querySelectorAll('.work-title').forEach(title => {
+                const originalText = title.textContent.trim();
+                if (isTranslated && translations[originalText]) {
+                    title.textContent = translations[originalText];
+                } else if (!isTranslated) {
+                    // Find original German text
+                    const englishText = originalText;
+                    const germanText = Object.keys(translations).find(key => translations[key] === englishText);
+                    if (germanText) {
+                        title.textContent = germanText;
+                    }
+                }
+            });
+        }
 
         // Video Modal functionality
         const videoModal = document.getElementById('videoModal');
@@ -1474,120 +1558,29 @@
             }
         });
 
-        // Carousel functionality
-        let currentPosition = 0;
-        const carousel = document.getElementById('workCarousel');
-        const cards = carousel.querySelectorAll('.work-card');
-        const totalCards = cards.length;
-        
-        // Determine cards per view based on screen size
-        function getCardsPerView() {
-            if (window.innerWidth <= 768) return 1;
-            if (window.innerWidth <= 1024) return 2;
-            return 3;
-        }
-
-        let cardsPerView = getCardsPerView();
-        const cardWidth = 400 + 32; // card width + gap
-        let maxPosition = Math.max(0, totalCards - cardsPerView);
-
-        // Create dots
-        function createDots() {
-            const dotsContainer = document.getElementById('carouselDots');
-            dotsContainer.innerHTML = '';
-            const totalDots = Math.ceil(totalCards / cardsPerView);
+        // Grid show more/less functionality
+        function toggleGridExpansion() {
+            const workGrid = document.getElementById('workCarousel');
+            const showMoreBtn = document.getElementById('showMoreBtn');
             
-            for (let i = 0; i < totalDots; i++) {
-                const dot = document.createElement('div');
-                dot.className = 'carousel-dot';
-                if (i === 0) dot.classList.add('active');
-                dot.addEventListener('click', () => goToSlide(i));
-                dotsContainer.appendChild(dot);
-            }
-        }
-
-        // Update dots
-        function updateDots() {
-            const dots = document.querySelectorAll('.carousel-dot');
-            const activeDot = Math.floor(currentPosition / cardsPerView);
+            isExpanded = !isExpanded;
             
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === activeDot);
-            });
-        }
-
-        // Scroll carousel
-        function scrollCarousel(direction) {
-            const newPosition = currentPosition + (direction * cardsPerView);
-            
-            if (newPosition >= 0 && newPosition <= maxPosition) {
-                currentPosition = newPosition;
-            } else if (newPosition < 0) {
-                currentPosition = 0;
+            if (isExpanded) {
+                workGrid.style.maxHeight = 'none';
+                workGrid.style.gridTemplateRows = 'auto';
+                showMoreBtn.textContent = 'Show Less Projects';
             } else {
-                currentPosition = maxPosition;
+                workGrid.style.maxHeight = '800px';
+                workGrid.style.gridTemplateRows = 'repeat(2, 1fr)';
+                showMoreBtn.textContent = 'Show More Projects';
+                
+                // Scroll back to work section
+                document.getElementById('work').scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
             }
-            
-            updateCarouselPosition();
-            updateDots();
         }
-
-        // Go to specific slide
-        function goToSlide(slideIndex) {
-            currentPosition = slideIndex * cardsPerView;
-            if (currentPosition > maxPosition) currentPosition = maxPosition;
-            updateCarouselPosition();
-            updateDots();
-        }
-
-        // Update carousel position
-        function updateCarouselPosition() {
-            const translateX = -currentPosition * cardWidth;
-            carousel.style.transform = `translateX(${translateX}px)`;
-        }
-
-        // Handle window resize
-        window.addEventListener('resize', function() {
-            const newCardsPerView = getCardsPerView();
-            if (newCardsPerView !== cardsPerView) {
-                cardsPerView = newCardsPerView;
-                maxPosition = Math.max(0, totalCards - cardsPerView);
-                currentPosition = Math.min(currentPosition, maxPosition);
-                createDots();
-                updateCarouselPosition();
-                updateDots();
-            }
-        });
-
-        // Touch/swipe support for mobile
-        let startX = 0;
-        let currentX = 0;
-        let isDragging = false;
-
-        carousel.addEventListener('touchstart', function(e) {
-            startX = e.touches[0].clientX;
-            isDragging = true;
-        });
-
-        carousel.addEventListener('touchmove', function(e) {
-            if (!isDragging) return;
-            currentX = e.touches[0].clientX;
-            e.preventDefault();
-        });
-
-        carousel.addEventListener('touchend', function() {
-            if (!isDragging) return;
-            isDragging = false;
-            
-            const deltaX = startX - currentX;
-            if (Math.abs(deltaX) > 50) { // Minimum swipe distance
-                if (deltaX > 0) {
-                    scrollCarousel(1); // Swipe left - next
-                } else {
-                    scrollCarousel(-1); // Swipe right - previous
-                }
-            }
-        });
 
         // Enhanced image loading with multiple fallback options
         function setupImageFallbacks() {
@@ -1646,13 +1639,14 @@
 
         // Initialize everything when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
-            createDots();
-            updateCarouselPosition();
             setupImageFallbacks();
+            
+            // Add translate button event listener
+            document.getElementById('translateBtn').addEventListener('click', toggleTranslation);
+            
+            // Add show more button event listener
+            document.getElementById('showMoreBtn').addEventListener('click', toggleGridExpansion);
         });
-
-        // Make scrollCarousel function globally available for button clicks
-        window.scrollCarousel = scrollCarousel;
     </script>
 </body>
 </html>
