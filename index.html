@@ -7,25 +7,19 @@
     <meta name="description" content="Professional video editor with 12+ years experience in German television. Specializing in documentaries, reality TV, and game shows. Available for freelance projects.">
     
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary-color: #6366f1;
-            --secondary-color: #f59e0b;
-            --accent-color: #ec4899;
-            --bg-primary: #0f0f23;
-            --bg-secondary: #1a1a2e;
-            --bg-card: #16213e;
-            --bg-gradient: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-            --text-primary: #ffffff;
-            --text-secondary: #a1a1aa;
-            --text-muted: #71717a;
-            --border-color: #27272a;
-            --shadow-light: 0 1px 3px rgba(0, 0, 0, 0.1);
-            --shadow-medium: 0 4px 20px rgba(0, 0, 0, 0.15);
-            --shadow-heavy: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --primary-color: #000000;
+            --secondary-color: #666666;
+            --accent-color: #999999;
+            --bg-primary: #ffffff;
+            --bg-secondary: #fafafa;
+            --border-color: #e5e5e5;
+            --text-primary: #000000;
+            --text-secondary: #666666;
+            --text-muted: #999999;
         }
 
         * {
@@ -36,7 +30,7 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-gradient);
+            background: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
@@ -48,65 +42,56 @@
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(15, 15, 35, 0.95);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             z-index: 1000;
-            padding: 1rem 0;
+            padding: 2rem 0;
             transition: all 0.3s ease;
+            border-bottom: 1px solid transparent;
         }
 
         .navbar.scrolled {
-            background: rgba(15, 15, 35, 0.98);
-            box-shadow: var(--shadow-medium);
+            background: rgba(255, 255, 255, 0.98);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1.5rem 0;
         }
 
         .nav-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 3rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo {
+            font-family: 'Playfair Display', serif;
             font-size: 1.5rem;
-            font-weight: 700;
+            font-weight: 600;
             color: var(--primary-color);
             text-decoration: none;
+            letter-spacing: -0.02em;
         }
 
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 3rem;
         }
 
         .nav-links a {
             color: var(--text-secondary);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 400;
+            font-size: 0.95rem;
             transition: color 0.3s ease;
-            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         .nav-links a:hover {
             color: var(--primary-color);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary-color);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
         }
 
         /* Hero Section */
@@ -114,203 +99,138 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 0 2rem;
-            position: relative;
-            overflow: hidden;
+            padding: 0 3rem;
+            margin-top: 120px;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
-            z-index: -1;
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
         }
 
         .hero-content {
             max-width: 800px;
-            animation: fadeInUp 1s ease;
-        }
-
-        .hero-subtitle {
-            color: var(--primary-color);
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 1rem;
         }
 
         .hero-title {
-            font-size: clamp(3rem, 8vw, 6rem);
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary-color) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(4rem, 8vw, 8rem);
+            font-weight: 400;
+            margin-bottom: 2rem;
+            line-height: 0.9;
+            letter-spacing: -0.03em;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            font-weight: 300;
+            line-height: 1.4;
+        }
+
+        .hero-location {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 4rem;
         }
 
         .hero-description {
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             color: var(--text-secondary);
-            margin-bottom: 2rem;
+            line-height: 1.7;
             max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.8;
-        }
-
-        .hero-stats {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            display: block;
-        }
-
-        .stat-label {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
-            color: white;
-            box-shadow: var(--shadow-medium);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-heavy);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--text-primary);
-            border: 2px solid var(--border-color);
-        }
-
-        .btn-outline:hover {
-            border-color: var(--primary-color);
-            color: var(--primary-color);
-            transform: translateY(-2px);
+            margin-bottom: 4rem;
         }
 
         /* Section Styling */
         .section {
-            padding: 6rem 0;
-            max-width: 1200px;
+            padding: 8rem 3rem;
+            max-width: 1400px;
             margin: 0 auto;
-            padding-left: 2rem;
-            padding-right: 2rem;
         }
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-subtitle {
-            color: var(--primary-color);
-            font-size: 0.9rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
+        .section-divider {
+            font-size: 1.5rem;
+            color: var(--text-muted);
             margin-bottom: 1rem;
+            font-weight: 300;
         }
 
         .section-title {
-            font-size: clamp(2.5rem, 5vw, 3.5rem);
-            font-weight: 700;
-            margin-bottom: 1.5rem;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 400;
+            margin-bottom: 3rem;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
         }
 
         .section-description {
             font-size: 1.1rem;
             color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
             line-height: 1.8;
+            max-width: 700px;
+            margin-bottom: 4rem;
         }
 
-        /* Skills Section */
+        /* Stats Section */
+        .stats-section {
+            background: var(--bg-secondary);
+            padding: 6rem 3rem;
+            margin: 4rem 0;
+        }
+
+        .stats-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 4rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 400;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Skills Grid */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            gap: 3rem;
+            margin-top: 4rem;
         }
 
         .skill-category {
-            background: var(--bg-card);
-            padding: 2rem;
-            border-radius: 20px;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-        }
-
-        .skill-category:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-medium);
-            border-color: var(--primary-color);
-        }
-
-        .skill-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
-            color: white;
+            border-top: 1px solid var(--border-color);
+            padding-top: 2rem;
         }
 
         .skill-category h3 {
+            font-family: 'Playfair Display', serif;
             font-size: 1.5rem;
-            margin-bottom: 1rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
             color: var(--text-primary);
         }
 
@@ -320,208 +240,148 @@
 
         .skill-list li {
             color: var(--text-secondary);
-            margin-bottom: 0.5rem;
-            padding-left: 1rem;
-            position: relative;
-        }
-
-        .skill-list li::before {
-            content: '▪';
-            color: var(--primary-color);
-            position: absolute;
-            left: 0;
-        }
-
-        /* Experience Timeline */
-        .timeline {
-            position: relative;
-            margin: 3rem 0;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: var(--border-color);
-            transform: translateX(-50%);
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 3rem;
-            width: 50%;
-        }
-
-        .timeline-item:nth-child(odd) {
-            left: 0;
-            padding-right: 3rem;
-        }
-
-        .timeline-item:nth-child(even) {
-            left: 50%;
-            padding-left: 3rem;
-        }
-
-        .timeline-content {
-            background: var(--bg-card);
-            padding: 2rem;
-            border-radius: 15px;
-            border: 1px solid var(--border-color);
-            position: relative;
-        }
-
-        .timeline-item:nth-child(odd) .timeline-content::after {
-            content: '';
-            position: absolute;
-            right: -10px;
-            top: 50%;
-            transform: translateY(-50%);
-            border: 10px solid transparent;
-            border-left-color: var(--bg-card);
-        }
-
-        .timeline-item:nth-child(even) .timeline-content::after {
-            content: '';
-            position: absolute;
-            left: -10px;
-            top: 50%;
-            transform: translateY(-50%);
-            border: 10px solid transparent;
-            border-right-color: var(--bg-card);
-        }
-
-        .timeline-year {
-            color: var(--primary-color);
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .timeline-description {
-            color: var(--text-secondary);
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
             line-height: 1.6;
         }
 
         /* Featured Work Grid */
         .work-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
             gap: 2rem;
-            margin-top: 3rem;
+            margin-top: 4rem;
         }
 
         .work-card {
-            background: var(--bg-card);
-            border-radius: 20px;
-            overflow: hidden;
             border: 1px solid var(--border-color);
             transition: all 0.3s ease;
-            position: relative;
-            group: hover;
+            background: var(--bg-primary);
         }
 
         .work-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-heavy);
-            border-color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
-        .work-card-header {
-            padding: 1.5rem;
-            border-bottom: 1px solid var(--border-color);
+        .work-card-image {
+            width: 100%;
+            height: 250px;
+            background: var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .work-card-content {
+            padding: 2rem;
         }
 
         .work-genre {
-            color: var(--primary-color);
-            font-size: 0.8rem;
-            font-weight: 600;
+            color: var(--text-muted);
+            font-size: 0.85rem;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.1em;
             margin-bottom: 0.5rem;
         }
 
         .work-title {
-            font-size: 1.2rem;
-            font-weight: 600;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 500;
             margin-bottom: 0.5rem;
-            line-height: 1.4;
+            line-height: 1.3;
         }
 
         .work-role {
             color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .work-card-body {
-            padding: 1.5rem;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
         }
 
         .work-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
             color: var(--primary-color);
             text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: color 0.3s ease;
         }
 
         .work-link:hover {
-            gap: 1rem;
+            color: var(--text-secondary);
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            margin: 4rem 0;
+        }
+
+        .timeline-item {
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 0;
+        }
+
+        .timeline-item:first-child {
+            border-top: none;
+        }
+
+        .timeline-year {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-description {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            max-width: 700px;
         }
 
         /* Contact Section */
+        .contact-section {
+            background: var(--bg-secondary);
+            padding: 8rem 3rem;
+        }
+
+        .contact-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
         .contact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .contact-item {
-            text-align: center;
-            padding: 2rem;
-            background: var(--bg-card);
-            border-radius: 20px;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-        }
-
-        .contact-item:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary-color);
-        }
-
-        .contact-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
-            font-size: 1.5rem;
-            color: white;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 4rem;
+            margin-top: 4rem;
         }
 
         .contact-item h3 {
-            margin-bottom: 0.5rem;
+            font-family: 'Playfair Display', serif;
             font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
         }
 
-        .contact-item a {
+        .contact-item a,
+        .contact-item span {
             color: var(--text-secondary);
             text-decoration: none;
+            font-size: 1.1rem;
             transition: color 0.3s ease;
         }
 
@@ -531,94 +391,76 @@
 
         /* Footer */
         .footer {
-            background: var(--bg-secondary);
             border-top: 1px solid var(--border-color);
-            padding: 3rem 0;
+            padding: 4rem 3rem;
             text-align: center;
         }
 
         .footer-content {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 2rem;
         }
 
         .footer p {
             color: var(--text-muted);
-            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
         }
 
-        .social-links {
+        /* CTA Buttons */
+        .cta-buttons {
             display: flex;
-            justify-content: center;
-            gap: 1rem;
+            gap: 2rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
         }
 
-        .social-link {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--bg-card);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-secondary);
+        .btn {
+            padding: 1rem 2rem;
             text-decoration: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
             transition: all 0.3s ease;
+            border: 1px solid var(--primary-color);
+            background: transparent;
+            color: var(--primary-color);
         }
 
-        .social-link:hover {
+        .btn:hover {
             background: var(--primary-color);
             color: white;
-            transform: translateY(-2px);
         }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
         }
 
-        .fade-in-up {
-            animation: fadeInUp 0.6s ease forwards;
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--primary-color);
         }
 
         /* Mobile Responsiveness */
         @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 1.5rem;
+            }
+
             .nav-links {
                 display: none;
             }
 
-            .hero-stats {
-                gap: 2rem;
+            .hero,
+            .section,
+            .contact-section {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
             }
 
-            .stat-number {
-                font-size: 2rem;
-            }
-
-            .timeline::before {
-                left: 20px;
-            }
-
-            .timeline-item {
-                width: 100%;
-                left: 0 !important;
-                padding-left: 3rem !important;
-                padding-right: 0 !important;
-            }
-
-            .timeline-content::after {
-                left: -10px !important;
-                right: auto !important;
-                border-left-color: transparent !important;
-                border-right-color: var(--bg-card) !important;
+            .hero {
+                margin-top: 100px;
             }
 
             .work-grid {
@@ -628,6 +470,11 @@
             .skills-grid {
                 grid-template-columns: 1fr;
             }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: flex-start;
+            }
         }
 
         /* Smooth scrolling */
@@ -635,22 +482,10 @@
             scroll-behavior: smooth;
         }
 
-        /* Hide scrollbar but keep functionality */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--bg-primary);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary-color);
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--accent-color);
+        /* Selection styling */
+        ::selection {
+            background: var(--text-muted);
+            color: white;
         }
     </style>
 </head>
@@ -662,9 +497,8 @@
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#experience">Experience</a></li>
                 <li><a href="#work">Work</a></li>
+                <li><a href="#experience">Experience</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
@@ -672,70 +506,121 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="hero-content">
-            <div class="hero-subtitle">Professional Video Editor</div>
-            <h1 class="hero-title">Tobias Efler</h1>
-            <p class="hero-description">
-                Crafting compelling narratives for 12+ years in the German television industry. 
-                Specializing in documentaries, reality TV, and game shows with technical excellence and creative vision.
-            </p>
-            
-            <div class="hero-stats">
-                <div class="stat">
-                    <span class="stat-number">12+</span>
-                    <span class="stat-label">Years Experience</span>
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Tobias Efler</h1>
+                <div class="hero-location">/ New Orleans, LA</div>
+                <p class="hero-subtitle">Professional video editor specializing in television production</p>
+                <p class="hero-description">
+                    Since 2012, I've collaborated with leading German television networks to craft compelling narratives across documentaries, reality TV, and game shows. With expertise in Avid Media Composer, Adobe Premiere Pro, and comprehensive post-production workflows, I bring technical excellence and creative vision to every project.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#work" class="btn btn-primary">View Work</a>
+                    <a href="#contact" class="btn">Get In Touch</a>
                 </div>
-                <div class="stat">
-                    <span class="stat-number">25+</span>
-                    <span class="stat-label">TV Productions</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-number">100%</span>
-                    <span class="stat-label">Client Satisfaction</span>
-                </div>
-            </div>
-
-            <div class="cta-buttons">
-                <a href="#work" class="btn btn-primary">
-                    <i class="fas fa-play"></i>
-                    View My Work
-                </a>
-                <a href="#contact" class="btn btn-outline">
-                    <i class="fas fa-envelope"></i>
-                    Get In Touch
-                </a>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="section">
-        <div class="section-header">
-            <div class="section-subtitle">About Me</div>
-            <h2 class="section-title">Passionate Storyteller</h2>
-            <p class="section-description">
-                Based in New Orleans with German television industry expertise, I bring over a decade of professional 
-                video editing experience to every project. My background spans the full spectrum of television production, 
-                from high-energy reality shows to compelling documentaries.
-            </p>
+    <!-- Stats Section -->
+    <div class="stats-section">
+        <div class="stats-container">
+            <div class="stat-item">
+                <span class="stat-number">12+</span>
+                <span class="stat-label">Years Experience</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">25+</span>
+                <span class="stat-label">TV Productions</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">100%</span>
+                <span class="stat-label">Client Satisfaction</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Featured Work -->
+    <section id="work" class="section">
+        <div class="section-divider">/ Featured Work</div>
+        <h2 class="section-title">Selected Projects</h2>
+        <p class="section-description">
+            A curated selection of television productions spanning documentaries, reality TV, and game shows. Each project represents hundreds of hours of meticulous editing and storytelling for major German networks.
+        </p>
+
+        <div class="work-grid">
+            <div class="work-card">
+                <div class="work-card-image">Documentary Series</div>
+                <div class="work-card-content">
+                    <div class="work-genre">Documentary</div>
+                    <h3 class="work-title">Nachtstreife - Suche in der Dunkelheit</h3>
+                    <p class="work-role">Head Editor | SWR</p>
+                    <a href="https://www.youtube.com/watch?v=zbVz7_OJNsQ&list=PL1BMduwJCLydaCYAewR7PbADMw46qhSTb" class="work-link" target="_blank">Watch on YouTube</a>
+                </div>
+            </div>
+
+            <div class="work-card">
+                <div class="work-card-image">Game Show</div>
+                <div class="work-card-content">
+                    <div class="work-genre">Entertainment</div>
+                    <h3 class="work-title">Halbpension mit Schmitz</h3>
+                    <p class="work-role">Head Editor | SAT.1</p>
+                    <a href="https://www.youtube.com/watch?v=TXIPKDAA0g8" class="work-link" target="_blank">Watch on YouTube</a>
+                </div>
+            </div>
+
+            <div class="work-card">
+                <div class="work-card-image">Nature Documentary</div>
+                <div class="work-card-content">
+                    <div class="work-genre">Documentary</div>
+                    <h3 class="work-title">Tierbabys - Wild & Süß!</h3>
+                    <p class="work-role">Editor | VOX</p>
+                    <a href="https://www.youtube.com/watch?v=T9IDBbhq8hg" class="work-link" target="_blank">Watch Preview</a>
+                </div>
+            </div>
+
+            <div class="work-card">
+                <div class="work-card-image">Reality TV</div>
+                <div class="work-card-content">
+                    <div class="work-genre">Reality TV</div>
+                    <h3 class="work-title">Die Notrufzentrale</h3>
+                    <p class="work-role">Editor | VOX</p>
+                    <a href="https://www.vox.de/videos/unruhe-in-der-obdachlosenunterkunft-66f3d7fa35900c0e7f00a222.html" class="work-link" target="_blank">Watch on VOX</a>
+                </div>
+            </div>
+
+            <div class="work-card">
+                <div class="work-card-image">Emergency Services</div>
+                <div class="work-card-content">
+                    <div class="work-genre">Documentary</div>
+                    <h3 class="work-title">Tierretter mit Herz</h3>
+                    <p class="work-role">Head Editor</p>
+                    <a href="https://www.youtube.com/watch?v=e2ktOnl6w10" class="work-link" target="_blank">Watch Episode</a>
+                </div>
+            </div>
+
+            <div class="work-card">
+                <div class="work-card-image">Crime Documentary</div>
+                <div class="work-card-content">
+                    <div class="work-genre">Documentary</div>
+                    <h3 class="work-title">Jenke: Crime</h3>
+                    <p class="work-role">Editor | ProSieben</p>
+                    <a href="https://www.youtube.com/watch?v=OPg_RHBS5-Q" class="work-link" target="_blank">Watch Preview</a>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="section">
-        <div class="section-header">
-            <div class="section-subtitle">Technical Expertise</div>
-            <h2 class="section-title">Skills & Software</h2>
-        </div>
+    <section id="about" class="section">
+        <div class="section-divider">/ Technical Expertise</div>
+        <h2 class="section-title">Skills & Software</h2>
 
         <div class="skills-grid">
             <div class="skill-category">
-                <div class="skill-icon">
-                    <i class="fas fa-cut"></i>
-                </div>
                 <h3>Non-Linear Editing</h3>
                 <ul class="skill-list">
-                    <li>Avid Media Composer (Expert)</li>
+                    <li>Avid Media Composer (Expert Level)</li>
                     <li>Adobe Premiere Pro (Advanced)</li>
                     <li>Multi-Camera Editing</li>
                     <li>Broadcast Delivery Standards</li>
@@ -743,9 +628,16 @@
             </div>
 
             <div class="skill-category">
-                <div class="skill-icon">
-                    <i class="fas fa-magic"></i>
-                </div>
+                <h3>Post-Production</h3>
+                <ul class="skill-list">
+                    <li>Color Correction & Grading</li>
+                    <li>Sound Design & Mixing</li>
+                    <li>Media Management Systems</li>
+                    <li>Workflow Optimization</li>
+                </ul>
+            </div>
+
+            <div class="skill-category">
                 <h3>Motion Graphics</h3>
                 <ul class="skill-list">
                     <li>Adobe After Effects</li>
@@ -756,27 +648,11 @@
             </div>
 
             <div class="skill-category">
-                <div class="skill-icon">
-                    <i class="fas fa-palette"></i>
-                </div>
-                <h3>Post-Production</h3>
-                <ul class="skill-list">
-                    <li>Color Correction & Grading</li>
-                    <li>Sound Design & Mixing</li>
-                    <li>Media Management</li>
-                    <li>Workflow Optimization</li>
-                </ul>
-            </div>
-
-            <div class="skill-category">
-                <div class="skill-icon">
-                    <i class="fas fa-film"></i>
-                </div>
                 <h3>Media Formats</h3>
                 <ul class="skill-list">
                     <li>XDCAM Professional</li>
                     <li>ProRes & DNxHD</li>
-                    <li>AVC-Intra</li>
+                    <li>AVC-Intra Standards</li>
                     <li>Cross-platform Delivery</li>
                 </ul>
             </div>
@@ -785,278 +661,60 @@
 
     <!-- Experience Timeline -->
     <section id="experience" class="section">
-        <div class="section-header">
-            <div class="section-subtitle">Professional Journey</div>
-            <h2 class="section-title">Experience Timeline</h2>
-        </div>
+        <div class="section-divider">/ Professional Experience</div>
+        <h2 class="section-title">Career Timeline</h2>
 
         <div class="timeline">
             <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="timeline-year">2012 - Present</div>
-                    <h3 class="timeline-title">Head Editor & Editor - Freelance</h3>
-                    <p class="timeline-description">
-                        Leading post-production workflows for major German television productions. 
-                        Specialized in documentary series, reality TV formats, and game shows with 
-                        consistent delivery excellence and creative storytelling.
-                    </p>
-                </div>
+                <div class="timeline-year">2012 - Present</div>
+                <h3 class="timeline-title">Head Editor & Editor - Freelance</h3>
+                <p class="timeline-description">
+                    Leading post-production workflows for major German television productions. Specialized in documentary series, reality TV formats, and game shows with consistent delivery excellence and creative storytelling. Collaborated with leading networks including SAT.1, VOX, SWR, and ProSieben.
+                </p>
             </div>
 
             <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="timeline-year">2018 - 2023</div>
-                    <h3 class="timeline-title">Major Television Productions</h3>
-                    <p class="timeline-description">
-                        Head Editor roles on premium shows including "Jenke: Crime", "Paar Love", 
-                        and "Rate My Date". Managed complex multi-camera workflows and tight 
-                        broadcast deadlines while maintaining creative vision.
-                    </p>
-                </div>
+                <div class="timeline-year">2018 - 2023</div>
+                <h3 class="timeline-title">Major Television Productions</h3>
+                <p class="timeline-description">
+                    Head Editor roles on premium shows including "Jenke: Crime", "Paar Love", and "Rate My Date". Managed complex multi-camera workflows and tight broadcast deadlines while maintaining creative vision and technical excellence.
+                </p>
             </div>
 
             <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="timeline-year">Education</div>
-                    <h3 class="timeline-title">Bachelor of Engineering - Media Technologies</h3>
-                    <p class="timeline-description">
-                        University of Applied Sciences, Cologne, Germany. 
-                        Comprehensive foundation in media technology, production workflows, 
-                        and broadcast standards.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Featured Work -->
-    <section id="work" class="section">
-        <div class="section-header">
-            <div class="section-subtitle">Portfolio</div>
-            <h2 class="section-title">Featured Work</h2>
-            <p class="section-description">
-                A curated selection of my television work spanning documentaries, reality TV, and game shows. 
-                Each project represents hundreds of hours of meticulous editing and storytelling.
-            </p>
-        </div>
-
-        <div class="work-grid">
-            <div class="work-card">
-                <div class="work-card-header">
-                    <div class="work-genre">Documentary</div>
-                    <h3 class="work-title">Nachtstreife - Suche in der Dunkelheit</h3>
-                    <p class="work-role">Head Editor | SWR</p>
-                </div>
-                <div class="work-card-body">
-                    <a href="https://www.youtube.com/watch?v=zbVz7_OJNsQ&list=PL1BMduwJCLydaCYAewR7PbADMw46qhSTb" class="work-link" target="_blank">
-                        <i class="fab fa-youtube"></i>
-                        Watch on YouTube
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div class="work-card">
-                <div class="work-card-header">
-                    <div class="work-genre">Game Show</div>
-                    <h3 class="work-title">Halbpension mit Schmitz</h3>
-                    <p class="work-role">Head Editor | SAT.1</p>
-                </div>
-                <div class="work-card-body">
-                    <a href="https://www.youtube.com/watch?v=TXIPKDAA0g8" class="work-link" target="_blank">
-                        <i class="fab fa-youtube"></i>
-                        Watch on YouTube
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div class="work-card">
-                <div class="work-card-header">
-                    <div class="work-genre">Nature Documentary</div>
-                    <h3 class="work-title">Tierbabys - Wild & Süß!</h3>
-                    <p class="work-role">Editor | VOX</p>
-                </div>
-                <div class="work-card-body">
-                    <a href="https://www.youtube.com/watch?v=T9IDBbhq8hg" class="work-link" target="_blank">
-                        <i class="fab fa-youtube"></i>
-                        Watch Preview
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div class="work-card">
-                <div class="work-card-header">
-                    <div class="work-genre">Reality TV</div>
-                    <h3 class="work-title">Die Notrufzentrale</h3>
-                    <p class="work-role">Editor | VOX</p>
-                </div>
-                <div class="work-card-body">
-                    <a href="https://www.vox.de/videos/unruhe-in-der-obdachlosenunterkunft-66f3d7fa35900c0e7f00a222.html" class="work-link" target="_blank">
-                        <i class="fas fa-tv"></i>
-                        Watch on VOX
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div class="work-card">
-                <div class="work-card-header">
-                    <div class="work-genre">Emergency Services</div>
-                    <h3 class="work-title">Tierretter mit Herz</h3>
-                    <p class="work-role">Head Editor</p>
-                </div>
-                <div class="work-card-body">
-                    <a href="https://www.youtube.com/watch?v=e2ktOnl6w10" class="work-link" target="_blank">
-                        <i class="fab fa-youtube"></i>
-                        Watch Episode
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div class="work-card">
-                <div class="work-card-header">
-                    <div class="work-genre">Crime Documentary</div>
-                    <h3 class="work-title">Jenke: Crime</h3>
-                    <p class="work-role">Editor | ProSieben</p>
-                </div>
-                <div class="work-card-body">
-                    <a href="https://www.youtube.com/watch?v=OPg_RHBS5-Q" class="work-link" target="_blank">
-                        <i class="fab fa-youtube"></i>
-                        Watch Preview
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div class="work-card">
-                <div class="work-card-header">
-                    <div class="work-genre">Dating Show</div>
-                    <h3 class="work-title">Paar Love</h3>
-                    <p class="work-role">Head Editor | SAT.1</p>
-                </div>
-                <div class="work-card-body">
-                    <a href="https://www.youtube.com/watch?v=0bONpYQuq2Y" class="work-link" target="_blank">
-                        <i class="fab fa-youtube"></i>
-                        Watch Highlight
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div class="work-card">
-                <div class="work-card-header">
-                    <div class="work-genre">Travel Documentary</div>
-                    <h3 class="work-title">Verrückt nach Meer</h3>
-                    <p class="work-role">Editor</p>
-                </div>
-                <div class="work-card-body">
-                    <a href="https://www.youtube.com/watch?v=7VkntMsqxqY" class="work-link" target="_blank">
-                        <i class="fab fa-youtube"></i>
-                        Watch Episode
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div class="work-card">
-                <div class="work-card-header">
-                    <div class="work-genre">Emergency Services</div>
-                    <h3 class="work-title">Einsatz mit Herz</h3>
-                    <p class="work-role">Head Editor</p>
-                </div>
-                <div class="work-card-body">
-                    <a href="https://www.youtube.com/watch?v=h3hl3O2nLO0" class="work-link" target="_blank">
-                        <i class="fab fa-youtube"></i>
-                        Watch Episode
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div class="work-card">
-                <div class="work-card-header">
-                    <div class="work-genre">Entertainment</div>
-                    <h3 class="work-title">Die Kostümjäger</h3>
-                    <p class="work-role">Head Editor</p>
-                </div>
-                <div class="work-card-body">
-                    <a href="https://www.fandangofilm.de/produktionen/die-kostuem-jaeger/" class="work-link" target="_blank">
-                        <i class="fas fa-external-link-alt"></i>
-                        More Info
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div class="work-card">
-                <div class="work-card-header">
-                    <div class="work-genre">Documentary</div>
-                    <h3 class="work-title">Feuer Wasser Erde Luft</h3>
-                    <p class="work-role">Editor</p>
-                </div>
-                <div class="work-card-body">
-                    <a href="https://www.youtube.com/watch?v=hLsvuZUPQpo" class="work-link" target="_blank">
-                        <i class="fab fa-youtube"></i>
-                        Watch Preview
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div class="work-card">
-                <div class="work-card-header">
-                    <div class="work-genre">Documentary</div>
-                    <h3 class="work-title">Jenke: Experiment</h3>
-                    <p class="work-role">Editor | ProSieben</p>
-                </div>
-                <div class="work-card-body">
-                    <a href="https://www.youtube.com/watch?v=H_2L7-2FBTQ" class="work-link" target="_blank">
-                        <i class="fab fa-youtube"></i>
-                        Watch Preview
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
+                <div class="timeline-year">Education</div>
+                <h3 class="timeline-title">Bachelor of Engineering - Media Technologies</h3>
+                <p class="timeline-description">
+                    University of Applied Sciences, Cologne, Germany. Comprehensive foundation in media technology, production workflows, and broadcast standards. Graduated with specialization in post-production and digital media systems.
+                </p>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="section">
-        <div class="section-header">
-            <div class="section-subtitle">Let's Work Together</div>
-            <h2 class="section-title">Get In Touch</h2>
+    <section id="contact" class="contact-section">
+        <div class="contact-container">
+            <div class="section-divider">/ Contact</div>
+            <h2 class="section-title">Let's Work Together</h2>
             <p class="section-description">
-                Ready to bring your video project to life? I'm available for freelance editing work 
-                and would love to discuss how I can help tell your story with precision and creativity.
+                Whether you're curious about my work, want to discuss a project, or just want to say hello — don't be shy. I'm available for freelance editing projects and would love to help bring your story to life.
             </p>
-        </div>
 
-        <div class="contact-grid">
-            <div class="contact-item">
-                <div class="contact-icon">
-                    <i class="fas fa-envelope"></i>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <h3>General</h3>
+                    <a href="mailto:tobias_efler@gmx.de">tobias_efler@gmx.de</a>
                 </div>
-                <h3>Email</h3>
-                <a href="mailto:tobias_efler@gmx.de">tobias_efler@gmx.de</a>
-            </div>
 
-            <div class="contact-item">
-                <div class="contact-icon">
-                    <i class="fas fa-phone"></i>
+                <div class="contact-item">
+                    <h3>Phone</h3>
+                    <a href="tel:+15045033819">(504) 503-3819</a>
                 </div>
-                <h3>Phone</h3>
-                <a href="tel:+15045033819">(504) 503-3819</a>
-            </div>
 
-            <div class="contact-item">
-                <div class="contact-icon">
-                    <i class="fas fa-map-marker-alt"></i>
+                <div class="contact-item">
+                    <h3>Location</h3>
+                    <span>New Orleans, Louisiana</span>
                 </div>
-                <h3>Location</h3>
-                <span>New Orleans, LA</span>
             </div>
         </div>
     </section>
@@ -1064,9 +722,9 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
-            <p>&copy; 2024 Tobias Efler. Professional Video Editor. All rights reserved.</p>
+            <p>&copy; 2024 Tobias Efler. Professional Video Editor.</p>
             <p>Available for freelance projects worldwide.</p>
-    </div>
+        </div>
     </footer>
 
     <script>
@@ -1092,25 +750,6 @@
                     });
                 }
             });
-        });
-
-        // Add fade-in animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in-up');
-                }
-            });
-        }, observerOptions);
-
-        // Observe all sections and cards
-        document.querySelectorAll('.section, .work-card, .skill-category, .timeline-item').forEach(el => {
-            observer.observe(el);
         });
     </script>
 </body>
