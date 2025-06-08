@@ -798,10 +798,6 @@
             <form class="contact-form" id="contact-form">
                 <h3>TELL ME ABOUT YOUR PROJECT</h3>
                 <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" required>
                 </div>
@@ -972,8 +968,6 @@
             btn.textContent = 'Sending...';
             
             const templateParams = {
-                from_name: document.getElementById('name').value,
-                name: document.getElementById('name').value,
                 reply_to: document.getElementById('email').value,
                 message: document.getElementById('message').value
             };
@@ -1027,13 +1021,13 @@
                     
                     professionElement.innerHTML = `<mark>${scrambledText}</mark>`;
                     
-                    iteration += 1/3; // Slower reveal
+                    iteration += 1/4; // Smoother reveal
                     
                     if (iteration >= targetText.length) {
                         clearInterval(scrambleInterval);
                         professionElement.innerHTML = `<mark>${targetText}</mark>`;
                     }
-                }, 50); // Scramble speed
+                }, 30); // Smoother word transition speed
             }, 2000); // Wait 2 seconds after page load
 
             // Scroll detection for about blurb transition
@@ -1044,50 +1038,57 @@
                 aboutTransitioned = true;
                 
                 const aboutBlurbElement = document.getElementById('aboutBlurb');
-                const germanText = 'SEIT 2012 ARBEITE ICH MIT FÜHRENDEN SENDERN, AGENTUREN UND KREATIVEN ZUSAMMEN, UM <mark>ÜBERZEUGENDE GESCHICHTEN</mark> IN VIELEN GENRES ZU ERZÄHLEN. MIT MEINEM HINTERGRUND IN MEDIENTECHNIK VON DER FACHHOCHSCHULE KÖLN VERFÜGE ICH ÜBER TIEFGREIFENDE KENNTNISSE IN POST-PRODUCTION-WORKFLOWS UND SPEZIALISIERE MICH AUF AVID MEDIA COMPOSER.';
-                const englishText = 'SINCE 2012, I\'VE TEAMED UP WITH TOP NETWORKS, AGENCIES, AND CREATIVES TO TELL <mark>COMPELLING STORIES</mark> ACROSS MANY GENRES. WITH A BACKGROUND IN ENGINEERING IN MEDIA TECHNOLOGIES FROM THE UNIVERSITY OF APPLIED SCIENCES IN COLOGNE, I HAVE A DEEP KNOWLEDGE OF POST-PRODUCTION WORKFLOWS AND SPECIALIZE IN AVID MEDIA COMPOSER.';
-                const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*.,\' ';
+                const germanWords = ['SEIT', '2012', 'ARBEITE', 'ICH', 'MIT', 'FÜHRENDEN', 'SENDERN,', 'AGENTUREN', 'UND', 'KREATIVEN', 'ZUSAMMEN,', 'UM', '<mark>ÜBERZEUGENDE', 'GESCHICHTEN</mark>', 'IN', 'VIELEN', 'GENRES', 'ZU', 'ERZÄHLEN.', 'MIT', 'MEINEM', 'HINTERGRUND', 'IN', 'MEDIENTECHNIK', 'VON', 'DER', 'FACHHOCHSCHULE', 'KÖLN', 'VERFÜGE', 'ICH', 'ÜBER', 'TIEFGREIFENDE', 'KENNTNISSE', 'IN', 'POST-PRODUCTION-WORKFLOWS', 'UND', 'SPEZIALISIERE', 'MICH', 'AUF', 'AVID', 'MEDIA', 'COMPOSER.'];
+                const englishWords = ['SINCE', '2012,', "I'VE", 'TEAMED', 'UP', 'WITH', 'TOP', 'NETWORKS,', 'AGENCIES,', 'AND', 'CREATIVES', 'TO', 'TELL', '<mark>COMPELLING', 'STORIES</mark>', 'ACROSS', 'MANY', 'GENRES.', 'WITH', 'A', 'BACKGROUND', 'IN', 'ENGINEERING', 'IN', 'MEDIA', 'TECHNOLOGIES', 'FROM', 'THE', 'UNIVERSITY', 'OF', 'APPLIED', 'SCIENCES', 'IN', 'COLOGNE,', 'I', 'HAVE', 'A', 'DEEP', 'KNOWLEDGE', 'OF', 'POST-PRODUCTION', 'WORKFLOWS', 'AND', 'SPECIALIZE', 'IN', 'AVID', 'MEDIA', 'COMPOSER.'];
+                const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*';
                 
-                let iteration = 0;
-                
-                const scrambleInterval = setInterval(() => {
-                    let scrambledText = '';
+                // Wait 2 seconds before starting transition
+                setTimeout(() => {
+                    let currentWordIndex = 0;
                     
-                    for (let i = 0; i < englishText.length; i++) {
-                        if (i < iteration) {
-                            // Revealed character
-                            scrambledText += englishText[i];
-                        } else {
-                            // Scrambled character
-                            if (englishText[i] === ' ') {
-                                scrambledText += ' ';
-                            } else if (englishText[i] === '<' || englishText[i] === '>' || englishText[i] === '/' || englishText[i] === 'm' || englishText[i] === 'a' || englishText[i] === 'r' || englishText[i] === 'k') {
-                                // Preserve HTML tags
-                                let tagEnd = i;
-                                while (tagEnd < englishText.length && englishText[tagEnd] !== '>') {
-                                    tagEnd++;
-                                }
-                                if (englishText[tagEnd] === '>') {
-                                    scrambledText += englishText.substring(i, tagEnd + 1);
-                                    i = tagEnd;
-                                } else {
-                                    scrambledText += characters[Math.floor(Math.random() * characters.length)];
-                                }
-                            } else {
-                                scrambledText += characters[Math.floor(Math.random() * characters.length)];
-                            }
+                    const wordTransitionInterval = setInterval(() => {
+                        let displayText = '';
+                        
+                        // Add all completed English words
+                        for (let i = 0; i < currentWordIndex; i++) {
+                            displayText += englishWords[i] + ' ';
                         }
-                    }
-                    
-                    aboutBlurbElement.innerHTML = scrambledText;
-                    
-                    iteration += 1/2; // Scramble speed
-                    
-                    if (iteration >= englishText.length) {
-                        clearInterval(scrambleInterval);
-                        aboutBlurbElement.innerHTML = englishText;
-                    }
-                }, 30); // Faster scramble for longer text
+                        
+                        // Add scrambled version of current word
+                        if (currentWordIndex < englishWords.length) {
+                            const currentWord = englishWords[currentWordIndex];
+                            let scrambledWord = '';
+                            
+                            // Check if it contains HTML tags
+                            if (currentWord.includes('<mark>') || currentWord.includes('</mark>')) {
+                                scrambledWord = currentWord; // Keep HTML tags intact
+                            } else {
+                                for (let j = 0; j < currentWord.length; j++) {
+                                    if (currentWord[j] === ',' || currentWord[j] === '.' || currentWord[j] === "'" || currentWord[j] === '-') {
+                                        scrambledWord += currentWord[j]; // Preserve punctuation
+                                    } else {
+                                        scrambledWord += characters[Math.floor(Math.random() * characters.length)];
+                                    }
+                                }
+                            }
+                            displayText += scrambledWord + ' ';
+                        }
+                        
+                        // Add remaining German words (fading effect)
+                        for (let i = currentWordIndex + 1; i < germanWords.length; i++) {
+                            displayText += germanWords[i] + ' ';
+                        }
+                        
+                        aboutBlurbElement.innerHTML = displayText.trim();
+                        
+                        currentWordIndex++;
+                        
+                        if (currentWordIndex > englishWords.length) {
+                            clearInterval(wordTransitionInterval);
+                            aboutBlurbElement.innerHTML = englishWords.join(' ');
+                        }
+                    }, 30); // Smoother word transition speed
+                }, 2000); // Wait 2 seconds before starting transition
             }
             
             // Scroll listener
@@ -1109,3 +1110,4 @@
     </script>
 </body>
 </html>
+
