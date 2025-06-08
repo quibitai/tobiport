@@ -649,6 +649,98 @@
             background: none; /* Override general hover */
         }
 
+        /* Confirmation Modal */
+        .confirmation-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .confirmation-modal.active {
+            display: flex;
+        }
+
+        .confirmation-modal-content {
+            position: relative;
+            background: var(--white);
+            padding: 40px;
+            color: var(--black);
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            border: 4px solid var(--black);
+        }
+
+        .confirmation-modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: var(--black);
+            font-family: var(--font-mono);
+            font-size: 24px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .confirmation-modal-close:hover {
+            color: var(--accent);
+            background: none;
+        }
+
+        .confirmation-icon {
+            font-size: 60px;
+            color: var(--black);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .confirmation-modal-content h3 {
+            font-family: var(--font-primary);
+            font-size: 24px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin-bottom: 15px;
+        }
+
+        .confirmation-modal-content p {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: var(--gray-medium);
+        }
+
+        .confirmation-btn {
+            background: var(--black);
+            color: var(--white);
+            border: 2px solid var(--black);
+            padding: 12px 30px;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+        }
+
+        .confirmation-btn:hover {
+            background: var(--accent);
+            color: var(--black);
+            border-color: var(--accent);
+        }
+
         /* Glitch Effect for Page Transitions */
         .glitch {
             animation: glitch 0.1s;
@@ -845,6 +937,17 @@
         </div>
     </div>
 
+    <!-- Confirmation Modal -->
+    <div class="confirmation-modal" id="confirmationModal">
+        <div class="confirmation-modal-content">
+            <button class="confirmation-modal-close" id="confirmationModalClose">×</button>
+            <div class="confirmation-icon">✓</div>
+            <h3>MESSAGE SENT</h3>
+            <p>THANK YOU FOR REACHING OUT.<br>I'LL GET BACK TO YOU SOON.</p>
+            <button class="confirmation-btn" id="confirmationBtn">OK</button>
+        </div>
+    </div>
+
     <script type="text/javascript"
         src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
     </script>
@@ -929,6 +1032,9 @@
                 if (chessModal.classList.contains('active')) {
                     closeChessModal();
                 }
+                if (confirmationModal.classList.contains('active')) {
+                    closeConfirmationModal();
+                }
             }
         });
 
@@ -960,6 +1066,32 @@
             }
         });
 
+        // Confirmation Modal
+        const confirmationModal = document.getElementById('confirmationModal');
+        const confirmationModalClose = document.getElementById('confirmationModalClose');
+        const confirmationBtn = document.getElementById('confirmationBtn');
+
+        function openConfirmationModal() {
+            confirmationModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeConfirmationModal() {
+            confirmationModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close confirmation modal with X button or OK button
+        confirmationModalClose.addEventListener('click', closeConfirmationModal);
+        confirmationBtn.addEventListener('click', closeConfirmationModal);
+
+        // Close confirmation modal when clicking outside
+        confirmationModal.addEventListener('click', (e) => {
+            if (e.target === confirmationModal) {
+                closeConfirmationModal();
+            }
+        });
+
         // Contact Form Handler (ready for EmailJS integration)
         document.getElementById('contact-form').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -972,11 +1104,11 @@
                 message: document.getElementById('message').value
             };
 
-            emailjs.send("service_3ixeqyv", "template_jnuwvsi", templateParams)
+            emailjs.send("service_3ixeqyv", "template_bpyimqw", templateParams)
             .then(() => {
-                btn.textContent = 'Sent!';
+                btn.textContent = '→';
                 this.reset();
-                setTimeout(() => { btn.textContent = '→'; }, 2000);
+                openConfirmationModal();
             }, (err) => {
                 btn.textContent = 'Error!';
                 alert('Failed to send email. Please try again later.');
