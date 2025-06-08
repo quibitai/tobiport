@@ -868,7 +868,7 @@
     <section class="work-section" id="work">
         <div class="work-header">
             <h2 class="work-title">SELECTED WORK</h2>
-            <span class="work-count">[12 PROJECTS]</span>
+            <span class="work-count">[17 PROJECTS]</span>
             </div>
         
         <div class="work-grid" id="workGrid">
@@ -958,20 +958,25 @@
     </script>
 
     <script>
-        // Work data - Updated with Google Drive thumbnails from provided file
+        // Work data - Curated portfolio with working video links (17 videos)
         const workData = [
             { title: "NIGHT PATROL", meta: "Head Editor / Conception | SWR", videoId: "zbVz7_OJNsQ", thumbnail: "https://drive.google.com/uc?export=view&id=1wqJQsUlvRXumlRS37S2n0sCXSjuS6D2L" },
-            { title: "MISSION WITH HEART", meta: "Head Editor | SAT.1", videoId: "OPg_RHBS5-Q", thumbnail: "https://drive.google.com/uc?export=view&id=1GRLnlpTreS8u1mRl8LlhZwrN5iMuwGaB" },
-            { title: "COUPLE LOVE", meta: "Head Editor | SAT.1", videoId: "0bONpYQuq2Y", thumbnail: "https://drive.google.com/uc?export=view&id=1Uq3NiYbmmKttJ0-t-NS5mL8A49Bxe6Bi" },
-            { title: "CRAZY ABOUT THE SEA", meta: "Editor | ARD", videoId: "h3hl3O2nLO0", thumbnail: "https://drive.google.com/uc?export=view&id=1X9GCXiowo5NaFigCD5bjoumV_iW4mKyu" },
-            { title: "IN MISSION: EVERY SECOND COUNTS", meta: "Head Editor | RTL", videoId: "e2ktOnl6w10", thumbnail: "https://drive.google.com/uc?export=view&id=1RDZ9ThLVAG94926nQ9Xo95fi_1nGfLf-" },
-            { title: "RATE MY DATE", meta: "Head Editor | SAT.1", videoId: "hLsvuZUPQpo", thumbnail: "https://drive.google.com/uc?export=view&id=1rvsrWrF7lxBj-Bo2bA3F-Kc2s72tVEqi" },
             { title: "FIRE WATER EARTH AIR", meta: "Editor | VOX", videoId: "H_2L7-2FBTQ", thumbnail: "https://drive.google.com/uc?export=view&id=12N397w4Uk0Mc-M7pEtadMdlw81gc5p_h" },
+            { title: "MISSION WITH HEART", meta: "Head Editor | SAT.1", videoId: "OPg_RHBS5-Q", thumbnail: "https://drive.google.com/uc?export=view&id=1GRLnlpTreS8u1mRl8LlhZwrN5iMuwGaB" },
             { title: "HALF BOARD XXL", meta: "Head Editor | SAT.1", videoId: "yMRCCWD9h0w", thumbnail: "https://drive.google.com/uc?export=view&id=12N397w4Uk0Mc-M7pEtadMdlw81gc5p_h" },
+            { title: "RATE MY DATE", meta: "Head Editor | SAT.1", videoId: "hLsvuZUPQpo", thumbnail: "https://drive.google.com/uc?export=view&id=1rvsrWrF7lxBj-Bo2bA3F-Kc2s72tVEqi" },
+            { title: "COUPLE LOVE", meta: "Head Editor | SAT.1", videoId: "0bONpYQuq2Y", thumbnail: "https://drive.google.com/uc?export=view&id=1Uq3NiYbmmKttJ0-t-NS5mL8A49Bxe6Bi" },
+            { title: "JENKE: CRIME", meta: "Editor | ProSieben", videoId: "jJYq9-_gtyU", thumbnail: "https://drive.google.com/uc?export=view&id=13sYiZtfnPQM99OPcer3ybOhA_sDDr8VX" },
             { title: "JENKE: EXPERIMENT", meta: "Editor | ProSieben", videoId: "TXIPKDAA0g8", thumbnail: "https://drive.google.com/uc?export=view&id=1SoeyDM7YSkL-PVZKGlwEKpaafOjuvjc5" },
+            { title: "ANIMAL RESCUER WITH HEART", meta: "Head Editor | RTL", videoId: "ET8ABJncFuA", thumbnail: "https://drive.google.com/uc?export=view&id=1idRZ31AmZ5fpovJ5l9IXOhwrEUStmgBB", openInNewTab: true },
+            { title: "IN MISSION: EVERY SECOND COUNTS", meta: "Head Editor | RTL", videoId: "e2ktOnl6w10", thumbnail: "https://drive.google.com/uc?export=view&id=1RDZ9ThLVAG94926nQ9Xo95fi_1nGfLf-" },
+            { title: "BABY ANIMALS – WILD & CUTE!", meta: "Editor | VOX", videoId: "7VkntMsqxqY", thumbnail: "https://drive.google.com/uc?export=view&id=1dPRd76IyxOXgZisV34UIaJD3j4rJ9Kv2" },
+            { title: "NEXT EXIT: LOVE", meta: "Head Editor | SAT.1", videoId: "cmNV4JfbVwg", thumbnail: "https://drive.google.com/uc?export=view&id=1-95M8FT3nWpVXiHc7gTOOVOSjAnaEOz3" },
+            { title: "THE EMERGENCY CALL CENTER", meta: "Editor | VOX", videoId: "T9IDBbhq8hg", thumbnail: "https://drive.google.com/uc?export=view&id=1c0dJg0HKgrgVQalGRP6wLpLVVH6z1g1S" },
+            { title: "CRAZY ABOUT THE SEA", meta: "Editor | ARD", videoId: "h3hl3O2nLO0", thumbnail: "https://drive.google.com/uc?export=view&id=1X9GCXiowo5NaFigCD5bjoumV_iW4mKyu" },
+            { title: "MY DREAMHOUSE BY THE SEA", meta: "Editor | VOX", videoId: "UL1Ss_INkRY", thumbnail: "https://drive.google.com/uc?export=view&id=1fH8UWjptFQpJoaTrgK_3PCL7XBnmoWwD" },
             { title: "UP CLOSE: THE VETERINARY CLINIC", meta: "Editor | VOX", videoId: "pMNgwsT-8q4", thumbnail: "https://drive.google.com/uc?export=view&id=1qzSvu5ma9NPqeq0xb2siZNHiE2ggxFbn", openInNewTab: true },
-            { title: "MY HEAVENLY HOTEL", meta: "Assistant Editor / Color Grading | VOX", videoId: "TdPt9DbP0EY", thumbnail: "https://drive.google.com/uc?export=view&id=1-xbsVFjNP8Y7HfaswRTX7jVxNm64pn91", openInNewTab: true },
-            { title: "ANIMAL RESCUER WITH HEART", meta: "Head Editor | RTL", videoId: "ET8ABJncFuA", thumbnail: "https://drive.google.com/uc?export=view&id=1idRZ31AmZ5fpovJ5l9IXOhwrEUStmgBB", openInNewTab: true }
+            { title: "MY HEAVENLY HOTEL", meta: "Assistant Editor / Color Grading | VOX", videoId: "TdPt9DbP0EY", thumbnail: "https://drive.google.com/uc?export=view&id=1-xbsVFjNP8Y7HfaswRTX7jVxNm64pn91", openInNewTab: true }
         ];
 
         // Populate work grid
