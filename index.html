@@ -624,6 +624,15 @@
         </div>
     </div>
 
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init("WNOLLTIiQgcUW8mnCNg3F");
+        })();
+    </script>
+
     <script>
         // Work data - Videos with confirmed YouTube links
         const workData = [
@@ -700,29 +709,24 @@
         // Contact Form Handler (ready for EmailJS integration)
         document.getElementById('contact-form').addEventListener('submit', function(e) {
             e.preventDefault();
+
+            const btn = this.querySelector('.submit-btn');
+            btn.textContent = 'Sending...';
             
-            // Get form data
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-            
-            // Here you can integrate with EmailJS
-            // emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
-            //     from_email: email,
-            //     message: message
-            // }).then(function(response) {
-            //     console.log('SUCCESS!', response.status, response.text);
-            //     // Reset form
-            //     document.getElementById('contact-form').reset();
-            // }, function(error) {
-            //     console.log('FAILED...', error);
-            // });
-            
-            // For now, just log the data
-            console.log('Form submitted:', { email, message });
-            alert('Form submitted! (Add EmailJS integration)');
-            
-            // Reset form
-            this.reset();
+            emailjs.send("service_3ixeqyv", "template_jnuwvsi", {
+                email: document.getElementById('email').value,
+                message: document.getElementById('message').value
+            })
+            .then(() => {
+                btn.textContent = 'Sent!';
+                this.reset();
+                setTimeout(() => { btn.textContent = '→'; }, 2000);
+            }, (err) => {
+                btn.textContent = 'Error!';
+                alert('Failed to send email. Please try again later.');
+                console.log('FAILED...', err);
+                setTimeout(() => { btn.textContent = '→'; }, 2000);
+            });
         });
 
         // Initialize
