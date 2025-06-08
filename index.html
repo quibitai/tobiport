@@ -953,68 +953,87 @@
             if (puzzleLoaded) return Promise.resolve();
             
             return new Promise((resolve, reject) => {
-                // Load Chess.js for game logic
+                // Load Chess.js from a more reliable CDN
                 const chessJs = document.createElement('script');
-                chessJs.src = 'https://unpkg.com/chess.js@1.0.0-beta.6/dist/chess.min.js';
+                chessJs.src = 'https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js';
                 chessJs.onload = () => {
-                    // Load Chessboard.js for the UI
+                    // Load Chessboard.js CSS
                     const chessBoardCss = document.createElement('link');
                     chessBoardCss.rel = 'stylesheet';
-                    chessBoardCss.href = 'https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css';
+                    chessBoardCss.href = 'https://unpkg.com/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css';
                     document.head.appendChild(chessBoardCss);
                     
+                    // Load Chessboard.js
                     const chessBoardJs = document.createElement('script');
-                    chessBoardJs.src = 'https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js';
+                    chessBoardJs.src = 'https://unpkg.com/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js';
                     chessBoardJs.onload = () => {
                         puzzleLoaded = true;
                         resolve();
                     };
-                    chessBoardJs.onerror = reject;
+                    chessBoardJs.onerror = (error) => {
+                        console.error('Failed to load chessboard.js:', error);
+                        reject(error);
+                    };
                     document.head.appendChild(chessBoardJs);
                 };
-                chessJs.onerror = reject;
+                chessJs.onerror = (error) => {
+                    console.error('Failed to load chess.js:', error);
+                    reject(error);
+                };
                 document.head.appendChild(chessJs);
             });
         }
 
         function initializePuzzle() {
-            const todaysPuzzle = puzzles[new Date().getDate() % puzzles.length];
-            
-            game = new Chess(todaysPuzzle.fen);
-            
-            const config = {
-                position: todaysPuzzle.fen,
-                draggable: true,
-                onDragStart: function(source, piece, position, orientation) {
-                    // Only allow moves for the side to move
-                    if ((game.turn() === 'w' && piece.search(/^b/) !== -1) ||
-                        (game.turn() === 'b' && piece.search(/^w/) !== -1)) {
-                        return false;
-                    }
-                },
-                onDrop: function(source, target) {
-                    // Make the move
-                    const move = game.move({
-                        from: source,
-                        to: target,
-                        promotion: 'q' // Always promote to queen for simplicity
-                    });
-
-                    // Illegal move
-                    if (move === null) return 'snapback';
-
-                    // Check if puzzle is solved
-                    checkPuzzleStatus();
-                },
-                onSnapEnd: function() {
-                    board.position(game.fen());
+            try {
+                const todaysPuzzle = puzzles[new Date().getDate() % puzzles.length];
+                
+                if (typeof Chess === 'undefined') {
+                    throw new Error('Chess.js not loaded');
                 }
-            };
+                if (typeof Chessboard === 'undefined') {
+                    throw new Error('Chessboard.js not loaded');
+                }
+                
+                game = new Chess(todaysPuzzle.fen);
+                
+                const config = {
+                    position: todaysPuzzle.fen,
+                    draggable: true,
+                    onDragStart: function(source, piece, position, orientation) {
+                        // Only allow moves for the side to move
+                        if ((game.turn() === 'w' && piece.search(/^b/) !== -1) ||
+                            (game.turn() === 'b' && piece.search(/^w/) !== -1)) {
+                            return false;
+                        }
+                    },
+                    onDrop: function(source, target) {
+                        // Make the move
+                        const move = game.move({
+                            from: source,
+                            to: target,
+                            promotion: 'q' // Always promote to queen for simplicity
+                        });
 
-            board = Chessboard('chessboard', config);
-            
-            document.getElementById('puzzleInfo').textContent = todaysPuzzle.description;
-            document.getElementById('puzzleSolution').textContent = 'Drag pieces to make your move';
+                        // Illegal move
+                        if (move === null) return 'snapback';
+
+                        // Check if puzzle is solved
+                        checkPuzzleStatus();
+                    },
+                    onSnapEnd: function() {
+                        board.position(game.fen());
+                    }
+                };
+
+                board = Chessboard('chessboard', config);
+                
+                document.getElementById('puzzleInfo').textContent = todaysPuzzle.description;
+                document.getElementById('puzzleSolution').textContent = 'Drag pieces to make your move';
+            } catch (error) {
+                console.error('Failed to initialize puzzle:', error);
+                document.getElementById('puzzleSolution').textContent = 'Error initializing puzzle: ' + error.message;
+            }
         }
 
         function checkPuzzleStatus() {
