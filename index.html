@@ -611,25 +611,28 @@
             text-align: center;
         }
 
-        .chess-modal-content p {
-            font-family: var(--font-mono);
-            font-size: 12px;
-            margin-bottom: 15px;
+        .chess-modal-content iframe {
+            width: 460px;
+            height: 600px;
+            border: 2px solid var(--black);
         }
 
-        .chess-modal-content h3 {
-            font-family: var(--font-mono);
-            font-size: 14px;
-            margin-top: 15px;
-        }
-
-        .chess-modal-content a {
+        .chess-modal-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
             color: var(--black);
-            text-decoration: none;
+            font-family: var(--font-mono);
+            font-size: 24px;
+            font-weight: 700;
+            cursor: pointer;
         }
 
-        .chess-modal-content a:hover {
+        .chess-modal-close:hover {
             color: var(--accent);
+            background: none; /* Override general hover */
         }
 
         /* Glitch Effect for Page Transitions */
@@ -810,16 +813,7 @@
         <div class="chess-modal-content">
             <button class="chess-modal-close" id="chessModalClose">×</button>
             <h3 style="font-family: var(--font-mono); font-size: 16px; margin-bottom: 15px; text-transform: uppercase;">DAILY CHESS PUZZLE</h3>
-            <div>
-                <p>
-                    <span id="puzzlePlayers"></span><br />
-                    <span id="puzzleSite"></span>
-                </p>
-                <a id="puzzleLink" href="https://chesspuzzle.net/Daily" target="_blank">
-                    <img id="puzzleImage" alt="Daily Chess Puzzle" style="max-width: 100%; border: 2px solid var(--black);" />
-                </a><br />
-                <h3><span id="puzzleText">Loading puzzle...</span></h3>
-            </div>
+            <iframe id="chessPuzzleIframe" src="https://www.chess.com/daily_puzzle" frameborder="0"></iframe>
         </div>
     </div>
 
@@ -914,32 +908,13 @@
         const chessModal = document.getElementById('chessModal');
         const chessIcon = document.getElementById('chessIcon');
         const chessModalClose = document.getElementById('chessModalClose');
-
-        function loadDailyPuzzle() {
-            var request = new XMLHttpRequest();
-            request.open('GET', 'https://chesspuzzle.net/Daily/Api', true);
-            request.onload = function () {
-                if (request.status >= 200 && request.status < 400) {
-                    var result = JSON.parse(request.responseText);
-                    document.getElementById("puzzleText").textContent = result.Text;
-                    document.getElementById("puzzleLink").href = result.Link;
-                    document.getElementById("puzzleImage").src = result.Image;
-                    document.getElementById("puzzlePlayers").textContent = result.Players;
-                    document.getElementById("puzzleSite").innerHTML = result.Site;
-                } else {
-                    document.getElementById("puzzleText").textContent = "Could not load puzzle.";
-                }
-            };
-            request.onerror = function() {
-                document.getElementById("puzzleText").textContent = "Error loading puzzle.";
-            };
-            request.send();
-        }
+        const chessPuzzleIframe = document.getElementById('chessPuzzleIframe');
 
         function openChessModal() {
             chessModal.classList.add('active');
             document.body.style.overflow = 'hidden';
-            loadDailyPuzzle();
+            // Set the iframe source when opening (as per instructions)
+            chessPuzzleIframe.src = "https://www.chess.com/daily_puzzle";
         }
 
         function closeChessModal() {
@@ -947,9 +922,13 @@
             document.body.style.overflow = 'auto';
         }
 
+        // When the user clicks the chess icon, open the modal
         chessIcon.addEventListener('click', openChessModal);
+
+        // When the user clicks on × (close button), close the modal
         chessModalClose.addEventListener('click', closeChessModal);
 
+        // When the user clicks anywhere outside of the modal, close it
         chessModal.addEventListener('click', (e) => {
             if (e.target === chessModal) {
                 closeChessModal();
