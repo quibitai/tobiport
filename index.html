@@ -536,6 +536,115 @@
             border: none;
         }
 
+        /* Chess Puzzle Icon */
+        .chess-icon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 8px;
+            background: var(--white);
+            color: var(--black);
+            border: 2px solid var(--black);
+            line-height: 1;
+            user-select: none;
+        }
+
+        .chess-icon:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+        
+        /* Chess Icon Tooltip */
+        .chess-icon[data-tooltip]::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            right: 0;
+            margin-bottom: 5px;
+            background: var(--black);
+            color: var(--white);
+            padding: 4px 8px;
+            font-family: var(--font-mono);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: none;
+            z-index: 101;
+        }
+
+        .chess-icon:hover[data-tooltip]::after {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Chess Puzzle Modal */
+        .chess-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .chess-modal.active {
+            display: flex;
+        }
+
+        .chess-modal-content {
+            position: relative;
+            background: var(--white);
+            padding: 40px;
+            text-align: center;
+            color: var(--black);
+            max-width: 500px;
+        }
+
+        .chess-modal-content h3 {
+            font-family: var(--font-mono);
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .chess-modal-content p {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            margin-bottom: 15px;
+        }
+
+        .chess-modal-content img {
+            max-width: 100%;
+            border: 2px solid var(--black);
+        }
+
+        .chess-modal-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: var(--black);
+            font-family: var(--font-mono);
+            font-size: 24px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .chess-modal-close:hover {
+            color: var(--accent);
+            background: none; /* Override general hover */
+        }
+
         /* Glitch Effect for Page Transitions */
         .glitch {
             animation: glitch 0.1s;
@@ -698,11 +807,31 @@
         <div class="envelope-triangle"></div>
     </div>
 
+    <!-- Chess Puzzle Icon -->
+    <div class="chess-icon" id="chessIcon" data-tooltip="Daily Puzzle">♟️</div>
+
     <!-- Video Modal -->
     <div class="video-modal" id="videoModal">
         <div class="video-modal-content">
             <button class="video-modal-close" id="videoModalClose">×</button>
             <iframe id="videoFrame" src="" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <!-- Chess Puzzle Modal -->
+    <div class="chess-modal" id="chessModal">
+        <div class="chess-modal-content">
+            <button class="chess-modal-close" id="chessModalClose">×</button>
+            <div id="chess-puzzle-container">
+                <p>
+                    <span id="puzzlePlayers"></span><br />
+                    <span id="puzzleSite"></span>
+                </p>
+                <a id="puzzleLink" href="https://chesspuzzle.net/Daily" target="_blank">
+                    <img id="puzzleImage" alt="Daily Chess Puzzle" />
+                </a><br />
+                <h3><span id="puzzleText">Loading puzzle...</span></h3>
+            </div>
         </div>
     </div>
 
@@ -784,9 +913,60 @@
 
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
-                closeVideoModal();
+                if (videoModal.classList.contains('active')) {
+                    closeVideoModal();
+                }
+                if (chessModal.classList.contains('active')) {
+                    closeChessModal();
+                }
             }
         });
+
+        // Chess Puzzle Modal
+        const chessModal = document.getElementById('chessModal');
+        const chessIcon = document.getElementById('chessIcon');
+        const chessModalClose = document.getElementById('chessModalClose');
+
+        function openChessModal() {
+            chessModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeChessModal() {
+            chessModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        chessIcon.addEventListener('click', openChessModal);
+        chessModalClose.addEventListener('click', closeChessModal);
+
+        chessModal.addEventListener('click', (e) => {
+            if (e.target === chessModal) {
+                closeChessModal();
+            }
+        });
+
+        // Daily Chess Puzzle Fetch
+        (function() {
+            var request = new XMLHttpRequest();
+            request.open('GET', 'https://chesspuzzle.net/Daily/Api', true);
+            request.onload = function () {
+                if (request.status >= 200 && request.status < 400) {
+                    var result = JSON.parse(request.responseText);
+                    document.getElementById("puzzleText").textContent = result.Text;
+                    document.getElementById("puzzleLink").href = result.Link;
+                    document.getElementById("puzzleImage").src = result.Image;
+                    document.getElementById("puzzlePlayers").textContent = result.Players;
+                    document.getElementById("puzzleSite").innerHTML = result.Site;
+                } else {
+                    document.getElementById("puzzleText").textContent = "Could not load puzzle.";
+                }
+            };
+            request.onerror = function() {
+                document.getElementById("puzzleText").textContent = "Error loading puzzle.";
+            };
+            request.send();
+        })();
 
         // Contact Form Handler (ready for EmailJS integration)
         document.getElementById('contact-form').addEventListener('submit', function(e) {
