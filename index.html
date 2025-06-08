@@ -418,6 +418,54 @@
             color: var(--gray-medium);
         }
 
+        /* Email Icon - Top Right Corner */
+        .email-icon {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            width: 24px;
+            height: 18px;
+            background: var(--black);
+            cursor: pointer;
+            transition: none;
+        }
+
+        .email-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--black);
+            background: var(--white);
+        }
+
+        .email-icon::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 8px solid var(--black);
+        }
+
+        .email-icon:hover {
+            background: var(--accent);
+        }
+
+        .email-icon:hover::before {
+            border-color: var(--accent);
+        }
+
+        .email-icon:hover::after {
+            border-top-color: var(--accent);
+        }
+
         /* Video Modal - Hard Cut Aesthetic */
         .video-modal {
             position: fixed;
@@ -616,6 +664,9 @@
         <div>© 2024 TOBIAS EFLER</div>
     </footer>
 
+    <!-- Email Icon -->
+    <div class="email-icon" id="emailIcon"></div>
+
     <!-- Video Modal -->
     <div class="video-modal" id="videoModal">
         <div class="video-modal-content">
@@ -714,8 +765,9 @@
             btn.textContent = 'Sending...';
             
             const templateParams = {
+                from_name: 'Portfolio Contact',
                 from_email: document.getElementById('email').value,
-                reply_to: document.getElementById('email').value,
+                to_name: 'Tobias Efler',
                 message: document.getElementById('message').value
             };
 
@@ -729,6 +781,14 @@
                 alert('Failed to send email. Please try again later.');
                 console.log('FAILED...', err);
                 setTimeout(() => { btn.textContent = '→'; }, 2000);
+            });
+        });
+
+        // Email Icon Handler
+        document.getElementById('emailIcon').addEventListener('click', function() {
+            document.getElementById('contact-form').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'center'
             });
         });
 
