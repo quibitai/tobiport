@@ -732,6 +732,22 @@
                 display: none;
             }
         }
+
+        /* Realistic Highlighter Effect */
+        mark {
+            margin: 0 -0.4em;
+            padding: 0.1em 0.4em;
+            border-radius: 0.8em 0.3em;
+            background: transparent;
+            background-image: linear-gradient(
+                to right,
+                rgba(255, 255, 0, 0.1),
+                rgba(255, 255, 0, 0.7) 4%,
+                rgba(255, 255, 0, 0.3)
+            );
+            -webkit-box-decoration-break: clone;
+            box-decoration-break: clone;
+        }
     </style>
 </head>
 <body>
@@ -765,7 +781,7 @@
             </div>
         <div class="about-content">
             <div class="blurb-wrapper">
-                <p>SINCE 2012, I'VE TEAMED UP WITH TOP NETWORKS, AGENCIES, AND CREATIVES TO TELL COMPELLING STORIES ACROSS MANY GENRES. WITH A BACKGROUND IN ENGINEERING IN MEDIA TECHNOLOGIES FROM THE UNIVERSITY OF APPLIED SCIENCES IN COLOGNE, I HAVE A DEEP KNOWLEDGE OF POST-PRODUCTION WORKFLOWS AND SPECIALIZE IN AVID MEDIA COMPOSER.</p>
+                <p>SINCE 2012, I'VE TEAMED UP WITH TOP NETWORKS, AGENCIES, AND CREATIVES TO TELL <mark>COMPELLING STORIES</mark> ACROSS MANY GENRES. WITH A BACKGROUND IN ENGINEERING IN MEDIA TECHNOLOGIES FROM THE UNIVERSITY OF APPLIED SCIENCES IN COLOGNE, I HAVE A DEEP KNOWLEDGE OF POST-PRODUCTION WORKFLOWS AND SPECIALIZE IN AVID MEDIA COMPOSER.</p>
             </div>
             
             <!-- Contact Form -->
