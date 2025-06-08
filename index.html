@@ -792,9 +792,8 @@
             btn.textContent = 'Sending...';
             
             const templateParams = {
-                from_name: 'Portfolio Contact',
-                from_email: document.getElementById('email').value,
-                to_name: 'Tobias Efler',
+                name: 'Portfolio Contact',
+                reply_to: document.getElementById('email').value,
                 message: document.getElementById('message').value
             };
 
