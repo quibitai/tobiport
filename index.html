@@ -796,6 +796,8 @@
             btn.textContent = 'Sending...';
             
             const templateParams = {
+                to_name: 'Tobias Efler',
+                from_name: document.getElementById('name').value,
                 name: document.getElementById('name').value,
                 reply_to: document.getElementById('email').value,
                 message: document.getElementById('message').value
