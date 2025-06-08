@@ -606,45 +606,30 @@
             background: var(--white);
             padding: 20px;
             color: var(--black);
-            max-width: 440px;
+            max-width: 500px;
             width: 100%;
             text-align: center;
         }
 
-        .chess-modal-content iframe {
-            width: 100%;
-            height: 560px;
-            border: none;
+        .chess-modal-content #chessboard {
+            width: 400px;
+            height: 400px;
+            margin: 0 auto 20px;
         }
 
-        .chess-modal-content #puzzle {
-            margin: 20px 0;
-            position: relative;
-            z-index: 2001;
-        }
-
-        .chess-modal-content #puzzle * {
-            pointer-events: auto !important;
-            user-select: auto !important;
-        }
-
-        .chess-modal-content #puzzle img {
-            cursor: pointer !important;
-        }
-
-        .chess-modal-content #ct-link {
-            display: inline-block;
-            margin-top: 10px;
-            color: var(--black);
-            text-decoration: none;
+        .chess-modal-content .puzzle-info {
             font-family: var(--font-mono);
-            font-size: 10px;
+            font-size: 12px;
+            margin-bottom: 15px;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        .chess-modal-content #ct-link:hover {
-            color: var(--accent);
+        .chess-modal-content .puzzle-solution {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            margin-top: 15px;
+            color: var(--gray-medium);
         }
 
         .chess-modal-close {
@@ -843,7 +828,10 @@
     <div class="chess-modal" id="chessModal">
         <div class="chess-modal-content">
             <button class="chess-modal-close" id="chessModalClose">×</button>
-            <iframe src="https://www.chess.com/daily_puzzle" frameborder="0"></iframe>
+            <h3 style="font-family: var(--font-mono); font-size: 16px; margin-bottom: 15px; text-transform: uppercase;">DAILY CHESS PUZZLE</h3>
+            <div class="puzzle-info" id="puzzleInfo">White to play and win</div>
+            <div id="chessboard"></div>
+            <div class="puzzle-solution" id="puzzleSolution">Drag pieces to make your move</div>
         </div>
     </div>
 
@@ -938,10 +926,120 @@
         const chessModal = document.getElementById('chessModal');
         const chessIcon = document.getElementById('chessIcon');
         const chessModalClose = document.getElementById('chessModalClose');
+        let board = null;
+        let game = null;
+        let puzzleLoaded = false;
+
+        // Simple chess puzzle positions (FEN notation)
+        const puzzles = [
+            {
+                fen: 'r1bqk2r/pppp1ppp/2n2n2/2b1p3/2B1P3/3P1N2/PPP2PPP/RNBQK2R w KQkq - 4 4',
+                solution: ['Bxf7+', 'Kxf7', 'Ng5+'],
+                description: 'White to play and win material'
+            },
+            {
+                fen: 'rnbqkb1r/pppp1ppp/5n2/4p3/2B1P3/8/PPPP1PPP/RNBQK1NR w KQkq - 2 3',
+                solution: ['Qh5', 'Nxh5', 'Bxf7#'],
+                description: 'White to play and checkmate in 2'
+            },
+            {
+                fen: 'r1bqkbnr/pppp1ppp/2n5/4p3/2B1P3/5Q2/PPPP1PPP/RNB1K1NR w KQkq - 2 3',
+                solution: ['Qxf7#'],
+                description: 'White to play and checkmate in 1'
+            }
+        ];
+
+        function loadChessLibraries() {
+            if (puzzleLoaded) return Promise.resolve();
+            
+            return new Promise((resolve, reject) => {
+                // Load Chess.js for game logic
+                const chessJs = document.createElement('script');
+                chessJs.src = 'https://unpkg.com/chess.js@1.0.0-beta.6/dist/chess.min.js';
+                chessJs.onload = () => {
+                    // Load Chessboard.js for the UI
+                    const chessBoardCss = document.createElement('link');
+                    chessBoardCss.rel = 'stylesheet';
+                    chessBoardCss.href = 'https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css';
+                    document.head.appendChild(chessBoardCss);
+                    
+                    const chessBoardJs = document.createElement('script');
+                    chessBoardJs.src = 'https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js';
+                    chessBoardJs.onload = () => {
+                        puzzleLoaded = true;
+                        resolve();
+                    };
+                    chessBoardJs.onerror = reject;
+                    document.head.appendChild(chessBoardJs);
+                };
+                chessJs.onerror = reject;
+                document.head.appendChild(chessJs);
+            });
+        }
+
+        function initializePuzzle() {
+            const todaysPuzzle = puzzles[new Date().getDate() % puzzles.length];
+            
+            game = new Chess(todaysPuzzle.fen);
+            
+            const config = {
+                position: todaysPuzzle.fen,
+                draggable: true,
+                onDragStart: function(source, piece, position, orientation) {
+                    // Only allow moves for the side to move
+                    if ((game.turn() === 'w' && piece.search(/^b/) !== -1) ||
+                        (game.turn() === 'b' && piece.search(/^w/) !== -1)) {
+                        return false;
+                    }
+                },
+                onDrop: function(source, target) {
+                    // Make the move
+                    const move = game.move({
+                        from: source,
+                        to: target,
+                        promotion: 'q' // Always promote to queen for simplicity
+                    });
+
+                    // Illegal move
+                    if (move === null) return 'snapback';
+
+                    // Check if puzzle is solved
+                    checkPuzzleStatus();
+                },
+                onSnapEnd: function() {
+                    board.position(game.fen());
+                }
+            };
+
+            board = Chessboard('chessboard', config);
+            
+            document.getElementById('puzzleInfo').textContent = todaysPuzzle.description;
+            document.getElementById('puzzleSolution').textContent = 'Drag pieces to make your move';
+        }
+
+        function checkPuzzleStatus() {
+            if (game.isCheckmate()) {
+                document.getElementById('puzzleSolution').textContent = 'Puzzle solved! Checkmate!';
+                document.getElementById('puzzleSolution').style.color = 'green';
+            } else if (game.isDraw()) {
+                document.getElementById('puzzleSolution').textContent = 'Draw. Try a different approach.';
+            } else {
+                document.getElementById('puzzleSolution').textContent = 'Good move! Continue...';
+            }
+        }
 
         function openChessModal() {
             chessModal.classList.add('active');
             document.body.style.overflow = 'hidden';
+            
+            loadChessLibraries().then(() => {
+                setTimeout(() => {
+                    initializePuzzle();
+                }, 100);
+            }).catch((error) => {
+                console.error('Failed to load chess libraries:', error);
+                document.getElementById('puzzleSolution').textContent = 'Failed to load puzzle. Please try again.';
+            });
         }
 
         function closeChessModal() {
