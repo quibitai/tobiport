@@ -606,9 +606,15 @@
             background: var(--white);
             padding: 20px;
             color: var(--black);
-            max-width: 500px;
+            max-width: 440px;
             width: 100%;
             text-align: center;
+        }
+
+        .chess-modal-content iframe {
+            width: 100%;
+            height: 560px;
+            border: none;
         }
 
         .chess-modal-content #puzzle {
@@ -837,13 +843,7 @@
     <div class="chess-modal" id="chessModal">
         <div class="chess-modal-content">
             <button class="chess-modal-close" id="chessModalClose">×</button>
-            <h3 style="font-family: var(--font-mono); font-size: 16px; margin-bottom: 15px; text-transform: uppercase;">DAILY CHESS PUZZLE</h3>
-            <div id="puzzle">
-                <div id="csoDpCon"></div>
-                <p style="font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 1px; margin-top: 10px;">
-                    <a href="https://www.chessstrategyonline.com/" target="_blank" style="color: var(--black); text-decoration: none;">Chess Strategy Online</a>
-                </p>
-            </div>
+            <iframe src="https://www.chess.com/daily_puzzle" frameborder="0"></iframe>
         </div>
     </div>
 
@@ -938,41 +938,10 @@
         const chessModal = document.getElementById('chessModal');
         const chessIcon = document.getElementById('chessIcon');
         const chessModalClose = document.getElementById('chessModalClose');
-        let puzzleLoaded = false;
-
-        function loadChessPuzzle() {
-            if (puzzleLoaded) return;
-            
-            // Add Chess Strategy Online widget script
-            const script = document.createElement('script');
-            script.src = 'https://www.chessstrategyonline.com/js/widgets.min.js';
-            script.onload = function() {
-                setTimeout(() => {
-                    try {
-                        csoDailyPuzzle({
-                            boardStyle: "default",
-                            pieceStyle: "uscf",
-                            showCoordinates: true,
-                            width: 420
-                        });
-                        puzzleLoaded = true;
-                    } catch(e) {
-                        console.log('Puzzle initialization failed:', e);
-                        // Fallback: show message if widget fails
-                        document.getElementById('csoDpCon').innerHTML = '<p style="padding: 20px; text-align: center;">Daily puzzle loading...</p>';
-                    }
-                }, 200);
-            };
-            script.onerror = function() {
-                document.getElementById('csoDpCon').innerHTML = '<p style="padding: 20px; text-align: center;">Unable to load daily puzzle.</p>';
-            };
-            document.head.appendChild(script);
-        }
 
         function openChessModal() {
             chessModal.classList.add('active');
             document.body.style.overflow = 'hidden';
-            loadChessPuzzle();
         }
 
         function closeChessModal() {
