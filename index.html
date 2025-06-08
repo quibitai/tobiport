@@ -442,8 +442,41 @@
             background: var(--white);
         }
 
-        .email-icon::after {
-            content: '';
+        .email-icon:hover {
+            background: var(--accent);
+        }
+
+        .email-icon:hover::before {
+            border-color: var(--accent);
+        }
+
+        /* Email Icon Tooltip */
+        .email-icon[data-tooltip]::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: -35px;
+            right: 0;
+            background: var(--black);
+            color: var(--white);
+            padding: 4px 8px;
+            font-family: var(--font-mono);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: none;
+            z-index: 101;
+        }
+
+        .email-icon:hover[data-tooltip]::after {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Envelope triangle element */
+        .email-icon .envelope-triangle {
             position: absolute;
             top: 2px;
             left: 2px;
@@ -454,15 +487,7 @@
             border-top: 8px solid var(--black);
         }
 
-        .email-icon:hover {
-            background: var(--accent);
-        }
-
-        .email-icon:hover::before {
-            border-color: var(--accent);
-        }
-
-        .email-icon:hover::after {
+        .email-icon:hover .envelope-triangle {
             border-top-color: var(--accent);
         }
 
@@ -665,7 +690,9 @@
     </footer>
 
     <!-- Email Icon -->
-    <div class="email-icon" id="emailIcon"></div>
+    <div class="email-icon" id="emailIcon" data-tooltip="Contact">
+        <div class="envelope-triangle"></div>
+    </div>
 
     <!-- Video Modal -->
     <div class="video-modal" id="videoModal">
