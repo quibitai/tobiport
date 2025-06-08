@@ -112,6 +112,16 @@
             line-height: 1.4;
         }
 
+        /* Text Transition Effect */
+        #profession {
+            display: inline-block;
+            transition: none; /* Remove fade transition */
+        }
+
+        #profession mark {
+            font-family: var(--font-mono); /* Ensure monospace for consistent scrambling */
+        }
+
         .hero-info {
             grid-column: 1 / 2;
             grid-row: 1 / 2;
@@ -758,7 +768,7 @@
             </div>
         <div class="hero-content">
             <h1 class="hero-title">TOBIAS<br>EFLER</h1>
-            <p class="hero-subtitle">Video Editor / New Orleans, LA</p>
+            <p class="hero-subtitle"><span id="profession"><mark>Videoschnitt</mark></span> / New Orleans, LA</p>
                 </div>
     </section>
 
@@ -992,6 +1002,39 @@
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             populateWorkGrid();
+            
+            // German to English scrambling text transition
+            setTimeout(() => {
+                const professionElement = document.getElementById('profession');
+                const initialText = 'Videoschnitt';
+                const targetText = 'Video Editor';
+                const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*';
+                
+                let iteration = 0;
+                
+                const scrambleInterval = setInterval(() => {
+                    let scrambledText = '';
+                    
+                    for (let i = 0; i < targetText.length; i++) {
+                        if (i < iteration) {
+                            // Revealed character
+                            scrambledText += targetText[i];
+                        } else {
+                            // Scrambled character
+                            scrambledText += characters[Math.floor(Math.random() * characters.length)];
+                        }
+                    }
+                    
+                    professionElement.innerHTML = `<mark>${scrambledText}</mark>`;
+                    
+                    iteration += 1/3; // Slower reveal
+                    
+                    if (iteration >= targetText.length) {
+                        clearInterval(scrambleInterval);
+                        professionElement.innerHTML = `<mark>${targetText}</mark>`;
+                    }
+                }, 50); // Scramble speed
+            }, 2000); // Wait 2 seconds after page load
         });
     </script>
 </body>
