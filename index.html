@@ -791,9 +791,11 @@
             const btn = this.querySelector('.submit-btn');
             btn.textContent = 'Sending...';
             
+            const userEmail = document.getElementById('email').value;
+
             const templateParams = {
-                name: 'Portfolio Contact',
-                reply_to: document.getElementById('email').value,
+                name: userEmail,
+                reply_to: userEmail,
                 message: document.getElementById('message').value
             };
 
