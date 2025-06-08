@@ -606,15 +606,19 @@
             background: var(--white);
             padding: 20px;
             color: var(--black);
-            max-width: 500px;
+            max-width: 450px;
             width: 100%;
             text-align: center;
         }
 
         .chess-modal-content iframe {
-            width: 460px;
-            height: 600px;
+            width: 400px;
+            height: 500px;
             border: 2px solid var(--black);
+        }
+
+        #listudyPuzzleWidget {
+            margin: 0 auto;
         }
 
         .chess-modal-close {
@@ -813,7 +817,9 @@
         <div class="chess-modal-content">
             <button class="chess-modal-close" id="chessModalClose">×</button>
             <h3 style="font-family: var(--font-mono); font-size: 16px; margin-bottom: 15px; text-transform: uppercase;">DAILY CHESS PUZZLE</h3>
-            <iframe id="chessPuzzleIframe" src="https://www.chess.com/daily_puzzle" frameborder="0"></iframe>
+            <div id="listudyPuzzleWidget">
+                <iframe src="https://listudy.org/en/embed/puzzle/daily" width="400" height="500" frameborder="0"></iframe>
+            </div>
         </div>
     </div>
 
@@ -908,13 +914,10 @@
         const chessModal = document.getElementById('chessModal');
         const chessIcon = document.getElementById('chessIcon');
         const chessModalClose = document.getElementById('chessModalClose');
-        const chessPuzzleIframe = document.getElementById('chessPuzzleIframe');
 
         function openChessModal() {
             chessModal.classList.add('active');
             document.body.style.overflow = 'hidden';
-            // Set the iframe source when opening (as per instructions)
-            chessPuzzleIframe.src = "https://www.chess.com/daily_puzzle";
         }
 
         function closeChessModal() {
