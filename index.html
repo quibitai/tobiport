@@ -669,6 +669,10 @@
             <form class="contact-form" id="contact-form">
                 <h3>TELL ME ABOUT YOUR PROJECT</h3>
                 <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" required>
                 </div>
@@ -790,14 +794,10 @@
 
             const btn = this.querySelector('.submit-btn');
             btn.textContent = 'Sending...';
-
-            const userEmail = document.getElementById('email').value;
-            // Extract name from email (part before @)
-            const userName = userEmail.split('@')[0];
             
             const templateParams = {
-                name: userName,
-                reply_to: userEmail,
+                name: document.getElementById('name').value,
+                reply_to: document.getElementById('email').value,
                 message: document.getElementById('message').value
             };
 
