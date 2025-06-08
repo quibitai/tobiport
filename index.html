@@ -604,27 +604,16 @@
         .chess-modal-content {
             position: relative;
             background: var(--white);
-            padding: 40px;
-            text-align: center;
+            padding: 20px;
             color: var(--black);
-            max-width: 500px;
+            max-width: 440px; /* Adjusted for iframe size */
+            width: 100%;
         }
 
-        .chess-modal-content h3 {
-            font-family: var(--font-mono);
-            font-size: 14px;
-            margin-top: 10px;
-        }
-
-        .chess-modal-content p {
-            font-family: var(--font-mono);
-            font-size: 12px;
-            margin-bottom: 15px;
-        }
-
-        .chess-modal-content img {
-            max-width: 100%;
-            border: 2px solid var(--black);
+        .chess-modal-content iframe {
+            width: 100%;
+            height: 560px; /* Match Chess.com widget height */
+            border: none;
         }
 
         .chess-modal-close {
@@ -822,16 +811,7 @@
     <div class="chess-modal" id="chessModal">
         <div class="chess-modal-content">
             <button class="chess-modal-close" id="chessModalClose">×</button>
-            <div id="chess-puzzle-container">
-                <p>
-                    <span id="puzzlePlayers"></span><br />
-                    <span id="puzzleSite"></span>
-                </p>
-                <a id="puzzleLink" href="https://chesspuzzle.net/Daily" target="_blank">
-                    <img id="puzzleImage" alt="Daily Chess Puzzle" />
-                </a><br />
-                <h3><span id="puzzleText">Loading puzzle...</span></h3>
-            </div>
+            <iframe src="https://www.chess.com/daily_puzzle" frameborder="0"></iframe>
         </div>
     </div>
 
@@ -945,28 +925,6 @@
                 closeChessModal();
             }
         });
-
-        // Daily Chess Puzzle Fetch
-        (function() {
-            var request = new XMLHttpRequest();
-            request.open('GET', 'https://chesspuzzle.net/Daily/Api', true);
-            request.onload = function () {
-                if (request.status >= 200 && request.status < 400) {
-                    var result = JSON.parse(request.responseText);
-                    document.getElementById("puzzleText").textContent = result.Text;
-                    document.getElementById("puzzleLink").href = result.Link;
-                    document.getElementById("puzzleImage").src = result.Image;
-                    document.getElementById("puzzlePlayers").textContent = result.Players;
-                    document.getElementById("puzzleSite").innerHTML = result.Site;
-                } else {
-                    document.getElementById("puzzleText").textContent = "Could not load puzzle.";
-                }
-            };
-            request.onerror = function() {
-                document.getElementById("puzzleText").textContent = "Error loading puzzle.";
-            };
-            request.send();
-        })();
 
         // Contact Form Handler (ready for EmailJS integration)
         document.getElementById('contact-form').addEventListener('submit', function(e) {
