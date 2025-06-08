@@ -611,84 +611,25 @@
             text-align: center;
         }
 
-        .chess-modal-content #chessboard {
-            width: 400px;
-            height: 400px;
-            margin: 0 auto 20px;
-            border: 2px solid var(--black);
-            display: grid;
-            grid-template-columns: repeat(8, 1fr);
-            grid-template-rows: repeat(8, 1fr);
-        }
-
-        .chess-square {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            cursor: pointer;
-            user-select: none;
-        }
-
-        .chess-square.light {
-            background-color: #f0d9b5;
-        }
-
-        .chess-square.dark {
-            background-color: #b58863;
-        }
-
-        .chess-square.selected {
-            background-color: #ffff00 !important;
-        }
-
-        .chess-square.possible-move {
-            background-color: #90ee90 !important;
-        }
-
-        .chess-piece {
-            cursor: grab;
-            transition: transform 0.1s;
-        }
-
-        .chess-piece:hover {
-            transform: scale(1.1);
-        }
-
-        .chess-modal-content .puzzle-info {
+        .chess-modal-content p {
             font-family: var(--font-mono);
             font-size: 12px;
             margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
-        .chess-modal-content .puzzle-solution {
+        .chess-modal-content h3 {
             font-family: var(--font-mono);
-            font-size: 10px;
+            font-size: 14px;
             margin-top: 15px;
-            color: var(--gray-medium);
         }
 
-        .chess-modal-close {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: none;
-            border: none;
+        .chess-modal-content a {
             color: var(--black);
-            font-family: var(--font-mono);
-            font-size: 24px;
-            font-weight: 700;
-            cursor: pointer;
-            z-index: 2002;
+            text-decoration: none;
         }
 
-        .chess-modal-close:hover {
+        .chess-modal-content a:hover {
             color: var(--accent);
-            background: none; /* Override general hover */
         }
 
         /* Glitch Effect for Page Transitions */
@@ -869,9 +810,16 @@
         <div class="chess-modal-content">
             <button class="chess-modal-close" id="chessModalClose">×</button>
             <h3 style="font-family: var(--font-mono); font-size: 16px; margin-bottom: 15px; text-transform: uppercase;">DAILY CHESS PUZZLE</h3>
-            <div class="puzzle-info" id="puzzleInfo">White to play and win</div>
-            <div id="chessboard"></div>
-            <div class="puzzle-solution" id="puzzleSolution">Drag pieces to make your move</div>
+            <div>
+                <p>
+                    <span id="puzzlePlayers"></span><br />
+                    <span id="puzzleSite"></span>
+                </p>
+                <a id="puzzleLink" href="https://chesspuzzle.net/Daily" target="_blank">
+                    <img id="puzzleImage" alt="Daily Chess Puzzle" style="max-width: 100%; border: 2px solid var(--black);" />
+                </a><br />
+                <h3><span id="puzzleText">Loading puzzle...</span></h3>
+            </div>
         </div>
     </div>
 
@@ -966,159 +914,37 @@
         const chessModal = document.getElementById('chessModal');
         const chessIcon = document.getElementById('chessIcon');
         const chessModalClose = document.getElementById('chessModalClose');
-        let selectedSquare = null;
-        let currentBoard = null;
 
-        // Unicode chess pieces
-        const pieces = {
-            'K': '♔', 'Q': '♕', 'R': '♖', 'B': '♗', 'N': '♘', 'P': '♙',
-            'k': '♚', 'q': '♛', 'r': '♜', 'b': '♝', 'n': '♞', 'p': '♟'
-        };
-
-        // Simple chess puzzle: White to play and win
-        const puzzleBoard = [
-            ['r', '', 'b', 'q', 'k', 'b', 'n', 'r'],
-            ['p', 'p', 'p', 'p', '', 'p', 'p', 'p'],
-            ['', '', 'n', '', '', '', '', ''],
-            ['', '', '', '', 'p', '', '', ''],
-            ['', '', '', '', 'P', '', '', ''],
-            ['', '', '', '', '', 'Q', '', ''],
-            ['P', 'P', 'P', 'P', '', 'P', 'P', 'P'],
-            ['R', 'N', 'B', '', 'K', 'B', 'N', 'R']
-        ];
-
-        function createChessBoard() {
-            const board = document.getElementById('chessboard');
-            board.innerHTML = '';
-            
-            for (let row = 0; row < 8; row++) {
-                for (let col = 0; col < 8; col++) {
-                    const square = document.createElement('div');
-                    square.className = `chess-square ${(row + col) % 2 === 0 ? 'light' : 'dark'}`;
-                    square.dataset.row = row;
-                    square.dataset.col = col;
-                    
-                    const piece = puzzleBoard[row][col];
-                    if (piece) {
-                        const pieceElement = document.createElement('span');
-                        pieceElement.className = 'chess-piece';
-                        pieceElement.textContent = pieces[piece];
-                        pieceElement.dataset.piece = piece;
-                        square.appendChild(pieceElement);
-                    }
-                    
-                    square.addEventListener('click', handleSquareClick);
-                    board.appendChild(square);
+        function loadDailyPuzzle() {
+            var request = new XMLHttpRequest();
+            request.open('GET', 'https://chesspuzzle.net/Daily/Api', true);
+            request.onload = function () {
+                if (request.status >= 200 && request.status < 400) {
+                    var result = JSON.parse(request.responseText);
+                    document.getElementById("puzzleText").textContent = result.Text;
+                    document.getElementById("puzzleLink").href = result.Link;
+                    document.getElementById("puzzleImage").src = result.Image;
+                    document.getElementById("puzzlePlayers").textContent = result.Players;
+                    document.getElementById("puzzleSite").innerHTML = result.Site;
+                } else {
+                    document.getElementById("puzzleText").textContent = "Could not load puzzle.";
                 }
-            }
-            
-            currentBoard = puzzleBoard.map(row => [...row]);
-        }
-
-        function handleSquareClick(event) {
-            const clickedSquare = event.currentTarget;
-            const row = parseInt(clickedSquare.dataset.row);
-            const col = parseInt(clickedSquare.dataset.col);
-            
-            // Clear previous highlights
-            document.querySelectorAll('.chess-square').forEach(sq => {
-                sq.classList.remove('selected', 'possible-move');
-            });
-            
-            if (selectedSquare && selectedSquare.element !== clickedSquare) {
-                // Try to make a move
-                const fromRow = parseInt(selectedSquare.element.dataset.row);
-                const fromCol = parseInt(selectedSquare.element.dataset.col);
-                
-                if (makeMove(fromRow, fromCol, row, col)) {
-                    updateBoard();
-                    checkPuzzleComplete();
-                }
-                selectedSquare = null;
-            } else if (clickedSquare.querySelector('.chess-piece')) {
-                // Select a piece
-                const piece = clickedSquare.querySelector('.chess-piece').dataset.piece;
-                if (isWhitePiece(piece)) { // Only allow white pieces to be selected
-                    selectedSquare = { element: clickedSquare, row, col };
-                    clickedSquare.classList.add('selected');
-                    highlightPossibleMoves(row, col, piece);
-                }
-            } else {
-                selectedSquare = null;
-            }
-        }
-
-        function isWhitePiece(piece) {
-            return piece === piece.toUpperCase();
-        }
-
-        function makeMove(fromRow, fromCol, toRow, toCol) {
-            // Simple move validation (basic rules)
-            if (currentBoard[toRow][toCol] && isWhitePiece(currentBoard[toRow][toCol])) {
-                return false; // Can't capture own piece
-            }
-            
-            // Make the move
-            currentBoard[toRow][toCol] = currentBoard[fromRow][fromCol];
-            currentBoard[fromRow][fromCol] = '';
-            return true;
-        }
-
-        function highlightPossibleMoves(row, col, piece) {
-            const squares = document.querySelectorAll('.chess-square');
-            // Simple highlighting - just show empty squares and enemy pieces
-            squares.forEach(square => {
-                const r = parseInt(square.dataset.row);
-                const c = parseInt(square.dataset.col);
-                const targetPiece = currentBoard[r][c];
-                
-                if (!targetPiece || (targetPiece && !isWhitePiece(targetPiece))) {
-                    square.classList.add('possible-move');
-                }
-            });
-        }
-
-        function updateBoard() {
-            const squares = document.querySelectorAll('.chess-square');
-            squares.forEach(square => {
-                const row = parseInt(square.dataset.row);
-                const col = parseInt(square.dataset.col);
-                const piece = currentBoard[row][col];
-                
-                square.innerHTML = '';
-                if (piece) {
-                    const pieceElement = document.createElement('span');
-                    pieceElement.className = 'chess-piece';
-                    pieceElement.textContent = pieces[piece];
-                    pieceElement.dataset.piece = piece;
-                    square.appendChild(pieceElement);
-                }
-            });
-        }
-
-        function checkPuzzleComplete() {
-            // Check if black king is in checkmate position (simplified)
-            const blackKingExists = currentBoard.some(row => row.includes('k'));
-            if (!blackKingExists) {
-                document.getElementById('puzzleSolution').textContent = 'Puzzle solved! You captured the king!';
-                document.getElementById('puzzleSolution').style.color = 'green';
-            } else {
-                document.getElementById('puzzleSolution').textContent = 'Good move! Keep going...';
-            }
+            };
+            request.onerror = function() {
+                document.getElementById("puzzleText").textContent = "Error loading puzzle.";
+            };
+            request.send();
         }
 
         function openChessModal() {
             chessModal.classList.add('active');
             document.body.style.overflow = 'hidden';
-            createChessBoard();
-            document.getElementById('puzzleInfo').textContent = 'White to play and win material';
-            document.getElementById('puzzleSolution').textContent = 'Click a white piece, then click where to move it';
+            loadDailyPuzzle();
         }
 
         function closeChessModal() {
             chessModal.classList.remove('active');
             document.body.style.overflow = 'auto';
-            selectedSquare = null;
         }
 
         chessIcon.addEventListener('click', openChessModal);
