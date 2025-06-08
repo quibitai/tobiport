@@ -791,7 +791,7 @@
             </div>
         <div class="about-content">
             <div class="blurb-wrapper">
-                <p>SINCE 2012, I'VE TEAMED UP WITH TOP NETWORKS, AGENCIES, AND CREATIVES TO TELL <mark>COMPELLING STORIES</mark> ACROSS MANY GENRES. WITH A BACKGROUND IN ENGINEERING IN MEDIA TECHNOLOGIES FROM THE UNIVERSITY OF APPLIED SCIENCES IN COLOGNE, I HAVE A DEEP KNOWLEDGE OF POST-PRODUCTION WORKFLOWS AND SPECIALIZE IN AVID MEDIA COMPOSER.</p>
+                <p id="aboutBlurb">SEIT 2012 ARBEITE ICH MIT FÜHRENDEN SENDERN, AGENTUREN UND KREATIVEN ZUSAMMEN, UM <mark>ÜBERZEUGENDE GESCHICHTEN</mark> IN VIELEN GENRES ZU ERZÄHLEN. MIT MEINEM HINTERGRUND IN MEDIENTECHNIK VON DER FACHHOCHSCHULE KÖLN VERFÜGE ICH ÜBER TIEFGREIFENDE KENNTNISSE IN POST-PRODUCTION-WORKFLOWS UND SPEZIALISIERE MICH AUF AVID MEDIA COMPOSER.</p>
             </div>
             
             <!-- Contact Form -->
@@ -1035,6 +1035,76 @@
                     }
                 }, 50); // Scramble speed
             }, 2000); // Wait 2 seconds after page load
+
+            // Scroll detection for about blurb transition
+            let aboutTransitioned = false;
+            
+            function scrambleAboutBlurb() {
+                if (aboutTransitioned) return;
+                aboutTransitioned = true;
+                
+                const aboutBlurbElement = document.getElementById('aboutBlurb');
+                const germanText = 'SEIT 2012 ARBEITE ICH MIT FÜHRENDEN SENDERN, AGENTUREN UND KREATIVEN ZUSAMMEN, UM <mark>ÜBERZEUGENDE GESCHICHTEN</mark> IN VIELEN GENRES ZU ERZÄHLEN. MIT MEINEM HINTERGRUND IN MEDIENTECHNIK VON DER FACHHOCHSCHULE KÖLN VERFÜGE ICH ÜBER TIEFGREIFENDE KENNTNISSE IN POST-PRODUCTION-WORKFLOWS UND SPEZIALISIERE MICH AUF AVID MEDIA COMPOSER.';
+                const englishText = 'SINCE 2012, I\'VE TEAMED UP WITH TOP NETWORKS, AGENCIES, AND CREATIVES TO TELL <mark>COMPELLING STORIES</mark> ACROSS MANY GENRES. WITH A BACKGROUND IN ENGINEERING IN MEDIA TECHNOLOGIES FROM THE UNIVERSITY OF APPLIED SCIENCES IN COLOGNE, I HAVE A DEEP KNOWLEDGE OF POST-PRODUCTION WORKFLOWS AND SPECIALIZE IN AVID MEDIA COMPOSER.';
+                const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*.,\' ';
+                
+                let iteration = 0;
+                
+                const scrambleInterval = setInterval(() => {
+                    let scrambledText = '';
+                    
+                    for (let i = 0; i < englishText.length; i++) {
+                        if (i < iteration) {
+                            // Revealed character
+                            scrambledText += englishText[i];
+                        } else {
+                            // Scrambled character
+                            if (englishText[i] === ' ') {
+                                scrambledText += ' ';
+                            } else if (englishText[i] === '<' || englishText[i] === '>' || englishText[i] === '/' || englishText[i] === 'm' || englishText[i] === 'a' || englishText[i] === 'r' || englishText[i] === 'k') {
+                                // Preserve HTML tags
+                                let tagEnd = i;
+                                while (tagEnd < englishText.length && englishText[tagEnd] !== '>') {
+                                    tagEnd++;
+                                }
+                                if (englishText[tagEnd] === '>') {
+                                    scrambledText += englishText.substring(i, tagEnd + 1);
+                                    i = tagEnd;
+                                } else {
+                                    scrambledText += characters[Math.floor(Math.random() * characters.length)];
+                                }
+                            } else {
+                                scrambledText += characters[Math.floor(Math.random() * characters.length)];
+                            }
+                        }
+                    }
+                    
+                    aboutBlurbElement.innerHTML = scrambledText;
+                    
+                    iteration += 1/2; // Scramble speed
+                    
+                    if (iteration >= englishText.length) {
+                        clearInterval(scrambleInterval);
+                        aboutBlurbElement.innerHTML = englishText;
+                    }
+                }, 30); // Faster scramble for longer text
+            }
+            
+            // Scroll listener
+            function handleScroll() {
+                const aboutSection = document.getElementById('about');
+                const aboutRect = aboutSection.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                
+                // Trigger when about section is 60% visible
+                if (aboutRect.top < windowHeight * 0.6 && aboutRect.bottom > 0) {
+                    scrambleAboutBlurb();
+                }
+            }
+            
+            window.addEventListener('scroll', handleScroll);
+            // Check on load in case already scrolled
+            handleScroll();
         });
     </script>
 </body>
