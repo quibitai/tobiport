@@ -606,14 +606,28 @@
             background: var(--white);
             padding: 20px;
             color: var(--black);
-            max-width: 440px; /* Adjusted for iframe size */
+            max-width: 500px;
             width: 100%;
+            text-align: center;
         }
 
-        .chess-modal-content iframe {
-            width: 100%;
-            height: 560px; /* Match Chess.com widget height */
-            border: none;
+        .chess-modal-content #puzzle {
+            margin: 20px 0;
+        }
+
+        .chess-modal-content #ct-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: var(--black);
+            text-decoration: none;
+            font-family: var(--font-mono);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .chess-modal-content #ct-link:hover {
+            color: var(--accent);
         }
 
         .chess-modal-close {
@@ -811,7 +825,17 @@
     <div class="chess-modal" id="chessModal">
         <div class="chess-modal-content">
             <button class="chess-modal-close" id="chessModalClose">×</button>
-            <iframe src="https://www.chess.com/daily_puzzle" frameborder="0"></iframe>
+            <h3 style="font-family: var(--font-mono); font-size: 16px; margin-bottom: 15px; text-transform: uppercase;">DAILY CHESS PUZZLE</h3>
+            <div id="puzzle">
+                <div id="puzzle-container">
+                    <link id="puzzleCss" type="text/css" rel="stylesheet" href="https://chesstempo.com/css/dailypuzzle.css"/>
+                    <script type="text/javascript" src="https://chesstempo.com/js/dailypuzzle.js"></script>
+                    <script>
+                        new Puzzle({ pieceSize: 40, showCoordinates: true });
+                    </script>
+                </div>
+                <a id="ct-link" href="https://chesstempo.com/play-chess-online/">Chess Tempo</a>
+            </div>
         </div>
     </div>
 
